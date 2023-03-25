@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "default": "omplish"
+  },
+  "targets": {
+    "omplish": {
+      "hosting": {
+        "rd": [
+          "omplish"
+        ],
+        "omplish": [
+          "omplish"
+        ],
+        "nightly": [
+            "omplish-nightly"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

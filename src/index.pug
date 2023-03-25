@@ -1,0 +1,22 @@
+extends includes/layout.pug
+block vars
+  - var title = "Home";
+block styles
+  link(rel="stylesheet" href="css/home.scss")
+
+block content
+  div.hero.is-fullheight-with-navbar.home-adjust
+    div.is-hidden-touch(style="margin: auto; width: 50%;")
+      h1.title.landing-title #[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Omplish] is where
+      h1.title.landing-title #[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") productivity] and #[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") social media] meet.
+      div.box.is-primary.subtitle-box.column.is-4.is-flex-direction-column.is-flex
+        h1.subtitle.has-text-white.is-4 Harness the addicting power of social media to get things done.
+
+    div.is-hidden-desktop(style="margin: auto; width: 85%;")
+      h1.title.landing-title-mobile #[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Omplish] is where
+      h1.title.landing-title-mobile #[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") productivity] and #[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") social media] meet.
+      div.box.is-primary.subtitle-box.column.is-4.is-flex-direction-column.is-flex
+        h1.subtitle.has-text-white.is-4 Harness the addicting power of social media to get things done.
+
+append scripts-footer
+  script(type="module" src="./js/general.js")

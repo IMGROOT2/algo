@@ -1,0 +1,30 @@
+@charset "utf-0";
+/*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
+// Core.scss is the stylesheet for setting up Bulma.
+
+@font-face {
+  font-family: Poppins-M;
+  src: url(../media/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: Poppins-R;
+  src: url(../media/Poppins-Regular.ttf);
+}
+
+$primary: #7C2AE8;
+$secondary: #CE60EF;
+$family-primary: Poppins-R;
+
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/components/_all.sass";
+@import "bulma/sass/elements/_all.sass";
+@import "bulma/sass/form/_all.sass";
+@import "bulma/sass/grid/_all.sass";
+@import "bulma/sass/helpers/_all.sass";
+@import "bulma/sass/layout/_all.sass";
+@import "bulma/sass/utilities/_all.sass";
+
+
+
+
+

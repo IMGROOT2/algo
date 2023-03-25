@@ -1,0 +1,103 @@
+block vars
+doctype html
+html.has-navbar-fixed-top(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        title #{title || "Home"} - Omplish
+        meta(property="og:title" content=`${title || "Home"} - Omplish`)
+        meta(property="og:description" content=`${description || ""}`)
+        meta(name="description" content=`${description || ""}`)
+        // TODO: Add Description, Title
+        meta(property="og:type" content="website")
+        link(rel="icon" href="media/favicon.ico" sizes="any")
+        block extrahead
+        block styles
+            link(rel="stylesheet" href="style.scss")
+    body(style="height: 100%;").is-flex.is-flex-direction-column
+        block navbar
+            // TODO: navbar-burger? whats happening
+            nav.navbar.is-fixed-top.is-primary.is-transparent(role="navigation" aria-label="main navigation")
+                .navbar-brand
+                    a.navbar-item(href="/" style="margin-right: 1rem;")
+                        img(src="media/Omplish - Small.svg" alt="Omplish Logo" style="border: 0.0001px solid; border-radius: 1rem; scale: 1.3")
+                    a.navbar-burger(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
+                        span(aria-hidden="true")
+                        span(aria-hidden="true")
+                        span(aria-hidden="true")
+                div#main-navbar.navbar-menu
+                    .navbar-start
+                        .buttons
+                            .is-hidden.nav-not-logged-in
+                                a.button.is-primary.navbar-button(href="/")
+                                    | Home
+                                a.button.is-primary.navbar-button(href="/")
+                                    | About
+                                a.button.is-primary.navbar-button(href="/")
+                                    | Contact
+                            .is-hidden.nav-logged-in
+                                a.button.is-primary.navbar-button(href="/dashboard")
+                                    | Dashboard
+                    .navbar-end
+                        .navbar-item
+                            .buttons
+                                a#btn-register-login.navbar-item.button.is-primary.nav-not-logged-in.is-hidden(href="/login")
+                                    | Register - Log In
+                                .navbar-item.has-dropdown.is-hoverable
+                                    div#btn-profile.navbar-link.has-dropdown.is-arrowless.is-hidden
+                                        span#noPhoto.icon.is-large.is-hidden
+                                            i.fa-solid.fa-user-circle
+                                        span#hasPhoto.is-hidden
+                                            img#profile-image(referrerpolicy="no-referrer" style="border: 2px solid white; border-radius: 2rem;" alt="Profile Image")
+                                    div#btn-profile-dropdown.navbar-dropdown.is-right.is-boxed
+                                        div.navbar-item.no-pointer-events
+                                            span#profile-loader.bulma-loader-mixin
+                                            | #[p(style="display: block;")#profile-name]
+                                        div.navbar-item.no-pointer-events
+                                            | #[p(style="font-size: 0.5rem; overflow: hidden; display: inline-block; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-email]
+                                        hr.navbar-divider
+                                        a.navbar-item(href="/profile")
+                                            span.icon.is-small
+                                                i.fa-solid.fa-user
+                                            | Profile
+                                        a.navbar-item(href="/settings")
+                                            span.icon.is-small
+                                                i.fa-solid.fa-cog
+                                            | Settings
+                                        hr.navbar-divider
+                                        a.navbar-item#btn-logout(href="/")
+                                            span.icon.is-small
+                                                i.fa-solid.fa-sign-out-alt
+                                            | Log Out
+
+        main.is-flex-grow-1
+            block content
+                // Hello
+        footer.footer.is-fixed-bottom(style="margin-top: 1rem;")
+            .level(style='margin-left: 5rem; margin-right: 5rem; text-align: center;')
+                .level-left
+                    .level-item
+                        img(src="media/Omplish - Small.svg" alt="Omplish Logo" style="border: 5px solid white; border-radius: 99rem; height: 100px;")
+                .level-right
+                    .level-item
+                        p(style="color: white;") © 2023 Ruhan Gupta. All Rights Reserved.
+        block scripts-footer
+            script.
+                const navbar = {
+                    burger: document.querySelector(".navbar-burger"),
+                    menu: document.getElementById("main-navbar")
+                };
+                addEventListener("DOMContentLoaded", () => {
+                    navbar.burger.addEventListener("click", () => {
+                        navbar.burger.classList.toggle("is-active");
+                        navbar.menu.classList.toggle("is-active");
+                    });
+                    navbar.menu.addEventListener("click", () => {
+                        navbar.burger.classList.remove("is-active");
+                        navbar.menu.classList.remove("is-active");
+                    });
+                });
+            script(src="js/navbar.js" type="module")
+
+

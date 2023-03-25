@@ -1,0 +1,77 @@
+@import "core.scss";
+
+
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css";
+// Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com
+
+
+// Style.scss is the stylesheet for all pages.
+
+body, html {
+    background: linear-gradient(-45deg, rgb(133, 64, 155), rgb(69, 23, 128));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.navbar, .footer {
+  background-color: transparent !important;
+  box-shadow: none;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.footer {
+  padding: 3rem 1.5rem 3rem !important;
+}
+
+#btn-profile {
+  text-decoration: none !important;
+  font-size: 2rem;
+  background-color: transparent !important;
+  color: white !important;
+  &:hover {
+    text-decoration: none !important;
+    background-color: transparent !important;
+    color: white !important;
+  }
+}
+#btn-profile-dropdown {
+  background-image: linear-gradient(#7C2AE8, #CE60EF) !important;
+  color: white !important;
+  span.icon {
+    margin-right: 15px;
+  }
+}
+
+.makedropvisible {
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+.navbar-item {
+  color: white !important;
+  &:hover {
+    color: lightgray !important;
+  }
+}
+.bulma-loader-mixin {
+  @include loader;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.no-pointer-events {
+    pointer-events: none !important;
+}
+#btn-register-login {
+  &:hover {
+    background-color: #751ee7 !important;
+  }
+}

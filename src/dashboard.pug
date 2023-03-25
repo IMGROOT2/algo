@@ -1,0 +1,30 @@
+extends includes/layout.pug
+block vars
+    - var title = "Dashboard";
+block styles
+    link(rel="stylesheet" href="css/dashboard.scss")
+
+block content
+    prepend navbar
+    h1#dash-title.title.has-text-white.mb-1
+    h2#dash-subtitle.subtitle.has-text-white.mt-0
+    .box.column.is-3.tasks
+        h1.title.has-text-white Time to acc#[span(style="background: -webkit-linear-gradient(#7C2AE8, #CE60EF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") omplish].
+        .box.mx-2.is-rounded.has-text-white
+            .level
+                .level-left
+                    span(style="font-size: 1.6rem;").icon.is-large
+                        i.check-circle.fa-regular.fa-circle
+                .level-right
+                    span.title.is-4.has-text-white Task One
+        .box.mx-2.is-rounded.has-text-white
+            .level
+                .level-left
+                    span(style="font-size: 1.6rem;").icon.is-large
+                        i.check-circle.fa-regular.fa-circle
+                .level-right
+                    span.title.is-4.has-text-white Task Two
+
+
+append scripts-footer
+    script(type="module" src="js/dashboard.js")
