@@ -6,8 +6,6 @@ import {updateProfile} from "firebase/auth";
 const name = document.getElementById('name');
 const email = document.getElementById('email');
 const photoURL = document.getElementById('photoURL');
-const bio = document.getElementById('bio');
-const location = document.getElementById('location');
 const created = document.getElementById('created');
 const btnUpdateProfile = document.getElementById('save-changes');
 const load = document.getElementById('load');
@@ -18,12 +16,6 @@ auth.onAuthStateChanged(function(user) {
         retrieveUserDoc(db, user).then((doc) => {
             name.value = user.displayName;
             email.value = user.email;
-            if(doc.data().bio) {
-                bio.value = doc.data().bio;
-            }
-            if(doc.data().location) {
-                location.value = doc.data().location;
-            }
             if(doc.data().created) {
                 created.innerText = doc.data().created.toDate().toLocaleDateString();
             }
@@ -40,13 +32,15 @@ auth.onAuthStateChanged(function(user) {
             }).then(() => {
                 retrieveUserDoc(db, user).then((adoc) => {
                     const data = adoc.data();
-                    data.bio = bio.value;
-                    data.location = location.value;
                     setDoc(doc(db, "user_data", user.uid), data).then(() => {
                         btnUpdateProfile.classList.toggle('is-loading');
+                        btnUpdateProfile.classList.remove('is-primary');
+                        btnUpdateProfile.style.background = "#00d1b2";
                         btnUpdateProfile.innerText = "Saved!";
                         setTimeout(() => {
                             btnUpdateProfile.innerText = "Save Changes";
+                            btnUpdateProfile.style.background = "";
+                            btnUpdateProfile.classList.add('is-primary');
                         }, 2000);
                     });
                 });

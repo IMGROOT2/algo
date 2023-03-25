@@ -3,14 +3,15 @@ import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, getDocs, collection, updateDoc, doc, addDoc, deleteDoc } from "firebase/firestore";
 export const firebaseConfig = {
-    apiKey: "AIzaSyBwNVTJ6jAHVmxuAjZyu93EOoj3Mhb_i4s",
-    authDomain: "omplish.firebaseapp.com",
-    projectId: "omplish",
-    storageBucket: "omplish.appspot.com",
-    messagingSenderId: "713045925177",
-    appId: "1:713045925177:web:add32c8af33093945c5ce8",
-    measurementId: "G-GMWKMTJ4TL"
-}
+    apiKey: "AIzaSyAVd0HLl7_NMyeE5Msmg2eX1hqesGoyXRQ",
+    authDomain: "algo-usaco.firebaseapp.com",
+    databaseURL: "https://algo-usaco-default-rtdb.firebaseio.com",
+    projectId: "algo-usaco",
+    storageBucket: "algo-usaco.appspot.com",
+    messagingSenderId: "56776411397",
+    appId: "1:56776411397:web:5dcff79b859fd7f7ca4f6c",
+    measurementId: "G-KYL07WP16G"
+};
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);

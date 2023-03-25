@@ -132,7 +132,6 @@ dist
 # More
 .firebase/
 .idea/
-emulator-data/firebase-export-metadata.json
 .parcel-cache/
 dist/
-emulator-data/firestore_export/firestore_export.overall_export_metadata
+emulator-data/

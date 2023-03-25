@@ -1,18 +1,15 @@
 {
   "projects": {
-    "default": "omplish"
+    "default": "algo-usaco"
   },
   "targets": {
-    "omplish": {
+    "algo-usaco": {
       "hosting": {
         "rd": [
-          "omplish"
+          "algo-usaco"
         ],
-        "omplish": [
-          "omplish"
-        ],
-        "nightly": [
-            "omplish-nightly"
+        "algo-usaco": [
+          "algo-usaco"
         ]
       }
     }

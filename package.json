@@ -1,5 +1,5 @@
 {
-  "name": "omplish",
+  "name": "Algo",
   "version": "1.0.0",
   "source": [
     "src/index.pug",
@@ -8,43 +8,45 @@
     "src/dashboard.pug",
     "src/profile.pug"
   ],
-  "description": "Omplish",
+  "description": "Algo",
   "browserslist": "> 0.1% and last 2 versions and not dead",
   "scripts": {
     "start": "parcel",
     "build": "rm -rf dist && parcel build --no-source-maps",
     "cleanup": "rm -rf .parcel-cache/ dist/",
     "watch": "npm run cleanup && parcel watch --no-hmr",
-    "emulator": "firebase emulators:start --only auth,firestore,hosting:omplish --import emulator-data --export-on-exit",
+    "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data --export-on-exit",
     "clean": "rm -r dist && rm -r .parcel-cache",
-    "publish": "npm run build && firebase deploy --only hosting:omplish",
+    "publish": "npm run build && firebase deploy --only hosting:algo-usaco",
     "publish-nightly": "npm version patch && npm run build && firebase deploy --only hosting:nightly",
     "publish-major": "npm version major && npm run publish",
     "publish-minor": "npm version minor && npm run publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IMGROOT2/omplish.git"
+    "url": "git+https://github.com/IMGROOT2/algo.git"
   },
   "author": "Ruhan Gupta",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/IMGROOT2/omplish/issues"
+    "url": "https://github.com/IMGROOT2/algo/issues"
   },
-  "homepage": "https://github.com/IMGROOT2/omplish#readme",
+  "homepage": "https://github.com/IMGROOT2/algo#readme",
   "dependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
     "@creativebulma/bulma-tooltip": "^1.2.0",
     "bulma": "^0.9.4",
     "bulma-start": "^0.0.5",
     "firebase": "^9.16.0",
-    "firebaseui": "^6.0.2",
-    "inspirational-quotes": "^2.0.1"
+    "firebase-tools": "^11.25.1",
+    "firebaseui": "^6.0.2"
   },
   "devDependencies": {
     "@parcel/transformer-pug": "^2.8.1",
     "@parcel/transformer-sass": "^2.8.1",
     "parcel": "^2.8.1",
-    "process": "^0.11.10"
+    "postcss": "^8.4.21",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.2.7"
   }
 }
