@@ -1,0 +1,24 @@
+@import "style";
+
+#dash-title, #dash-subtitle {
+  text-align: center;
+  margin-top: 3rem;
+}
+.options {
+  //margin-left: auto !important;
+  //margin-right: auto !important;
+  text-align: center;
+  background: #2e3033 !important;
+}
+hr {
+  color: white !important;
+  border: 1px solid white;
+}
+.columns {
+  margin: 3rem !important;
+  height: 100%;
+}
+.problem {
+  //text-align: center;
+  background: #2e3033 !important;
+}

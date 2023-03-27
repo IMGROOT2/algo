@@ -45,7 +45,7 @@ function login() {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            location.href="/dashboard";
+            location.href="/solve";
             // ...
         })
         .catch((error) => {
@@ -70,7 +70,7 @@ function signup() {
                     displayName: name
                 }).then(r => {
                     console.log("Updated user display name");
-                    location.href = "/dashboard";
+                    location.href = "/solve";
                 });
             });
             // ...
@@ -109,11 +109,11 @@ function googleAuth() {
             const user = result.user;
             if (isNewUser) {
                 setupFirestoreForNewUser(auth, db, user).then(r => {
-                    location.href="/dashboard";
+                    location.href="/solve";
                 });
             }
             else {
-                location.href="/dashboard";
+                location.href="/solve";
             }
             // ...
         }).catch((error) => {

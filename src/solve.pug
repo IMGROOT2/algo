@@ -1,0 +1,61 @@
+extends includes/layout.pug
+block vars
+    - var title = "Solve";
+block styles
+    link(rel="stylesheet" href="css/solve.scss")
+
+block content
+    prepend navbar
+    h1#dash-title.title.has-text-white.mb-1.is-hidden
+    h2#dash-subtitle.subtitle.has-text-white.mt-0.is-hidden
+    div.columns
+        div.box.is-fullheight-with-navbar.options.column.is-auto.m-4
+            div.mb-4
+                h1.title.is-4.mb-4.has-text-white Options
+                div.dropdown.is-hoverable.is-fullwidth
+                    div#diff-trigger.dropdown-trigger
+                        button(class="button is-fullwidth is-primary" aria-haspopup="true" aria-controls="dropdown-menu").is-fullwidth
+                            span#diff-label Difficulty
+                            span.icon.is-small
+                                i(class="fas fa-angle-down" aria-hidden="true")
+                    div#diff-menu.dropdown-menu(role="menu")
+                        div.dropdown-content
+                            a.dropdown-item Bronze
+                            a.dropdown-item Silver
+                            a.dropdown-item Gold
+                            a.dropdown-item Platinum
+                br
+                button#generate-button.button.is-medium.is-success.mt-4.has-text-centered New Problem
+            div
+                h1.title.is-4.mb-4.has-text-white Timer
+
+        #problem.box.is-fullheight-with-navbar.problem.column.is-four-fifths.m-4
+            .level()
+                .level-left
+                    .level-item
+                        div
+                            h1.title.has-text-white.is-1#problem-title
+                            p.subtitle.has-text-gray.is-5#problem-subtitle
+                .level-right
+                    .level-right
+                        a#external-icon(href="#").is-hidden
+                            button(style="background: #27C877 !important;").button.is-medium.has-text-white.mr-2 View Problem #[i(style="color: #fff" aria-hidden="true").fa-solid.fa-arrow-up-right-from-square.ml-2]
+            div.has-text-white
+                span#problem-text.mathjax
+                    div.mt-4.has-text-centered
+                        h1.title.has-text-white.is-3.mt-4 Click on the "New Problem" button to generate a problem!
+                        p.subtitle.has-text-white.is-5 The problem will show up here.
+        #problem-loader.box.is-fullheight-with-navbar.problem.column.is-four-fifths.m-4.is-hidden
+            div(style="position: relative; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);").has-text-centered
+                span(style="scale: 4;").bulma-loader-mixin
+
+
+append scripts-footer
+    script(type="module" src="js/solve.js")
+    script(id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
+    script.
+        MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+        };  

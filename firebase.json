@@ -16,8 +16,8 @@
         "destination": "/login.html"
       },
       {
-        "source": "/dashboard",
-        "destination": "/dashboard.html"
+        "source": "/solve",
+        "destination": "/solve.html"
       },
       {
         "source": "/",

@@ -5,7 +5,7 @@
     "src/index.pug",
     "src/login.pug",
     "src/404.pug",
-    "src/dashboard.pug",
+    "src/solve.pug",
     "src/profile.pug"
   ],
   "description": "Algo",
@@ -36,7 +36,7 @@
     "@creativebulma/bulma-divider": "^1.1.0",
     "@creativebulma/bulma-tooltip": "^1.2.0",
     "bulma": "^0.9.4",
-    "bulma-start": "^0.0.5",
+    "bulma-toast": "^2.4.2",
     "firebase": "^9.16.0",
     "firebase-tools": "^11.25.1",
     "firebaseui": "^6.0.2"
@@ -48,5 +48,6 @@
     "postcss": "^8.4.21",
     "process": "^0.11.10",
     "tailwindcss": "^3.2.7"
-  }
+  },
+  "type": "commonjs"
 }
