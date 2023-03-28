@@ -16,6 +16,10 @@
         "destination": "/login.html"
       },
       {
+        "source": "/about",
+        "destination": "/about.html"
+      },
+      {
         "source": "/solve",
         "destination": "/solve.html"
       },

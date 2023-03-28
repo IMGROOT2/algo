@@ -1,0 +1,18 @@
+extends includes/layout.pug
+block vars
+    - var title = "About";
+block styles
+    link(rel="stylesheet" href="css/about.scss")
+
+block content
+    prepend navbar
+    div.column.p-4.text-center 
+        h1.title.has-text-white.is-2 About Algo
+        br
+        div.box.aboutUsDiv
+            p.has-text-white.is-5.subtitle Algo is a USACO trainer built to simplify your training experience. 
+            
+    
+
+append scripts-footer
+    script(type="module" src="./js/about.js")

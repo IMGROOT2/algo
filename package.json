@@ -1,12 +1,13 @@
 {
-  "name": "Algo",
+  "name": "algo",
   "version": "1.0.0",
   "source": [
     "src/index.pug",
     "src/login.pug",
     "src/404.pug",
     "src/solve.pug",
-    "src/profile.pug"
+    "src/profile.pug",
+    "src/about.pug"
   ],
   "description": "Algo",
   "browserslist": "> 0.1% and last 2 versions and not dead",
