@@ -81,8 +81,11 @@ options.generate.addEventListener("click", () => {
 
 
 
-
-        fetch('https://cors-anywhere.herokuapp.com/http://usaco.org/index.php?page=viewproblem2&cpid=' + id, {mode: 'cors', method: 'GET'})
+        fetch('https://proxy.cors.sh/http://usaco.org/index.php?page=viewproblem2&cpid=' + id, {
+            headers: {
+                'x-cors-api-key': 'temp_7919b51de298c6f3f593eaab8a3c2160'
+            }
+        })
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
@@ -91,7 +94,14 @@ options.generate.addEventListener("click", () => {
             problem.subtitle.innerText = html.getElementsByClassName("panel")[0].getElementsByTagName("h2")[0].innerText;
             problem.text.innerHTML = html.getElementById("probtext-text").innerHTML;
             problem.link.href = 'http://usaco.org/index.php?page=viewproblem2&cpid=' + id;
-        })
+        }).then(() => {
+            window.renderMathInElement(document.getElementById("problem-text"), {delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ]});
+        });
 
 
 
@@ -104,6 +114,7 @@ options.generate.addEventListener("click", () => {
     }
     catch(err) {
         toast({ message: 'Error generating problem. Please try again later.', type: 'is-danger' });
+        console.error(err.message);
         options.generate.classList.toggle("is-loading");
         problem.problem.classList.toggle("is-hidden");
         problem.loader.classList.toggle("is-hidden");
