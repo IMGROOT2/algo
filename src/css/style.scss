@@ -97,3 +97,10 @@ pre {
   background-color: #515459;
   color: white;
 }
+.page-link {
+  &:hover {
+      color: #3072D6 !important;
+  }
+  text-decoration: underline !important;
+  text-decoration-color: #3072D6 !important;
+}

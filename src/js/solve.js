@@ -47,8 +47,6 @@ auth.onAuthStateChanged(async user => {
             }
             else {
                 const result = await generateProblem("custom-id", localStorage.getItem("problem"));
-                console.log("dida");
-                console.log("result: " + result);
                 if(result === "error") {
                     toast({ message: "Oops! Couldn't load previous problem.", type: 'is-warning' });
                     console.error("Issue with generateProblem().");
@@ -127,7 +125,6 @@ options.generate.addEventListener("click", async () => {
 });
 async function generateProblem(idType, data) {
     return new Promise(resolve => {
-
         try {
             var id = -1;
             if(idType === "random-id") {
@@ -184,7 +181,6 @@ async function generateProblem(idType, data) {
                     ]
                 });
                 localStorage.setItem("problem", id);
-                console.log("did");
                 resolve("success");
             });
         }

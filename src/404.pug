@@ -6,14 +6,14 @@ block styles
 block extrahead
     meta(name="robots" content="noindex")
 block content
-  section.hero.is-primary.is-medium.is-bold.is-fullheight(style="width: 100%; top: 0; left: 0; position: absolute; z-index: 100; text-align: center;")
+  section.hero.is-medium.is-bold.is-fullheight(style="width: 100%; top: 0; left: 0; position: absolute; z-index: 100; text-align: center; background: #1f1e1e !important;")
     .hero-body
       .container
         h1.title.is-1.has-text-white.mb-3 #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Oops...]
         h2.subtitle.is-4.has-text-white.mt-0 We couldn't find the page you were looking for.
         a.button.is-primary.is-rounded.is-medium(href="/") Back to Home
     h1.is-fixed-bottom.has-text-grey.mb-2
-        span.icon.is-small.mr-1
+        span(style="position: relative; top: 2px;").icon.is-small.mr-1
             i.fas.fa-circle-xmark
         | Error 404 - Page Not Found
 block scripts-footer

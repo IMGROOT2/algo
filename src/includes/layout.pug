@@ -34,7 +34,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                             a.button.rounded-lg.is-info.navbar-button(href="/beta")
                                 | Beta Release Info
                             .is-hidden.nav-not-logged-in
-                                a.button.is-primary.navbar-button(href="/")
+                                a.button.rounded-lg.is-primary.navbar-button(href="/")
                                     | Home
                             #solve-button.is-hidden.nav-logged-in
                                 a.button.rounded-lg.is-primary.navbar-button(href="/solve")
@@ -62,10 +62,10 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                             span.icon.is-small
                                                 i.fa-solid.fa-user
                                             | Profile
-                                        a.navbar-item(href="/settings")
-                                            span.icon.is-small
-                                                i.fa-solid.fa-cog
-                                            | Settings
+                                        //- a.navbar-item(href="/settings")
+                                        //-     span.icon.is-small
+                                        //-         i.fa-solid.fa-cog
+                                        //-     | Settings
                                         hr.navbar-divider
                                         a.navbar-item#btn-logout(href="/")
                                             span.icon.is-small
@@ -88,6 +88,8 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                     .level-item
                         p(style="color: white;") Made by Ruhan Gupta
         block scripts-footer
+            script(type="module" src="js/general.js")
+            script(type="module" src="js/navbar.js")
             script.
                 const navbar = {
                     burger: document.querySelector(".navbar-burger"),
@@ -103,6 +105,5 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                         navbar.menu.classList.remove("is-active");
                     });
                 });
-            script(src="js/navbar.js" type="module")
 
 
