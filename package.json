@@ -19,10 +19,7 @@
     "watch": "npm run cleanup && parcel watch --no-hmr",
     "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data --export-on-exit",
     "clean": "rm -r dist && rm -r .parcel-cache",
-    "publish": "npm run build && firebase deploy --only hosting:algo-usaco",
-    "publish-nightly": "npm version patch && npm run build && firebase deploy --only hosting:nightly",
-    "publish-major": "npm version major && npm run publish",
-    "publish-minor": "npm version minor && npm run publish"
+    "deploy": "firebase deploy --only hosting,storage,firestore,database"
   },
   "repository": {
     "type": "git",
