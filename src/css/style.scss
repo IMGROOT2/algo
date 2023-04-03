@@ -85,3 +85,15 @@ body, html {
 .footer-item:hover {
   color: #3072D6 !important;
 }
+h4 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 2rem;
+}
+pre {
+  max-width: 50%;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: #515459;
+  color: white;
+}

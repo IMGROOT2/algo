@@ -2,17 +2,22 @@ extends includes/layout.pug
 block vars
     - var title = "About";
 block styles
-    link(rel="stylesheet" href="css/about.scss")
+    link(rel="stylesheet" href="css/page.scss")
 
 block content
     prepend navbar
-    div.column.p-4.text-center 
-        h1.title.has-text-white.is-2 About Algo
+    div.column.p-4
+        h1.title.has-text-white.is-2.text-center About Algo
         br
-        div.box.aboutUsDiv
-            p.has-text-white.is-5.subtitle Algo is a USACO trainer built to simplify your training experience. 
-            
-    
+        div.box.pageDiv
+            p.has-text-white.is-5.subtitle Hey, I'm Ruhan Gupta, the creator of Algo. I'm an 8th grader from Austin, Texas and here's a little bit about Algo, the web application designed to supercharge your USACO training.
+            br
+            p.has-text-white.is-6.subtitle As more people get into competitive programming and the USACO, there are more resources available to help you get ready for the USACO. However, I felt like there was one piece missing- #[span.has-text-weight-bold practice]. It's important to learn the concepts and techniques, but its equally, if not more important to practice them. Until Algo was created, there were two options: either randomly clicking on problem from previous contests, or using train.usaco.org. However, clicking on problems randomly is inefficent and train.usaco.org is extremely outdated (a lot of the website hasn't been significantly updated since the early 2010s). So, I created Algo, to help people practice USACO problems and help them get ready for the USACO.
+            p.has-text-white.is-6.subtitle Algo is a web application designed to supercharge your USACO training. It randomly generates problems from past contests, so you can practice them. Algo will process the problems and show it to you in a nice, clean interface. After solving the problem, you can submit your solution to the USACO website to check if your program works.
+            p.has-text-white.is-4.title What's next for Algo?
+            p.has-text-white.is-6.subtitle The following features will be added in the future:
+
+
 
 append scripts-footer
     script(type="module" src="./js/about.js")

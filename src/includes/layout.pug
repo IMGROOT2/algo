@@ -7,11 +7,12 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         title #{title || "Home"} - Algo
         meta(property="og:title" content=`${title || "Home"} - Algo`)
-        meta(property="og:description" content=`${description || ""}`)
-        meta(name="description" content=`${description || ""}`)
+        meta(property="og:description" content=`${description || "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests."}`)
+        meta(name="description" content=`${description || "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests."}`)
         // TODO: Add Description, Title
         meta(property="og:type" content="website")
         link(rel="icon" href="media/favicon.ico" sizes="any")
+        meta(name="theme-color" content="#1f1e1e")
         script(src="https://kit.fontawesome.com/8664419f7c.js" crossorigin="anonymous")
         block extrahead
         block styles
@@ -30,17 +31,19 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                 #main-navbar.navbar-menu
                     .navbar-start
                         .buttons
+                            a.button.rounded-lg.is-info.navbar-button(href="/beta")
+                                | Beta Release Info
                             .is-hidden.nav-not-logged-in
                                 a.button.is-primary.navbar-button(href="/")
                                     | Home
                             #solve-button.is-hidden.nav-logged-in
-                                a.button.is-primary.navbar-button(href="/solve")
+                                a.button.rounded-lg.is-primary.navbar-button(href="/solve")
                                     | Solve!
                     .navbar-end
                         .navbar-item
                             .buttons
                                 .navbar-item
-                                    a#btn-register-login.button.is-primary.navbar-button.nav-not-logged-in.is-hidden(href="/login")
+                                    a#btn-register-login.button.is-primary.rounded-lg.navbar-button.nav-not-logged-in.is-hidden(href="/login")
                                         | Register - Log In
                                 .navbar-item.has-dropdown.is-hoverable
                                     div#btn-profile.navbar-link.has-dropdown.is-arrowless.is-hidden

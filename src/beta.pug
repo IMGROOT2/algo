@@ -1,0 +1,30 @@
+extends includes/layout.pug
+block vars
+    - var title = "Beta Release";
+block styles
+    link(rel="stylesheet" href="css/page.scss")
+
+block content
+    prepend navbar
+    div.column.p-4
+        h1.title.has-text-white.is-2.text-center Beta Release - April 2023 🎉
+        br
+        div.box.pageDiv
+            p.has-text-white.is-5.subtitle Hey, I'm Ruhan Gupta, the creator of Algo. First of all, #[span.has-text-weight-bold thank you] for being an early user of Algo. I hope to continue developing Algo and making it better for all USACO and programming enthusiasts. Here's a few things I'd like you to know:
+            br
+            h1.mt-4.title.has-text-white.is-4 For all bugs, feedback, issues, or contacting, please use the #[a.page-link(href="https://forms.gle/oikR9g4ja4TUP3DQ7" target="_blank") Main Form]. It is preferred to use the #[a.page-link(href="https://github.com/IMGROOT2/Algo/issues" target="_blank") GitHub repository] for bugs, but the Main Form is also fine.
+            br
+            p.has-text-white.is-6.subtitle Algo is still in beta. This means that there are still a few bugs and features that need to be added. If you find any bugs, #[span.has-text-weight-bold please report them by either: ]
+            .content
+                ol.mb-4
+                    li.has-text-white.is-6.subtitle Opening a issue on the #[a.page-link(href="https://github.com/IMGROOT2/Algo/issues" target="_blank") GitHub repository]. #[span.tag.is-primary.is-small PREFERRED!]
+                    li.has-text-white.is-6.subtitle Reporting via the #[a.page-link(href="https://forms.gle/oikR9g4ja4TUP3DQ7" target="_blank") Main Form].
+            p.has-text-white.is-6.subtitle Due to the varying format of problem text (for example, #[a.page-link(href="http://usaco.org/index.php?page=viewproblem2&cpid=84" target="_blank") this 2011 problem] and #[a.page-link(href="http://usaco.org/index.php?page=viewproblem2&cpid=1325" target="_blank") this 2023 problem]), I have set Algo to only give problems after the calendar year of 2015. This is simply because Algo tries to automatically format the problems to look nicer easier to read, and I have not adapted this for all formats yet.
+            p.has-text-white.is-6.subtitle.has-text-weight-bold.mb-4 That being said, if you find a formatting issue that makes the problem hard to read, please report it via the Google Form. Make sure to include the problem link and a screenshot of the problem.
+
+
+
+
+
+append scripts-footer
+    script(type="module" src="./js/about.js")

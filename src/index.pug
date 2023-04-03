@@ -6,6 +6,11 @@ block styles
 
 block content
   div.hero.is-fullheight-with-navbar.home-adjust
+    article(style="background: #353535 !important; max-width: 50vw; margin-left: auto !important; margin-right: auto !important;").message.is-info
+      .message-body
+        h1.title.is-6.has-text-weight-bold.has-text-white Algo has been released as a Beta! 🎉
+        p.subtitle.is-6.has-text-white Before using Algo, please read the #[a(href="/beta") beta release information].
+        p.subtitle.is-5.has-text-weight-bold.has-text-white Thank you for your support! 🙏
     div.is-hidden-touch(style="margin: auto; width: 50%;")
       h1.title.landing-title #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Fly] from #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700 Bronze] #[br] to #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700  Platinum] with #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Algo].
       div.box.is-primary.subtitle-box.column.is-7.is-flex-direction-column.is-flex

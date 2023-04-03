@@ -1,0 +1,15 @@
+@import "style";
+
+.pageDiv {
+    background:#2e3033;
+    max-width: 70vw;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.page-link {
+    &:hover {
+        color: #3072D6 !important;
+    }
+    text-decoration: underline !important;
+    text-decoration-color: #3072D6 !important;
+}
