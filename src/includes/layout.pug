@@ -8,6 +8,10 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
         title #{title || "Home"} - Algo
         meta(property="og:title" content=`${title || "Home"} - Algo`)
         meta(property="og:description" content=`${description || "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests."}`)
+        meta(property="og:image" content="media/algobanner.png")
+        meta(property="og:image:type" content="image/png")
+        meta(property="og:image:width" content="1280")
+        meta(property="og:image:height" content="640")
         meta(name="description" content=`${description || "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests."}`)
         // TODO: Add Description, Title
         meta(property="og:type" content="website")
@@ -62,10 +66,6 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                             span.icon.is-small
                                                 i.fa-solid.fa-user
                                             | Profile
-                                        //- a.navbar-item(href="/settings")
-                                        //-     span.icon.is-small
-                                        //-         i.fa-solid.fa-cog
-                                        //-     | Settings
                                         hr.navbar-divider
                                         a.navbar-item#btn-logout(href="/")
                                             span.icon.is-small
@@ -81,12 +81,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                     .level-item
                         img(src="media/algologo.svg" alt="Algo Logo" style="height: 100px;")
                 .level-right
-                    .level-item.has-text-white
-                        a(href="/about").footer-item About
-                    .level-item.has-text-white
-                        p -
-                    .level-item
-                        p(style="color: white;") Made by Ruhan Gupta
+                    .level-item.has-text-white #[a(href="/about").footer-item About] #[span.mr-2.ml-2 -] #[a(href="https://github.com/IMGROOT2/Algo").footer-item GitHub] #[span.mr-2.ml-2 -] Made by #[a(href="https://github.com/IMGROOT2").footer-item.ml-1 Ruhan Gupta]
         block scripts-footer
             script(type="module" src="js/general.js")
             script(type="module" src="js/navbar.js")
