@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/116324098/229651437-13b999cc-4196-4305-b67d-c5cec8384c8f.png" alt="Algo Banner">
+<img src="https://user-images.githubusercontent.com/116324098/229651437-13b999cc-4196-4305-b67d-c5cec8384c8f.png" alt="Algo Banner" height="160" width="320">
 
 <h1>Algo</h1>
 <p>USACO problem randomizer and trainer built for competitive programming enthusiasts.</p>
