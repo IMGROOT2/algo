@@ -87,18 +87,18 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
             script(type="module" src="js/navbar.js")
             script.
                 const navbar = {
-                    burger: document.querySelector(".navbar-burger"),
-                    menu: document.getElementById("main-navbar")
+                burger: document.querySelector(".navbar-burger"),
+                menu: document.getElementById("main-navbar")
                 };
                 addEventListener("DOMContentLoaded", () => {
-                    navbar.burger.addEventListener("click", () => {
-                        navbar.burger.classList.toggle("is-active");
-                        navbar.menu.classList.toggle("is-active");
-                    });
-                    navbar.menu.addEventListener("click", () => {
-                        navbar.burger.classList.remove("is-active");
-                        navbar.menu.classList.remove("is-active");
-                    });
+                navbar.burger.addEventListener("click", () => {
+                navbar.burger.classList.toggle("is-active");
+                navbar.menu.classList.toggle("is-active");
+                });
+                navbar.menu.addEventListener("click", () => {
+                navbar.burger.classList.remove("is-active");
+                navbar.menu.classList.remove("is-active");
+                });
                 });
 
 

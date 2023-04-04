@@ -9,11 +9,13 @@
   margin-bottom: 0.5rem;
   margin-top: 1rem;
 }
+
 .tooltip {
   color: white !important;
   text-decoration: none !important;
-    &:hover {
-        color: lightgray !important;
-        text-decoration: none !important;
-    }
+
+  &:hover {
+    color: lightgray !important;
+    text-decoration: none !important;
+  }
 }

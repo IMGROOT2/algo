@@ -1,6 +1,15 @@
-import { app, db, auth } from "./app-config";
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signInWithPopup, sendPasswordResetEmail, getAdditionalUserInfo } from "firebase/auth";
+import {auth, db} from "./app-config";
+import {doc, serverTimestamp, setDoc} from "firebase/firestore";
+import {
+    createUserWithEmailAndPassword,
+    getAdditionalUserInfo,
+    GoogleAuthProvider,
+    sendPasswordResetEmail,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    updateProfile
+} from "firebase/auth";
+
 const google = new GoogleAuthProvider();
 
 
@@ -45,7 +54,7 @@ function login() {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            location.href="/solve";
+            location.href = "/solve";
             // ...
         })
         .catch((error) => {
@@ -54,6 +63,7 @@ function login() {
             alert(errorMessage);
         });
 }
+
 // signup function
 function signup() {
     const email = document.getElementById("email-signup").value;
@@ -82,6 +92,7 @@ function signup() {
             // ..
         });
 }
+
 // forgot password function
 function forgotPassword() {
     const email = document.getElementById("email-f-email").value;
@@ -103,17 +114,16 @@ function googleAuth() {
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            const { isNewUser } = getAdditionalUserInfo(result);
+            const {isNewUser} = getAdditionalUserInfo(result);
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
             if (isNewUser) {
                 setupFirestoreForNewUser(auth, db, user).then(r => {
-                    location.href="/solve";
+                    location.href = "/solve";
                 });
-            }
-            else {
-                location.href="/solve";
+            } else {
+                location.href = "/solve";
             }
             // ...
         }).catch((error) => {
@@ -128,6 +138,7 @@ function googleAuth() {
         // ...
     });
 }
+
 async function setupFirestoreForNewUser(auth, db, user) {
     await setDoc(doc(db, "user_data", user.uid), {
         created: serverTimestamp()

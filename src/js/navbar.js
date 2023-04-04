@@ -1,4 +1,4 @@
-import { app, db, auth } from "./app-config";
+import {auth} from "./app-config";
 
 
 const loginButton = document.getElementById('btn-register-login');
@@ -19,38 +19,37 @@ btnProfile.addEventListener('click', () => {
 });
 logoutButton.addEventListener('click', () => {
     auth.signOut().then(() => {
-        location.href="/";
+        location.href = "/";
     }).catch((error) => {
         // An error happened.
     });
 });
 
 // for each element in navNotLoggedIn, add is-hidden class
-function navNotLoggedInToggle(addorremove,theclass) {
+function navNotLoggedInToggle(addorremove, theclass) {
     for (let i = 0; i < navNotLoggedIn.length; i++) {
-        if(addorremove === "add") {
+        if (addorremove === "add") {
             navNotLoggedIn[i].classList.add(theclass);
-        }
-        else if(addorremove === "remove") {
+        } else if (addorremove === "remove") {
             navNotLoggedIn[i].classList.remove(theclass);
         }
     }
 }
-function navLoggedInToggle(addorremove,theclass) {
+
+function navLoggedInToggle(addorremove, theclass) {
     for (let i = 0; i < navLoggedIn.length; i++) {
-        if(addorremove === "add") {
+        if (addorremove === "add") {
             navLoggedIn[i].classList.add(theclass);
-        }
-        else if(addorremove === "remove") {
+        } else if (addorremove === "remove") {
             navLoggedIn[i].classList.remove(theclass);
         }
     }
 }
 
-auth.onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function (user) {
     if (user) {
-        navLoggedInToggle("remove","is-hidden");
-        navNotLoggedInToggle("add","is-hidden");
+        navLoggedInToggle("remove", "is-hidden");
+        navNotLoggedInToggle("add", "is-hidden");
         loginButton.classList.add('is-hidden');
         btnProfile.classList.remove('is-hidden');
         profileLoader.classList.add('is-hidden');
@@ -65,14 +64,13 @@ auth.onAuthStateChanged(function(user) {
                 hasPhoto.classList.add('is-hidden');
                 noPhoto.classList.remove('is-hidden');
             }
-        }
-        else {
+        } else {
             hasPhoto.classList.add('is-hidden');
             noPhoto.classList.remove('is-hidden');
         }
     } else {
-        navLoggedInToggle("add","is-hidden");
-        navNotLoggedInToggle("remove","is-hidden");
+        navLoggedInToggle("add", "is-hidden");
+        navNotLoggedInToggle("remove", "is-hidden");
         loginButton.classList.remove('is-hidden');
         btnProfile.classList.add('is-hidden');
         profileLoader.classList.remove('is-hidden');

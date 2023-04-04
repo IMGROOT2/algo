@@ -1,7 +1,8 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore, getDocs, collection, updateDoc, doc, addDoc, deleteDoc } from "firebase/firestore";
+import {initializeApp} from "firebase/app";
+import {getAuth} from "firebase/auth";
+import {getAnalytics} from "firebase/analytics";
+import {getFirestore} from "firebase/firestore";
+
 export const firebaseConfig = {
     apiKey: "AIzaSyAVd0HLl7_NMyeE5Msmg2eX1hqesGoyXRQ",
     authDomain: "algo-usaco.firebaseapp.com",

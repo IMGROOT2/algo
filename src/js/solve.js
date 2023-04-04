@@ -1,6 +1,6 @@
-import { app, db, auth } from "./app-config";
+import {auth} from "./app-config";
 import * as bulmaToast from 'bulma-toast'
-import {toast} from "bulma-toast";
+import {toast} from 'bulma-toast'
 import fs from "fs";
 
 
@@ -26,11 +26,11 @@ const problem = {
 }
 
 auth.onAuthStateChanged(async user => {
-    if(user) {
-        if(localStorage.getItem("options") != null) {
+    if (user) {
+        if (localStorage.getItem("options") != null) {
             options.label.innerText = localStorage.getItem("options");
-            for(let i = 0; i < options.items.length; i++) {
-                if(options.items[i].innerText === localStorage.getItem("options")) {
+            for (let i = 0; i < options.items.length; i++) {
+                if (options.items[i].innerText === localStorage.getItem("options")) {
                     options.items[i].classList.add("is-active");
                 }
             }
@@ -39,22 +39,20 @@ auth.onAuthStateChanged(async user => {
             options.generate.classList.toggle("is-loading");
             problem.problem.classList.toggle("is-hidden");
             problem.loader.classList.toggle("is-hidden");
-            if(localStorage.getItem("problem") === null) {
-                bulmaToast.toast({ message: "Oops! Couldn't load previous problem.", type: 'is-warning' });
+            if (localStorage.getItem("problem") === null) {
+                bulmaToast.toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
                 options.generate.classList.toggle("is-loading");
                 problem.problem.classList.toggle("is-hidden");
                 problem.loader.classList.toggle("is-hidden");
-            }
-            else {
+            } else {
                 const result = await generateProblem("custom-id", localStorage.getItem("problem"));
-                if(result === "error") {
-                    toast({ message: "Oops! Couldn't load previous problem.", type: 'is-warning' });
+                if (result === "error") {
+                    toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
                     console.error("Issue with generateProblem().");
                     options.generate.classList.toggle("is-loading");
                     problem.problem.classList.toggle("is-hidden");
                     problem.loader.classList.toggle("is-hidden");
-                }
-                else if(result === "success"){
+                } else if (result === "success") {
                     options.generate.classList.toggle("is-loading");
                     problem.problem.classList.toggle("is-hidden");
                     problem.loader.classList.toggle("is-hidden");
@@ -62,25 +60,23 @@ auth.onAuthStateChanged(async user => {
                     bulmaToast.toast({message: 'Restored previous problem!', type: 'is-success'});
                 }
             }
-        }
-        catch(err) {
-            toast({ message: "Oops! Couldn't load previous problem.", type: 'is-warning' });
+        } catch (err) {
+            toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
             console.error(err.message);
             options.generate.classList.toggle("is-loading");
             problem.problem.classList.toggle("is-hidden");
             problem.loader.classList.toggle("is-hidden");
         }
         document.getElementById("solve-button").classList.add("is-hidden");
-    }
-    else {
-        location.href="/login";
+    } else {
+        location.href = "/login";
     }
 });
-for(let i = 0; i < options.items.length; i++) {
+for (let i = 0; i < options.items.length; i++) {
     options.items[i].addEventListener("click", () => {
         options.label.innerText = options.items[i].innerText;
         localStorage.setItem("options", options.items[i].innerText);
-        for(let j = 0; j < options.items.length; j++) {
+        for (let j = 0; j < options.items.length; j++) {
             options.items[j].classList.remove("is-active");
         }
         options.items[i].classList.add("is-active");
@@ -123,11 +119,12 @@ options.generate.addEventListener("click", async () => {
         problem.loader.classList.toggle("is-hidden");
     }
 });
+
 async function generateProblem(idType, data) {
     return new Promise(resolve => {
         try {
             var id = -1;
-            if(idType === "random-id") {
+            if (idType === "random-id") {
                 if (data === "bronze") {
                     // pick a random number from the data in bronze.json
                     const bronze = JSON.parse(fs.readFileSync('./src/data/bronze.json', 'utf8'));
@@ -145,8 +142,7 @@ async function generateProblem(idType, data) {
                     const platinum = JSON.parse(fs.readFileSync('./src/data/platinum.json', 'utf8'));
                     id = platinum[Math.floor(Math.random() * platinum.length)];
                 }
-            }
-            else if(idType === "custom-id") {
+            } else if (idType === "custom-id") {
                 id = data;
             }
 
@@ -165,8 +161,7 @@ async function generateProblem(idType, data) {
                         problem.subtitle.innerText = html.getElementsByClassName("panel")[0].getElementsByTagName("h2")[0].innerText;
                         problem.text.innerHTML = html.getElementById("probtext-text").innerHTML;
                         problem.link.href = 'http://usaco.org/index.php?page=viewproblem2&cpid=' + id;
-                    }
-                    catch(err) {
+                    } catch (err) {
                         console.error(err.message);
                         console.log("oops");
                         resolve("error");
@@ -183,8 +178,7 @@ async function generateProblem(idType, data) {
                 localStorage.setItem("problem", id);
                 resolve("success");
             });
-        }
-        catch(err) {
+        } catch (err) {
             console.error(err.message);
             console.log("oops");
             resolve("error");

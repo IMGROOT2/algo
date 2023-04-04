@@ -10,16 +10,16 @@ const created = document.getElementById('created');
 const btnUpdateProfile = document.getElementById('save-changes');
 const load = document.getElementById('load');
 
-auth.onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function (user) {
     if (user) {
         // get user document and snapshot
         retrieveUserDoc(db, user).then((doc) => {
             name.value = user.displayName;
             email.value = user.email;
-            if(doc.data().created) {
+            if (doc.data().created) {
                 created.innerText = doc.data().created.toDate().toLocaleDateString();
             }
-            if(auth.currentUser.photoURL) {
+            if (auth.currentUser.photoURL) {
                 photoURL.value = user.photoURL;
             }
             load.classList.toggle('is-hidden');
@@ -53,6 +53,7 @@ auth.onAuthStateChanged(function(user) {
         return false;
     }
 });
+
 async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
 }

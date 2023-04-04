@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 (async () => {
-    for(let i = 1; i <= 2000; i++) { // 2000 is a rough max of CPIDs
+    for (let i = 1; i <= 2000; i++) { // 2000 is a rough max of CPIDs
         try {
             console.log("Trying " + i + "...");
             const response = await fetch('http://usaco.org/index.php?page=viewproblem2&cpid=' + i);
@@ -9,7 +9,7 @@ import fs from 'fs';
             const title = body.match(/<h2>(.*?)<\/h2>/)[1];
             const difficulty = title.match(/Bronze|Silver|Gold|Platinum/)[0];
             const year = title.match(/20\d\d/)[0];
-            if(year > 2015) {
+            if (year > 2015) {
                 if (difficulty === 'Bronze') {
                     console.log('Found problem ' + i + ' with difficulty Bronze and year ' + year + '.');
                     const bronze = JSON.parse(fs.readFileSync('bronze.json', 'utf8'));
@@ -41,12 +41,10 @@ import fs from 'fs';
                     }
 
                 }
-            }
-            else {
+            } else {
                 console.log('ID ' + i + ' is too old (' + year + ').')
             }
-        }
-        catch(e) {
+        } catch (e) {
             console.log("ID " + i + " doesn't exist.");
         }
     }

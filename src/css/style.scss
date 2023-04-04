@@ -3,13 +3,14 @@
 // Style.scss is the stylesheet for all pages.
 
 body, html {
-    background-color: #1f1e1e;
+  background-color: #1f1e1e;
 }
 
 .navbar, .footer {
   background-color: transparent !important;
   box-shadow: none;
 }
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -21,6 +22,7 @@ body, html {
     background-position: 0% 50%;
   }
 }
+
 .footer {
   padding: 3rem 1.5rem 3rem !important;
 }
@@ -30,38 +32,45 @@ body, html {
   font-size: 2rem;
   background-color: transparent !important;
   color: white !important;
+
   &:hover {
     text-decoration: none !important;
     background-color: transparent !important;
     color: white !important;
   }
 }
+
 #btn-profile-dropdown {
   background-image: linear-gradient(#3072D6, #27C877) !important;
   color: white !important;
+
   span.icon {
     margin-right: 15px;
   }
 }
 
 .makedropvisible {
-    display: block !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
 }
+
 .navbar-item {
   color: white !important;
+
   &:hover {
     color: lightgray !important;
   }
 }
+
 .bulma-loader-mixin {
   @include loader;
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
 .no-pointer-events {
-    pointer-events: none !important;
+  pointer-events: none !important;
 }
 
 ::-webkit-scrollbar {
@@ -82,14 +91,17 @@ body, html {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #62738a;
 }
+
 .footer-item:hover {
   color: #3072D6 !important;
 }
+
 h4 {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
   font-size: 2rem;
 }
+
 pre {
   max-width: 50%;
   border: 1px solid transparent;
@@ -97,10 +109,12 @@ pre {
   background-color: #515459;
   color: white;
 }
+
 .page-link {
   &:hover {
-      color: #3072D6 !important;
+    color: #3072D6 !important;
   }
+
   text-decoration: underline !important;
   text-decoration-color: #3072D6 !important;
 }
