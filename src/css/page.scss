@@ -2,7 +2,13 @@
 
 .pageDiv {
   background: #2e3033;
-  max-width: 70vw;
+  width: fit-content;
+  block-size: fit-content;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+.message {
+  width: fit-content;
+  block-size: fit-content;
+  background: #353535 !important;
 }

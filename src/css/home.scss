@@ -13,7 +13,7 @@
 
 .landing-title-mobile {
   color: white;
-  font-size: 2rem;
+  font-size: 3rem;
   font-family: Poppins-M, serif;
 }
 
@@ -22,4 +22,11 @@
   margin-left: auto !important;
   margin-right: auto !important;
   color: white;
+}
+.message {
+  width: fit-content;
+  block-size: fit-content;
+  background: #353535 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }

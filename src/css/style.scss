@@ -103,7 +103,9 @@ h4 {
 }
 
 pre {
-  max-width: 50%;
+  min-width: 25%;
+  max-width: fit-content;
+  block-size: fit-content;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   background-color: #515459;
@@ -114,7 +116,10 @@ pre {
   &:hover {
     color: #3072D6 !important;
   }
-
   text-decoration: underline !important;
   text-decoration-color: #3072D6 !important;
+}
+.navbar-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }

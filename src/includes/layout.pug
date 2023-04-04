@@ -24,23 +24,23 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
     body(style="height: 100%;").is-flex.is-flex-direction-column
         block navbar
             // TODO: fix navbar on mobile
-            nav.navbar.is-primary.is-transparent(role="navigation" aria-label="main navigation")
+            nav.navbar.is-transparent(role="navigation" aria-label="main navigation")
                 .navbar-brand.is-justify-content-space-between
                     a.navbar-item.ml-3(href="/" style="margin-right: 1rem;")
                         img(src="media/algologo.svg" alt="Algo Logo" style="scale: 2;")
-                    a.navbar-burger.burger(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
+                    a.navbar-burger.burger.has-text-white(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
                         span(aria-hidden="true")
                         span(aria-hidden="true")
                         span(aria-hidden="true")
-                #main-navbar.navbar-menu
+                #main-navbar.navbar-menu.mx-auto(style="background-color: #1f1e1e;")
                     .navbar-start
                         .buttons
-                            a.button.rounded-lg.is-info.navbar-button(href="/beta")
+                            a.button.rounded-lg.is-info.navbar-button.mr-2(href="/beta")
                                 | Beta Release Info
-                            .is-hidden.nav-not-logged-in
+                            .is-hidden.nav-not-logged-in.mr-2.ml-2
                                 a.button.rounded-lg.is-primary.navbar-button(href="/")
                                     | Home
-                            #solve-button.is-hidden.nav-logged-in
+                            #solve-button.is-hidden.nav-logged-in.ml-2
                                 a.button.rounded-lg.is-primary.navbar-button(href="/solve")
                                     | Solve!
                     .navbar-end
@@ -76,7 +76,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
             block content
                 // Hello
         footer.footer.is-fixed-bottom(style="margin-top: 1rem;")
-            .level(style='margin-left: 5rem; margin-right: 5rem; text-align: center;')
+            .level(style='text-align: center;')
                 .level-left
                     .level-item
                         img(src="media/algologo.svg" alt="Algo Logo" style="height: 100px;")
