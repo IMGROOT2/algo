@@ -149,7 +149,7 @@ async function generateProblem(idType, data) {
 
             fetch('https://proxy.cors.sh/http://usaco.org/index.php?page=viewproblem2&cpid=' + id, {
                 headers: {
-                    'x-cors-api-key': 'temp_f4ed01f6394b2325ead5f8bad55f4e65'
+                    'x-cors-api-key': 'temp_072e51448af2b7f4ecd35f75ba0455fe'
                 }
             })
                 .then(response => response.text())
