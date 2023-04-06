@@ -16,6 +16,8 @@
   <li><a href="https://tailwindcss.com">TailwindCSS</a></li>
   <li><a href="https://katex.org">KaTeX</a></li>
   <li><a href="https://firebase.google.com">Firebase</a></li>
+  <li><a href="https://cors.sh">CORS.SH</a> (From <a href="https://grida.co">Grida</a>)</li>
+  <a href="https://grida.co"><img src="https://s3.us-west-1.amazonaws.com/brand.grida.co/badges-for-github/sponsored-by-grida-oss-program.png" href="Grida - Cors.Sh"></a>
 </ul>
 <br>
 <h2>Contact, Feedback, Bugs, Get In Touch</h2>
