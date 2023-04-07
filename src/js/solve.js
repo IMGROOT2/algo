@@ -1,12 +1,12 @@
-import {auth} from "./app-config";
+import { auth } from "./app-config";
 import * as bulmaToast from 'bulma-toast'
-import {toast} from 'bulma-toast'
-import fs from "fs";
+import * as problems from '../data/data.json'
 
+const { setDefaults, toast } = bulmaToast;
 
-bulmaToast.setDefaults({
+setDefaults({
     position: 'bottom-left'
-})
+});
 
 const options = {
     label: document.getElementById("diff-label"),
@@ -36,15 +36,10 @@ auth.onAuthStateChanged(async user => {
             }
         }
         try {
-            options.generate.classList.toggle("is-loading");
-            problem.problem.classList.toggle("is-hidden");
-            problem.loader.classList.toggle("is-hidden");
-            if (localStorage.getItem("problem") === null) {
-                bulmaToast.toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
+            if (localStorage.getItem("problem") !== null) {
                 options.generate.classList.toggle("is-loading");
                 problem.problem.classList.toggle("is-hidden");
                 problem.loader.classList.toggle("is-hidden");
-            } else {
                 const result = await generateProblem("custom-id", localStorage.getItem("problem"));
                 if (result === "error") {
                     toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
@@ -123,30 +118,12 @@ options.generate.addEventListener("click", async () => {
 async function generateProblem(idType, data) {
     return new Promise(resolve => {
         try {
-            var id = -1;
+            let id = -1;
             if (idType === "random-id") {
-                if (data === "bronze") {
-                    // pick a random number from the data in bronze.json
-                    const bronze = JSON.parse(fs.readFileSync('./src/data/bronze.json', 'utf8'));
-                    id = bronze[Math.floor(Math.random() * bronze.length)];
-                } else if (data === "silver") {
-                    // pick a random number from the data in silver.json
-                    const silver = JSON.parse(fs.readFileSync('./src/data/silver.json', 'utf8'));
-                    id = silver[Math.floor(Math.random() * silver.length)];
-                } else if (data === "gold") {
-                    // pick a random number from the data in gold.json
-                    const gold = JSON.parse(fs.readFileSync('./src/data/gold.json', 'utf8'));
-                    id = gold[Math.floor(Math.random() * gold.length)];
-                } else if (data === "platinum") {
-                    // pick a random number from the data in platinum.json
-                    const platinum = JSON.parse(fs.readFileSync('./src/data/platinum.json', 'utf8'));
-                    id = platinum[Math.floor(Math.random() * platinum.length)];
-                }
+                id = problems[data][Math.floor(Math.random() * problems[data].length)];
             } else if (idType === "custom-id") {
                 id = data;
             }
-
-
             fetch('https://proxy.cors.sh/http://usaco.org/index.php?page=viewproblem2&cpid=' + id, {
                 headers: {
                     'x-cors-api-key': 'b1c8b699-db38-4c0b-92f6-632a6ebff01c'

@@ -1,15 +1,21 @@
 {
   "name": "algo",
-  "version": "1.0.0",
-  "source": [
-    "src/index.pug",
-    "src/login.pug",
-    "src/404.pug",
-    "src/solve.pug",
-    "src/profile.pug",
-    "src/about.pug",
-    "src/beta.pug"
-  ],
+  "version": "0.0.2",
+  "targets": {
+    "pages": {
+      "source": [
+        "src/index.pug",
+        "src/login.pug",
+        "src/404.pug",
+        "src/solve.pug",
+        "src/profile.pug",
+        "src/about.pug",
+        "src/beta.pug"
+      ],
+      "context": "browser",
+      "distDir": "./dist"
+    }
+  },
   "description": "Algo",
   "browserslist": "> 0.1% and last 2 versions and not dead",
   "scripts": {
@@ -19,7 +25,8 @@
     "watch": "npm run cleanup && parcel watch --no-hmr",
     "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data --export-on-exit",
     "clean": "rm -r dist && rm -r .parcel-cache",
-    "deploy": "firebase deploy --only hosting,storage,firestore,database"
+    "deploy": "firebase deploy --only hosting,storage,firestore,database",
+    "publish": "npm run build && npm run deploy"
   },
   "repository": {
     "type": "git",
