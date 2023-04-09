@@ -12,22 +12,28 @@ block content
         div.box.is-fullheight-with-navbar.options.column.is-auto.m-4
             div.mb-4
                 h1.title.is-4.mb-4.has-text-white Options
-                div.dropdown.is-hoverable.is-fullwidth
-                    div#diff-trigger.dropdown-trigger
-                        button(class="button is-fullwidth is-primary" aria-haspopup="true" aria-controls="dropdown-menu").is-fullwidth
-                            span#diff-label Difficulty
-                            span.icon.is-small
-                                i(class="fas fa-angle-down" aria-hidden="true")
-                    div#diff-menu.dropdown-menu(role="menu")
-                        div.dropdown-content
-                            a.dropdown-item Bronze
-                            a.dropdown-item Silver
-                            a.dropdown-item Gold
-                            a.dropdown-item Platinum
-                br
-                button#generate-button.button.is-medium.is-success.mt-4.has-text-centered New Problem
-            div
-                span.mb-4.tag.is-info.has-text-white TIMER - COMING SOON!
+                div.card.p-2
+                    div.dropdown#diff-dropdown.is-fullwidth
+                        div#diff-trigger.dropdown-trigger
+                            button(class="button is-fullwidth is-primary" aria-haspopup="true" aria-controls="dropdown-menu").is-fullwidth
+                                span#diff-label Difficulty
+                                span.icon.is-small
+                                    i(class="fas fa-angle-down" aria-hidden="true")
+                        div#diff-menu.dropdown-menu(role="menu")
+                            div.dropdown-content
+                                a.dropdown-item Bronze
+                                a.dropdown-item Silver
+                                a.dropdown-item Gold
+                                a.dropdown-item Platinum
+                    br
+                    button#generate-button.button.is-medium.is-success.mt-4.has-text-centered New Problem
+            div.card.p-2
+                p.has-text-white.is-5.subtitle.mb-0 Record Problem Status
+                div.buttons.is-centered
+                    button#green.button.is-small.is-success.mt-4.has-text-centered Solved
+                    button#yellow.button.is-small.is-warning.mt-4.has-text-centered Attempted, Skip
+                    button#red.button.is-small.is-danger.mt-4.has-text-centered Not Solved, Skip
+
 
         #problem.box.is-fullheight-with-navbar.problem.column.is-four-fifths.m-4
             .level

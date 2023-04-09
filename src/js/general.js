@@ -21,5 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
 });
+
+import { auth, db } from "./app-config";
+import {doc, getDoc, updateDoc} from "firebase/firestore";
+
+auth.onAuthStateChanged(async user => {
+    if (user) {
+        await retrieveUserDoc(db, user).then(adoc => {
+            const fsdata = adoc.data();
+            if (fsdata["problems-seen"] === undefined) {
+                updateDoc(doc(db, "user_data", user.uid), {
+                    "problems-seen": [],
+                    "problems-solved": [],
+                    "problems-skipped": [],
+                    "problems-unsolved": []
+                });
+            }
+        })
+    }
+});
+async function retrieveUserDoc(db, user) {
+    return await getDoc(doc(db, "user_data", user.uid));
+}

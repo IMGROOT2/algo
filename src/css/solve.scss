@@ -1,10 +1,5 @@
 @import "style";
 
-#dash-title, #dash-subtitle {
-  text-align: center;
-  margin-top: 3rem;
-}
-
 .options {
   //margin-left: auto !important;
   //margin-right: auto !important;
@@ -25,4 +20,8 @@ hr {
 .problem {
   //text-align: center;
   background: #2e3033 !important;
+}
+
+.card.p-2 {
+  background: #3b3d41 !important;
 }

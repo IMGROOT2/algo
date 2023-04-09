@@ -141,6 +141,10 @@ function googleAuth() {
 
 async function setupFirestoreForNewUser(auth, db, user) {
     await setDoc(doc(db, "user_data", user.uid), {
-        created: serverTimestamp()
+        created: serverTimestamp(),
+        "problems-seen": [],
+        "problems-solved": [],
+        "problems-skipped": [],
+        "problems-unsolved": []
     });
 }
