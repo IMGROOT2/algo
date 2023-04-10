@@ -6,8 +6,18 @@ block styles
 
 block content
     prepend navbar
-    h1#dash-title.title.has-text-white.mb-1.is-hidden
-    h2#dash-subtitle.subtitle.has-text-white.mt-0.is-hidden
+    .modal#recordModal
+        .modal-background.toggleModal
+        .modal-card
+            header.modal-card-head
+            p.modal-card-title Modal title
+            button.delete.toggleModal(aria-label='close')
+            section.modal-card-body
+            // Content ...
+            footer.modal-card-foot
+            button.button.is-success.toggleModal Got it
+
+
     div.columns
         div.box.is-fullheight-with-navbar.options.column.is-auto.m-4
             div.mb-4
@@ -27,8 +37,8 @@ block content
                                 a.dropdown-item Platinum
                     br
                     button#generate-button.button.is-medium.is-success.mt-4.has-text-centered New Problem
-            div.card.p-2
-                p.has-text-white.is-5.subtitle.mb-0 #[span(class="has-tooltip-arrow" data-tooltip="Tooltip content on top") Record Problem Status]
+            div#recordstatus.card.p-2.is-hidden
+                p.has-text-white.is-5.subtitle.mb-0 Record Problem Status #[span(style="font-size: 0.7rem;").icon.is-small #[i.fas.fa-question-circle.toggleModal]]
                 div.buttons.is-centered
                     button#green.button.is-small.is-success.mt-4.has-text-centered Solved!
                     button#yellow.button.is-small.is-warning.mt-4.has-text-centered Attempted, skip.

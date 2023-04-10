@@ -14,24 +14,25 @@ block content
                 .column.is-one-quarter
                     div.card
                         div.card-content
-                            p#num-solved.title.has-text-centered.has-text-white --
+                            p#num-solved.title.has-text-centered --
                             p.subtitle.has-text-centered.has-text-white Solved
                 .column.is-one-quarter
                     div.card
                         div.card-content
-                            p#num-skipped.title.has-text-centered.has-text-white --
+                            p#num-skipped.title.has-text-centered --
                             p.subtitle.has-text-centered.has-text-white Skipped
                 .column.is-one-quarter
                     div.card
                         div.card-content
-                            p#num-unsolved.title.has-text-centered.has-text-white --
+                            p#num-unsolved.title.has-text-centered --
                             p.subtitle.has-text-centered.has-text-white Unsolved
                 .column.is-one-quarter
                     div.card
                         div.card-content
-                            p#num-seen.title.has-text-centered.has-text-white --
+                            p#num-seen.title.has-text-centered --
                             p.subtitle.has-text-centered.has-text-white Seen
-            div(style="height: 700px; width: 700px; margin-left: auto; margin-right: auto;")
+            div(style="width: fit-content; margin-left: auto; margin-right: auto;")
                 canvas#chart
+                br
 append scripts-footer
     script(type="module" src="js/statistics.js")

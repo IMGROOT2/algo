@@ -44,23 +44,25 @@ async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
 }
 async function genChart(solved, skipped, unsolved) {
-    new Chart(chart, {
-        type: 'doughnut',
-        data: {
-            labels: [
-                "Unsolved, didn't attempt.",
-                'Solved!',
-                'Skipped, but attempted.'
-            ],
-            datasets: [{
-                data: [unsolved, solved, skipped],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54,235,69)',
-                    'rgb(255, 205, 86)'
+    if(solved + skipped + unsolved !== 0) { 
+        new Chart(chart, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    "Unsolved, didn't attempt.",
+                    'Solved!',
+                    'Skipped, but attempted.'
                 ],
-                hoverOffset: 4
-            }],
-        },
-    });
+                datasets: [{
+                    data: [unsolved, solved, skipped],
+                    backgroundColor: [
+                        'hsl(348, 100%, 61%)',
+                        'hsl(141, 71%, 48%)',
+                        'hsl(48, 100%, 67%)'
+                    ],
+                    hoverOffset: 4
+                }],
+            },
+        });
+    }
 }

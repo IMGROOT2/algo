@@ -18,7 +18,10 @@ const options = {
     dropdown: document.getElementById("diff-dropdown"),
     green: document.getElementById("green"),
     yellow: document.getElementById("yellow"),
-    red: document.getElementById("red")
+    red: document.getElementById("red"),
+    record: document.getElementById("recordstatus"),
+    toggleModal: document.getElementById("toggleModal"),
+    recordModal: document.getElementById("recordModal"),
 }
 
 const problem = {
@@ -29,8 +32,10 @@ const problem = {
     text: document.getElementById("problem-text"),
     loader: document.getElementById("problem-loader")
 }
+let user;
 
-auth.onAuthStateChanged(async user => {
+auth.onAuthStateChanged(async auser => {
+    user = auser;
     if (user) {
 
         console.log(user.uid);
@@ -45,9 +50,6 @@ auth.onAuthStateChanged(async user => {
         }
         try {
             if (localStorage.getItem("problem") !== null) {
-                options.red.classList.toggle("is-loading");
-                options.yellow.classList.toggle("is-loading");
-                options.green.classList.toggle("is-loading");
                 options.generate.classList.toggle("is-loading");
                 problem.problem.classList.toggle("is-hidden");
                 problem.loader.classList.toggle("is-hidden");
@@ -58,24 +60,19 @@ auth.onAuthStateChanged(async user => {
                     options.generate.classList.toggle("is-loading");
                     problem.problem.classList.toggle("is-hidden");
                     problem.loader.classList.toggle("is-hidden");
-                    options.red.classList.toggle("is-loading");
-                    options.yellow.classList.toggle("is-loading");
-                    options.green.classList.toggle("is-loading");
                 } else if (result === "success") {
                     options.generate.classList.toggle("is-loading");
                     options.generate.classList.toggle("is-hidden");
                     problem.problem.classList.toggle("is-hidden");
                     problem.loader.classList.toggle("is-hidden");
                     problem.link.classList.remove("is-hidden");
-                    options.red.classList.toggle("is-loading");
-                    options.yellow.classList.toggle("is-loading");
-                    options.green.classList.toggle("is-loading");
+                    options.record.classList.remove("is-hidden");
                     bulmaToast.toast({message: 'Restored previous problem!', type: 'is-success'});
                 }
             }
         } catch (err) {
             toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
-            console.error(err.message);
+            bulmaToast.toast({message: err.message, type: 'is-danger'});
             options.generate.classList.toggle("is-loading");
             problem.problem.classList.toggle("is-hidden");
             problem.loader.classList.toggle("is-hidden");
@@ -167,7 +164,7 @@ auth.onAuthStateChanged(async user => {
                 }
             } catch (err) {
                 toast({message: 'Error generating problem. Please try again later.', type: 'is-danger'});
-                console.error(err.message);
+                bulmaToast.toast({message: err.message, type: 'is-danger'});
                 options.red.classList.toggle("is-loading");
                 options.yellow.classList.toggle("is-loading");
                 options.green.classList.toggle("is-loading");
@@ -252,7 +249,7 @@ auth.onAuthStateChanged(async user => {
                 }
             } catch (err) {
                 toast({message: 'Error generating problem. Please try again later.', type: 'is-danger'});
-                console.error(err.message);
+                bulmaToast.toast({message: err.message, type: 'is-danger'});
                 options.red.classList.toggle("is-loading");
                 options.yellow.classList.toggle("is-loading");
                 options.green.classList.toggle("is-loading");
@@ -337,7 +334,7 @@ auth.onAuthStateChanged(async user => {
                 }
             } catch (err) {
                 toast({message: 'Error generating problem. Please try again later.', type: 'is-danger'});
-                console.error(err.message);
+                bulmaToast.toast({message: err.message, type: 'is-danger'});
                 options.red.classList.toggle("is-loading");
                 options.yellow.classList.toggle("is-loading");
                 options.green.classList.toggle("is-loading");
@@ -389,12 +386,13 @@ options.generate.addEventListener("click", async () => {
                 problem.loader.classList.toggle("is-hidden");
                 problem.link.classList.remove("is-hidden");
                 options.generate.classList.add("is-hidden");
+                options.record.classList.remove("is-hidden");
                 bulmaToast.toast({message: 'New problem generated!', type: 'is-success'});
             }
         }
     } catch (err) {
         toast({message: 'Error generating problem. Please try again later.', type: 'is-danger'});
-        console.error(err.message);
+        bulmaToast.toast({message: err.message, type: 'is-danger'});
         options.generate.classList.toggle("is-loading");
         problem.problem.classList.toggle("is-hidden");
         problem.loader.classList.toggle("is-hidden");
@@ -436,7 +434,7 @@ async function generateProblem(idType, data, user) {
                         problem.text.innerHTML = html.getElementById("probtext-text").innerHTML;
                         problem.link.href = 'http://usaco.org/index.php?page=viewproblem2&cpid=' + id;
                     } catch (err) {
-                        console.error(err.message);
+                        bulmaToast.toast({message: err.message, type: 'is-danger'});
                         console.log("oops");
                         resolve("error");
                     }
@@ -453,7 +451,7 @@ async function generateProblem(idType, data, user) {
                 resolve("success");
             });
         } catch (err) {
-            console.error(err.message);
+            bulmaToast.toast({message: err.message, type: 'is-danger'});
             console.log("oops");
             resolve("error");
         }
@@ -464,4 +462,9 @@ options.trigger.addEventListener("click", () => {
 });
 async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
+}
+for(let i = 0; i < options.toggleModal.length; i++) {
+    options.toggleModal[i].addEventListener("click", () => {
+        options.recordModal.toggle("is-active");
+    });
 }
