@@ -1,7 +1,7 @@
 import {initializeApp} from "firebase/app";
 import {getAuth} from "firebase/auth";
 import {getAnalytics} from "firebase/analytics";
-import {getFirestore} from "firebase/firestore";
+import {getFirestore, connectFirestoreEmulator} from "firebase/firestore";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAVd0HLl7_NMyeE5Msmg2eX1hqesGoyXRQ",
@@ -16,4 +16,8 @@ export const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+
+// connect to firestore emulator and auth emulator
 export const db = getFirestore(app);
+
+// connectFirestoreEmulator(db, "localhost", 8080);

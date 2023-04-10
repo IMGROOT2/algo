@@ -34,6 +34,10 @@
       {
         "source": "/beta",
         "destination": "/beta.html"
+      },
+      {
+          "source": "/statistics",
+          "destination": "/statistics.html"
       }
     ]
   },

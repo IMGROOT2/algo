@@ -19,6 +19,7 @@ btnProfile.addEventListener('click', () => {
 });
 logoutButton.addEventListener('click', () => {
     auth.signOut().then(() => {
+        localStorage.clear();
         location.href = "/";
     }).catch((error) => {
         // An error happened.

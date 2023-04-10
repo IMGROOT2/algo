@@ -1,0 +1,37 @@
+extends includes/layout.pug
+block vars
+    - var title = "Statistics";
+block styles
+    link(rel="stylesheet" href="css/statistics.scss")
+
+block content
+    prepend navbar
+
+    .box.is-fullheight-with-navbar.column.m-4
+        div.has-text-centered
+            h1.title.has-text-white.is-1 Statistics for #[span#name(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") --]
+            .columns.is-centered.is-multiline
+                .column.is-one-quarter
+                    div.card
+                        div.card-content
+                            p#num-solved.title.has-text-centered.has-text-white --
+                            p.subtitle.has-text-centered.has-text-white Solved
+                .column.is-one-quarter
+                    div.card
+                        div.card-content
+                            p#num-skipped.title.has-text-centered.has-text-white --
+                            p.subtitle.has-text-centered.has-text-white Skipped
+                .column.is-one-quarter
+                    div.card
+                        div.card-content
+                            p#num-unsolved.title.has-text-centered.has-text-white --
+                            p.subtitle.has-text-centered.has-text-white Unsolved
+                .column.is-one-quarter
+                    div.card
+                        div.card-content
+                            p#num-seen.title.has-text-centered.has-text-white --
+                            p.subtitle.has-text-centered.has-text-white Seen
+            div(style="height: 700px; width: 700px; margin-left: auto; margin-right: auto;")
+                canvas#chart
+append scripts-footer
+    script(type="module" src="js/statistics.js")
