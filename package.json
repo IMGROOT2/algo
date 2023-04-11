@@ -1,6 +1,6 @@
 {
   "name": "algo",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "targets": {
     "pages": {
       "source": [
@@ -17,7 +17,7 @@
       "distDir": "./dist"
     }
   },
-  "description": "Algo",
+  "description": "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests.",
   "browserslist": "> 0.1% and last 2 versions and not dead",
   "scripts": {
     "start": "parcel",

@@ -6,10 +6,11 @@ block styles
 
 block content
     div.hero.is-fullheight-with-navbar.home-adjust
-        article.message.is-info
+        article.message.is-success
             .message-body
-                h1.title.is-6.has-text-weight-bold.has-text-white Algo has been released as a Beta! 🎉
-                p.subtitle.is-6.has-text-white Before using Algo, please read the #[a.page-link(href="/beta") beta release information].
+                h1.title.is-6.has-text-weight-bold.has-text-white 0.1.0: New Beta Release! 🎉
+                p.subtitle.is-6.has-text-white Statistics, Problem Statuses, and more!
+                p.subtitle.is-6.has-text-white Read #[a.page-link(href="https://github.com/IMGROOT2/algo/releases") this GitHub release] for information.
         div.is-hidden-touch(style="margin: auto; max-width: 70vw;")
             h1.title.landing-title #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Fly] from #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700 Bronze] #[br] to #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700  Platinum] with #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Algo].
             div.box.is-primary.subtitle-box.column.is-7.is-flex-direction-column.is-flex
@@ -23,5 +24,29 @@ block content
                 h1.subtitle.has-text-white.is-4 Algo is a USACO problem randomizer that pushes your training to the next level.
             a(href="/solve")
                 button(class="shadow-cyan-500/50 shadow-lg hover:border-white hover:shadow-emerald-500/50").has-text-white.button.is-rounded.bg-transparent.border-2.border-white Start Solving
+
+    // this is going to come when i get more data to put here lol
+    //
+    //
+    //div.hero.is-large.home-adjust
+    //    h1.title.is-3.has-text-white Since April 3rd, 2023, Algo has gotten
+    //    .columns
+    //        .column.is-one-third
+    //            .box(style="background: transparent;")
+    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 190+
+    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Users
+    //        .column.is-one-third
+    //            .box(style="background: transparent;")
+    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 1,700+
+    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Views
+    //        .column.is-one-third
+    //            .box(style="background: transparent;")
+    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 16
+    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Countries
+    //        .column.is-one-quarter
+    //            .box(style="background: transparent;")
+    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 190+
+    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Users
+
 
 append scripts-footer

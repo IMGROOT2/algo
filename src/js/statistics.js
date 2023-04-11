@@ -44,7 +44,8 @@ async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
 }
 async function genChart(solved, skipped, unsolved) {
-    if(solved + skipped + unsolved !== 0) { 
+    if(solved + skipped + unsolved !== 0) {
+        document.getElementById("showWhenZero").classList.add("is-hidden");
         new Chart(chart, {
             type: 'doughnut',
             data: {
@@ -64,5 +65,8 @@ async function genChart(solved, skipped, unsolved) {
                 }],
             },
         });
+    }
+    else {
+        document.getElementById("showWhenZero").classList.remove("is-hidden");
     }
 }

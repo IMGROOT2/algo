@@ -17,11 +17,18 @@ hr {
   height: 100%;
 }
 
-.problem {
+.problem, .modal-card-body {
   //text-align: center;
   background: #2e3033 !important;
 }
 
-.card.p-2 {
+.card.p-2, .modal-card-head, .modal-card-foot {
   background: #3b3d41 !important;
+}
+
+#recordHelp {
+  color: white !important;
+  &:hover {
+    color: gray !important;
+  }
 }

@@ -10,12 +10,19 @@ block content
         .modal-background.toggleModal
         .modal-card
             header.modal-card-head
-            p.modal-card-title Modal title
-            button.delete.toggleModal(aria-label='close')
-            section.modal-card-body
-            // Content ...
+                p.has-text-white.modal-card-title Recording Problem Statuses
+                button.delete.toggleModal(aria-label='close')
+            section(style="margin-bottom: 0;").modal-card-body.content
+                p.is-5.has-text-white Recording your status on a problem is one of the core features of Algo. It allows you to track of your progress on USACO problems.
+                    br
+                    ul
+                        li.has-text-white Select the Solved button if you have completely solved the problem.
+                        li.has-text-white Select the Attempted, Skip button if you have partially solved the problem, or attempted the problem and want to move on.
+                        li.has-text-white Select the Unsolved, Skip button if you want to skip the problem without solving or cannot solve the problem.
+                p.is-5.has-text-white Check your #[a(href="/statistics").page-link Statistics] by clicking on the profile icon in the top right, and clicking on #[a(href="/statistics").page-link Statistics].
+                p.is-5.has-text-white #[span.tag.is-info.is-small.has-text-white COMING SOON!] Eventually, you will be able to view the problems you have responded to, and circle back to them later.
             footer.modal-card-foot
-            button.button.is-success.toggleModal Got it
+                button.button.is-success.toggleModal Got it
 
 
     div.columns
@@ -38,7 +45,7 @@ block content
                     br
                     button#generate-button.button.is-medium.is-success.mt-4.has-text-centered New Problem
             div#recordstatus.card.p-2.is-hidden
-                p.has-text-white.is-5.subtitle.mb-0 Record Problem Status #[span(style="font-size: 0.7rem;").icon.is-small #[i.fas.fa-question-circle.toggleModal]]
+                p.has-text-white.is-5.subtitle.mb-0 Record Problem Status #[span(style="font-size: 0.7rem;").icon.is-small.toggleModal #[i#recordHelp.fas.fa-question-circle]]
                 div.buttons.is-centered
                     button#green.button.is-small.is-success.mt-4.has-text-centered Solved!
                     button#yellow.button.is-small.is-warning.mt-4.has-text-centered Attempted, skip.

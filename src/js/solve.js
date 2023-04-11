@@ -20,8 +20,8 @@ const options = {
     yellow: document.getElementById("yellow"),
     red: document.getElementById("red"),
     record: document.getElementById("recordstatus"),
-    toggleModal: document.getElementById("toggleModal"),
-    recordModal: document.getElementById("recordModal"),
+    toggleModal: document.getElementsByClassName("toggleModal"),
+    recordModal: document.getElementById("recordModal")
 }
 
 const problem = {
@@ -465,6 +465,6 @@ async function retrieveUserDoc(db, user) {
 }
 for(let i = 0; i < options.toggleModal.length; i++) {
     options.toggleModal[i].addEventListener("click", () => {
-        options.recordModal.toggle("is-active");
+        options.recordModal.classList.toggle("is-active");
     });
 }

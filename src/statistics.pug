@@ -31,8 +31,12 @@ block content
                         div.card-content
                             p#num-seen.title.has-text-centered --
                             p.subtitle.has-text-centered.has-text-white Seen
-            div(style="width: fit-content; margin-left: auto; margin-right: auto;")
+            div(style="width: fit-content; margin-left: auto; margin-right: auto; padding: 40px;")
                 canvas#chart
                 br
+            div#showWhenZero.is-hidden(style="margin-left: auto; margin-right: auto;")
+                h1.has-text-white.is-3.title No Problems Seen!
+                p.has-text-white.is-5.subtitle Go to #[a(href="/solve").page-link Solve] and solve a few problems!
+
 append scripts-footer
     script(type="module" src="js/statistics.js")
