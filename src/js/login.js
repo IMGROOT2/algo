@@ -12,6 +12,11 @@ import {
 
 const google = new GoogleAuthProvider();
 
+auth.onAuthStateChanged(async user => {
+    if (user) {
+        location.href = "/";
+    }
+});
 
 // get all buttons with class btn-forgot-password, and add listener to each
 const forgotPasswordButtons = document.getElementsByClassName("btn-forgot-password");
