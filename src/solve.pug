@@ -46,10 +46,10 @@ block content
                     button#generate-button.button.is-medium.is-success.mt-4.has-text-centered New Problem
             div#recordstatus.card.p-2.is-hidden
                 p.has-text-white.is-5.subtitle.mb-0 Record Problem Status #[span(style="font-size: 0.7rem;").icon.is-small.toggleModal #[i#recordHelp.fas.fa-question-circle]]
-                div.buttons.is-centered
-                    button#green.button.is-small.is-success.mt-4.has-text-centered Solved!
-                    button#yellow.button.is-small.is-warning.mt-4.has-text-centered Attempted, skip.
-                    button#red.button.is-small.is-danger.mt-4.has-text-centered Unsolved, skip.
+                div.buttons.is-centered.mt-2
+                    button#green.button.is-small.is-success.has-text-centered Solved!
+                    button#yellow.button.is-small.is-warning.has-text-centered Attempted, skip.
+                    button#red.button.is-small.is-danger.has-text-centered Unsolved, skip.
 
 
         #problem.box.is-fullheight-with-navbar.problem.column.is-four-fifths.m-4
@@ -58,7 +58,7 @@ block content
                     .level-item
                         div
                             h1.title.has-text-white.is-1#problem-title
-                            p.subtitle.has-text-gray.is-5#problem-subtitle
+                            p(style="margin-top: 0;").subtitle.has-text-gray.is-5#problem-subtitle
                 .level-right
                     .level-right
                         a#external-icon(href="#").is-hidden

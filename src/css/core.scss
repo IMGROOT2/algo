@@ -12,6 +12,7 @@ $primary: #3072D6;
 $secondary: #27C877;
 $family-primary: Poppins-R;
 
+@import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/base/_all.sass";
 @import "bulma/sass/components/_all.sass";
 @import "bulma/sass/elements/_all.sass";
@@ -19,7 +20,6 @@ $family-primary: Poppins-R;
 @import "bulma/sass/grid/_all.sass";
 @import "bulma/sass/helpers/_all.sass";
 @import "bulma/sass/layout/_all.sass";
-@import "bulma/sass/utilities/_all.sass";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

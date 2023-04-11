@@ -41,21 +41,20 @@
   "homepage": "https://github.com/IMGROOT2/algo#readme",
   "dependencies": {
     "@creativebulma/bulma-divider": "^1.1.0",
+    "@creativebulma/bulma-tooltip": "^1.2.0",
     "bulma": "^0.9.4",
     "bulma-toast": "^2.4.2",
     "chart.js": "^4.2.1",
     "firebase": "^9.19.1",
     "firebase-tools": "^11.25.2",
-    "firebaseui": "^6.0.2"
+    "tailwindcss": "^3.3.1"
   },
   "devDependencies": {
-    "@creativebulma/bulma-tooltip": "^1.2.0",
     "@parcel/transformer-pug": "^2.8.1",
     "@parcel/transformer-sass": "^2.8.1",
     "parcel": "^2.8.1",
     "postcss": "^8.4.21",
-    "process": "^0.11.10",
-    "tailwindcss": "^3.2.7"
+    "process": "^0.11.10"
   },
   "type": "commonjs"
 }

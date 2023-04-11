@@ -55,12 +55,12 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                             i.fa-solid.fa-user-circle
                                         span#hasPhoto.is-hidden
                                             img#profile-image(referrerpolicy="no-referrer" style="border: 2px solid white; border-radius: 2rem;" alt="Profile Image")
-                                    div#btn-profile-dropdown.navbar-dropdown.is-right.is-boxed
+                                    div(style="max-width: 150px !important;")#btn-profile-dropdown.navbar-dropdown.is-right.is-boxed
                                         div.navbar-item.no-pointer-events
                                             span#profile-loader.bulma-loader-mixin
-                                            | #[p(style="display: block;")#profile-name]
+                                            | #[p(style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-name]
                                         div.navbar-item.no-pointer-events
-                                            | #[p(style="font-size: 0.5rem; overflow: hidden; display: inline-block; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-email]
+                                            | #[p(style="font-size: 0.5rem; overflow: hidden; display: block; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-email]
                                         hr.navbar-divider
                                         a.navbar-item(href="/profile")
                                             span.icon.is-small
