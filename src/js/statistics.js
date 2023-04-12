@@ -21,13 +21,17 @@ auth.onAuthStateChanged(async user => {
     if (user) {
 
         name.innerText = user.displayName;
+        await retrieveUserDoc(db, user).then(adoc => {
+            console.log("General info");
+            console.log(adoc.data());
+        });
 
         await retrieveUserDoc(db, user).then(async (adoc) => {
             const data = adoc.data();
-            const problemsSeen = data["problems-seen"];
-            const problemsSolved = data["problems-solved"];
-            const problemsSkipped = data["problems-skipped"];
-            const problemsUnsolved = data["problems-unsolved"];
+            const problemsSeen = data["problemsSeen"];
+            const problemsSolved = data["problemsSolved"];
+            const problemsSkipped = data["problemsSkipped"];
+            const problemsUnsolved = data["problemsUnsolved"];
 
             numSeen.innerText = problemsSeen.length;
             numSolved.innerText = problemsSolved.length;

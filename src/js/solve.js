@@ -37,9 +37,8 @@ let user;
 auth.onAuthStateChanged(async auser => {
     user = auser;
     if (user) {
-
         console.log(user.uid);
-
+        checkIfFS(db, user);
         if (localStorage.getItem("options") != null) {
             options.label.innerText = localStorage.getItem("options");
             for (let i = 0; i < options.items.length; i++) {
@@ -90,14 +89,14 @@ auth.onAuthStateChanged(async auser => {
             problem.problem.classList.toggle("is-hidden");
             problem.loader.classList.toggle("is-hidden");
             try {
-                // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problems-seen" and "problems-solved"
+                // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problemsSeen" and "problemsSolved"
                 // use v9
                 await retrieveUserDoc(db, user).then((adoc) => {
                     const data = adoc.data();
-                    const problemsSeen = data["problems-seen"];
-                    const problemsSolved = data["problems-solved"];
-                    const problemsSkipped = data["problems-skipped"];
-                    const problemsUnsolved = data["problems-unsolved"];
+                    const problemsSeen = data["problemsSeen"];
+                    const problemsSolved = data["problemsSolved"];
+                    const problemsSkipped = data["problemsSkipped"];
+                    const problemsUnsolved = data["problemsUnsolved"];
                     // if the problem is not in the problems seen array, add it
                     if (!problemsSeen.includes(localStorage.getItem("problem"))) {
                         problemsSeen.push(localStorage.getItem("problem"));
@@ -122,10 +121,10 @@ auth.onAuthStateChanged(async auser => {
                     }
                     // update the document with the new arrays
                     updateDoc(doc(db, "user_data", user.uid), {
-                        "problems-seen": problemsSeen,
-                        "problems-solved": problemsSolved,
-                        "problems-skipped": problemsSkipped,
-                        "problems-unsolved": problemsUnsolved
+                        "problemsSeen": problemsSeen,
+                        "problemsSolved": problemsSolved,
+                        "problemsSkipped": problemsSkipped,
+                        "problemsUnsolved": problemsUnsolved
                     }).then(() => {
                         console.log("Updated user document.");
                     });
@@ -179,14 +178,14 @@ auth.onAuthStateChanged(async auser => {
             problem.problem.classList.toggle("is-hidden");
             problem.loader.classList.toggle("is-hidden");
             try {
-                // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problems-seen" and "problems-solved"
+                // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problemsSeen" and "problemsSolved"
                 // use v9
                 await retrieveUserDoc(db, user).then((adoc) => {
                     const data = adoc.data();
-                    const problemsSeen = data["problems-seen"];
-                    const problemsSolved = data["problems-solved"];
-                    const problemsSkipped = data["problems-skipped"];
-                    const problemsUnsolved = data["problems-unsolved"];
+                    const problemsSeen = data["problemsSeen"];
+                    const problemsSolved = data["problemsSolved"];
+                    const problemsSkipped = data["problemsSkipped"];
+                    const problemsUnsolved = data["problemsUnsolved"];
                     if (!problemsSeen.includes(localStorage.getItem("problem"))) {
                         problemsSeen.push(localStorage.getItem("problem"));
                     }
@@ -207,10 +206,10 @@ auth.onAuthStateChanged(async auser => {
                     }
                     // update the document with the new arrays
                     updateDoc(doc(db, "user_data", user.uid), {
-                        "problems-seen": problemsSeen,
-                        "problems-solved": problemsSolved,
-                        "problems-skipped": problemsSkipped,
-                        "problems-unsolved": problemsUnsolved
+                        "problemsSeen": problemsSeen,
+                        "problemsSolved": problemsSolved,
+                        "problemsSkipped": problemsSkipped,
+                        "problemsUnsolved": problemsUnsolved
                     }).then(() => {
                         console.log("Updated user document.");
                     });
@@ -264,14 +263,14 @@ auth.onAuthStateChanged(async auser => {
             problem.problem.classList.toggle("is-hidden");
             problem.loader.classList.toggle("is-hidden");
             try {
-                // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problems-seen" and "problems-solved"
+                // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problemsSeen" and "problemsSolved"
                 // use v9
                 await retrieveUserDoc(db, user).then((adoc) => {
                     const data = adoc.data();
-                    const problemsSeen = data["problems-seen"];
-                    const problemsSolved = data["problems-solved"];
-                    const problemsSkipped = data["problems-skipped"];
-                    const problemsUnsolved = data["problems-unsolved"];
+                    const problemsSeen = data["problemsSeen"];
+                    const problemsSolved = data["problemsSolved"];
+                    const problemsSkipped = data["problemsSkipped"];
+                    const problemsUnsolved = data["problemsUnsolved"];
                     if (!problemsSeen.includes(localStorage.getItem("problem"))) {
                         problemsSeen.push(localStorage.getItem("problem"));
                     }
@@ -292,10 +291,10 @@ auth.onAuthStateChanged(async auser => {
                     }
                     // update the document with the new arrays
                     updateDoc(doc(db, "user_data", user.uid), {
-                        "problems-seen": problemsSeen,
-                        "problems-solved": problemsSolved,
-                        "problems-skipped": problemsSkipped,
-                        "problems-unsolved": problemsUnsolved
+                        "problemsSeen": problemsSeen,
+                        "problemsSolved": problemsSolved,
+                        "problemsSkipped": problemsSkipped,
+                        "problemsUnsolved": problemsUnsolved
                     }).then(() => {
                         console.log("Updated user document.");
                     });
@@ -408,7 +407,7 @@ async function generateProblem(idType, data, user) {
                 await retrieveUserDoc(db, user).then(adoc => {
                     console.log("Retrieved user document.");
                     const fsdata = adoc.data();
-                    const problemsSeen = fsdata["problems-seen"];
+                    const problemsSeen = fsdata["problemsSeen"];
                     console.log("Retrieved user document.2");
                     id = problems[data][Math.floor(Math.random() * problems[data].length)];
                     while (problemsSeen.includes(id)) {
@@ -466,5 +465,19 @@ async function retrieveUserDoc(db, user) {
 for(let i = 0; i < options.toggleModal.length; i++) {
     options.toggleModal[i].addEventListener("click", () => {
         options.recordModal.classList.toggle("is-active");
+    });
+}
+async function checkIfFS(db, user) {
+    await retrieveUserDoc(db, user).then(adoc => {
+        const fsdata = adoc.data();
+        toast({message: adoc.data(),type: 'is-warning'});
+        if (!fsdata.hasOwnProperty("problemsSeen")) {
+            updateDoc(doc(db, "user_data", user.uid), {
+                problemsSeen: [],
+                problemsSolved: [],
+                problemsSkipped: [],
+                problemsUnsolved: []
+            });
+        }
     });
 }

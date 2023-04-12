@@ -23,22 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+import { toast } from "bulma-toast";
 import { auth, db } from "./app-config";
 import {doc, getDoc, updateDoc} from "firebase/firestore";
 
 auth.onAuthStateChanged(async user => {
     if (user) {
         await retrieveUserDoc(db, user).then(adoc => {
+            console.log(adoc.data());
             const fsdata = adoc.data();
-            if (fsdata["problems-seen"] === undefined) {
+            if (!fsdata.hasOwnProperty("problemsSeen")) {
                 updateDoc(doc(db, "user_data", user.uid), {
-                    "problems-seen": [],
-                    "problems-solved": [],
-                    "problems-skipped": [],
-                    "problems-unsolved": []
+                    problemsSeen: [],
+                    problemsSolved: [],
+                    problemsSkipped: [],
+                    problemsUnsolved: []
                 });
             }
-        })
+        });
     }
 });
 async function retrieveUserDoc(db, user) {

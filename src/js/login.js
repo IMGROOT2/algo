@@ -1,5 +1,5 @@
 import {auth, db} from "./app-config";
-import {doc, serverTimestamp, setDoc} from "firebase/firestore";
+import {doc, serverTimestamp, setDoc, getDoc} from "firebase/firestore";
 import {
     createUserWithEmailAndPassword,
     getAdditionalUserInfo,
@@ -12,11 +12,7 @@ import {
 
 const google = new GoogleAuthProvider();
 
-auth.onAuthStateChanged(async user => {
-    if (user) {
-        location.href = "/";
-    }
-});
+// TODO: if logged in, redirect to /
 
 // get all buttons with class btn-forgot-password, and add listener to each
 const forgotPasswordButtons = document.getElementsByClassName("btn-forgot-password");
@@ -51,11 +47,11 @@ document.getElementById("button-auth-button-login").addEventListener("click", go
 document.getElementById("button-auth-button-signup").addEventListener("click", googleAuth);
 
 // login function
-function login() {
+async function login() {
     const email = document.getElementById("email-login").value;
     const password = document.getElementById("password-login").value;
     // log the user in
-    signInWithEmailAndPassword(auth, email, password)
+    await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
@@ -70,17 +66,17 @@ function login() {
 }
 
 // signup function
-function signup() {
+async function signup() {
     const email = document.getElementById("email-signup").value;
     const password = document.getElementById("password-signup").value;
     const name = document.getElementById("name-signup").value;
     // create the user
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+    await createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
             // Signed in
             const user = userCredential.user;
             // set user display name
-            setupFirestoreForNewUser(auth, db, user).then(r => {
+            await setupFirestoreForNewUser(auth, db, user).then(async r => {
                 updateProfile(user, {
                     displayName: name
                 }).then(r => {
@@ -99,10 +95,10 @@ function signup() {
 }
 
 // forgot password function
-function forgotPassword() {
+async function forgotPassword() {
     const email = document.getElementById("email-f-email").value;
     // send password reset email
-    sendPasswordResetEmail(auth, email)
+    await sendPasswordResetEmail(auth, email)
         .then(() => {
             // Email sent.
             alert("Password reset email sent! Check your inbox as well as Spam or Junk folders. Press the Reset Password button to resend the email.");
@@ -116,7 +112,7 @@ function forgotPassword() {
 
 function googleAuth() {
     signInWithPopup(auth, google)
-        .then((result) => {
+        .then(async (result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const {isNewUser} = getAdditionalUserInfo(result);
@@ -124,7 +120,7 @@ function googleAuth() {
             // The signed-in user info.
             const user = result.user;
             if (isNewUser) {
-                setupFirestoreForNewUser(auth, db, user).then(r => {
+                await setupFirestoreForNewUser(auth, db, user).then(r => {
                     location.href = "/solve";
                 });
             } else {
@@ -147,9 +143,16 @@ function googleAuth() {
 async function setupFirestoreForNewUser(auth, db, user) {
     await setDoc(doc(db, "user_data", user.uid), {
         created: serverTimestamp(),
-        "problems-seen": [],
-        "problems-solved": [],
-        "problems-skipped": [],
-        "problems-unsolved": []
+        problemsSeen: [],
+        problemsSolved: [],
+        problemsSkipped: [],
+        problemsUnsolved: []
     });
+    await retrieveUserDoc(db, user).then(adoc => {
+        console.log("General info");
+        console.log(adoc.data());
+    });
+}
+async function retrieveUserDoc(db, user) {
+    return await getDoc(doc(db, "user_data", user.uid));
 }
