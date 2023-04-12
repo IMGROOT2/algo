@@ -26,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 import { toast } from "bulma-toast";
 import { auth, db } from "./app-config";
 import {doc, getDoc, updateDoc} from "firebase/firestore";
+import {onAuthStateChanged} from "firebase/auth";
 
-auth.onAuthStateChanged(async user => {
+onAuthStateChanged(auth, async user => {
     if (user) {
         await retrieveUserDoc(db, user).then(adoc => {
             console.log(adoc.data());

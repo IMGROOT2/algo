@@ -1,6 +1,6 @@
 import {auth, db} from "./app-config";
 import {doc, getDoc, setDoc} from "firebase/firestore";
-import {updateProfile} from "firebase/auth";
+import {updateProfile, onAuthStateChanged} from "firebase/auth";
 
 
 const name = document.getElementById('name');
@@ -10,7 +10,7 @@ const created = document.getElementById('created');
 const btnUpdateProfile = document.getElementById('save-changes');
 const load = document.getElementById('load');
 
-auth.onAuthStateChanged(function (user) {
+onAuthStateChanged(auth, user => {
     if (user) {
         // get user document and snapshot
         retrieveUserDoc(db, user).then((doc) => {

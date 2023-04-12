@@ -2,6 +2,7 @@ import { auth, db } from "./app-config";
 import * as bulmaToast from 'bulma-toast'
 import {doc, getDoc, updateDoc} from "firebase/firestore";
 import Chart from 'chart.js/auto';
+import {onAuthStateChanged} from "firebase/auth";
 
 const name = document.getElementById("name");
 const numSolved = document.getElementById("num-solved");
@@ -17,7 +18,7 @@ setDefaults({
 });
 
 
-auth.onAuthStateChanged(async user => {
+onAuthStateChanged(auth, async user => {
     if (user) {
 
         name.innerText = user.displayName;

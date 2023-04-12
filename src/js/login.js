@@ -7,12 +7,18 @@ import {
     sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithPopup,
-    updateProfile
+    updateProfile,
+    onAuthStateChanged
 } from "firebase/auth";
 
 const google = new GoogleAuthProvider();
 
-// TODO: if logged in, redirect to /
+// if the user is logged in but was not just created, redirect to home page
+onAuthStateChanged(auth, async user => {
+    if (user && !user.metadata.creationTime) {
+        location.href = "/";
+    }
+});
 
 // get all buttons with class btn-forgot-password, and add listener to each
 const forgotPasswordButtons = document.getElementsByClassName("btn-forgot-password");

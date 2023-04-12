@@ -2,6 +2,7 @@ import { auth, db } from "./app-config";
 import * as bulmaToast from 'bulma-toast'
 import * as problems from '../data/data.json'
 import {doc, getDoc, updateDoc} from "firebase/firestore";
+import {onAuthStateChanged} from "firebase/auth";
 
 const { setDefaults, toast } = bulmaToast;
 
@@ -33,12 +34,11 @@ const problem = {
     loader: document.getElementById("problem-loader")
 }
 let user;
-
-auth.onAuthStateChanged(async auser => {
+onAuthStateChanged(auth, async auser => {
     user = auser;
     if (user) {
         console.log(user.uid);
-        checkIfFS(db, user);
+        await checkIfFS(db, user);
         if (localStorage.getItem("options") != null) {
             options.label.innerText = localStorage.getItem("options");
             for (let i = 0; i < options.items.length; i++) {

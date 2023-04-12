@@ -1,4 +1,5 @@
 import {auth} from "./app-config";
+import {onAuthStateChanged} from "firebase/auth";
 
 
 const loginButton = document.getElementById('btn-register-login');
@@ -47,7 +48,7 @@ function navLoggedInToggle(addorremove, theclass) {
     }
 }
 
-auth.onAuthStateChanged(function (user) {
+onAuthStateChanged(auth, user => {
     if (user) {
         navLoggedInToggle("remove", "is-hidden");
         navNotLoggedInToggle("add", "is-hidden");
