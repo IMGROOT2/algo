@@ -38,7 +38,7 @@ onAuthStateChanged(auth, async auser => {
     user = auser;
     if (user) {
         console.log(user.uid);
-        await checkIfFS(db, user);
+        await checkIfFS(db, auser);
         if (localStorage.getItem("options") != null) {
             options.label.innerText = localStorage.getItem("options");
             for (let i = 0; i < options.items.length; i++) {
@@ -470,7 +470,6 @@ for(let i = 0; i < options.toggleModal.length; i++) {
 async function checkIfFS(db, user) {
     await retrieveUserDoc(db, user).then(adoc => {
         const fsdata = adoc.data();
-        toast({message: adoc.data(),type: 'is-warning'});
         if (!fsdata.hasOwnProperty("problemsSeen")) {
             updateDoc(doc(db, "user_data", user.uid), {
                 problemsSeen: [],
