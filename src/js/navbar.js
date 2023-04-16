@@ -15,6 +15,22 @@ const hasPhoto = document.getElementById('hasPhoto');
 const navNotLoggedIn = document.getElementsByClassName('nav-not-logged-in');
 const navLoggedIn = document.getElementsByClassName('nav-logged-in');
 
+const navbar = {
+    burger: document.querySelector(".navbar-burger"),
+    menu: document.getElementById("main-navbar")
+};
+addEventListener("DOMContentLoaded", () => {
+    navbar.burger.addEventListener("click", () => {
+        navbar.burger.classList.toggle("is-active");
+        navbar.menu.classList.toggle("is-active");
+    });
+    navbar.menu.addEventListener("click", () => {
+        navbar.burger.classList.remove("is-active");
+        navbar.menu.classList.remove("is-active");
+    });
+});
+
+
 btnProfile.addEventListener('click', () => {
     dropProfile.classList.toggle('makedropvisible');
 });

@@ -6,11 +6,15 @@ block styles
 
 block content
     div.hero.is-fullheight-with-navbar.home-adjust
-        article.message.is-success
-            .message-body
-                h1.title.is-6.has-text-weight-bold.has-text-white 0.1.1: New Beta Release! 🎉
-                p.subtitle.is-6.has-text-white Statistics, Problem Statuses, and more!
-                p.subtitle.is-6.has-text-white Read #[a.page-link(href="https://github.com/IMGROOT2/algo/releases/tag/v0.1.0" target="_blank") this GitHub release] for information.
+        .mx-auto.max-w-2xl
+            .hidden(class='sm:mb-8 sm:flex sm:justify-center')
+                .relative.rounded-full.px-3.py-1.text-sm.leading-6.ring-1.text-white.bg-slate-800.m-1(class='hover:ring-emerald-700')
+                    | 0.1.1: Statistics, Problem Statuses, and more!
+                    a.font-semibold.text-blue-700(href="https://github.com/IMGROOT2/algo/releases/tag/v0.1.0" target="_blank" class="hover:text-blue-600")
+                        span.ml-1(aria-hidden='true')
+                        | View Release
+                        span.icon(style="position: relative; top: 2px;")
+                            i.fa-solid.fa-arrow-right
         div.is-hidden-touch(style="margin: auto; max-width: 70vw;")
             h1.title.landing-title #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Fly] from #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700 Bronze] #[br] to #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700  Platinum] with #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Algo].
             div.box.is-primary.subtitle-box.column.is-7.is-flex-direction-column.is-flex
@@ -25,28 +29,21 @@ block content
             a(href="/solve")
                 button(class="shadow-cyan-500/50 shadow-lg hover:border-white hover:shadow-emerald-500/50").has-text-white.button.is-rounded.bg-transparent.border-2.border-white Start Solving
 
-    // this is going to come when i get more data to put here lol
-    //
-    //
-    //div.hero.is-large.home-adjust
-    //    h1.title.is-3.has-text-white Since April 3rd, 2023, Algo has gotten
-    //    .columns
-    //        .column.is-one-third
-    //            .box(style="background: transparent;")
-    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 190+
-    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Users
-    //        .column.is-one-third
-    //            .box(style="background: transparent;")
-    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 1,700+
-    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Views
-    //        .column.is-one-third
-    //            .box(style="background: transparent;")
-    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 16
-    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Countries
-    //        .column.is-one-quarter
-    //            .box(style="background: transparent;")
-    //                h1(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;").title.is-2 190+
-    //                p.subtitle.has-text-weight-bold.has-text-white.is-3 Users
 
+    div(style="background: #0b1120").hero.is-large.home-adjust
+        .py-24(class='sm:py-32')
+            h1.title.is-2.has-text-white Statistics
+            br
+            .mx-auto.max-w-7xl.px-6(class='lg:px-8')
+                dl.grid.grid-cols-1.gap-x-8.gap-y-16.text-center(class='lg:grid-cols-3')
+                    .mx-auto.flex.max-w-xs.flex-col.gap-y-4
+                        dt.text-base.leading-7.text-white Users
+                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") 305]
+                    .mx-auto.flex.max-w-xs.flex-col.gap-y-4
+                        dt.text-base.leading-7.text-white Page Views
+                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") 2.7k]
+                    .mx-auto.flex.max-w-xs.flex-col.gap-y-4
+                        dt.text-base.leading-7.text-white Countries Reached
+                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") 21]
 
 append scripts-footer
