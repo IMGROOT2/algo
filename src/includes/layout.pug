@@ -13,7 +13,6 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
         meta(property="og:image:width" content="1280")
         meta(property="og:image:height" content="640")
         meta(name="description" content=`${description || "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests."}`)
-        // TODO: Add Description, Title
         meta(property="og:type" content="website")
         link(rel="icon" href="media/favicon.ico" sizes="any")
         meta(name="theme-color" content="#1f1e1e")
@@ -78,14 +77,14 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
 
         main.is-flex-grow-1
             block content
-                // Hello
-        footer.footer.is-fixed-bottom(style="margin-top: 1rem;")
+        footer.footer.is-fixed-bottom(style="margin-top: 0.75rem;")
             .level(style='text-align: center;')
                 .level-left
                     .level-item
-                        img(src="media/algologo.svg" alt="Algo Logo" style="height: 100px;")
+                        a(href="/")
+                            img(src="media/algologofull.png" alt="Algo Logo" style="height: 60px;")
                 .level-right
-                    .level-item.has-text-white #[a(href="/about").footer-item About] #[span.mr-2.ml-2 -] #[a(href="https://github.com/IMGROOT2/Algo" target="_blank").footer-item GitHub] #[span.mr-2.ml-2 -] Made by #[a(href="https://github.com/IMGROOT2" target="_blank").footer-item.ml-1 Ruhan Gupta]
+                    .level-item.has-text-white #[a(href="https://github.com/IMGROOT2/Algo" target="_blank").footer-item #[i.fa-brands.fa-github]] #[span.mr-2.ml-2 &centerdot;] #[a(href="/about").footer-item About] #[span.mr-2.ml-2 &centerdot;] Made by #[a(href="https://github.com/IMGROOT2" target="_blank").footer-item.ml-1 Ruhan Gupta]
         block scripts-footer
             script(type="module" src="js/general.js")
             script(type="module" src="js/navbar.js")
