@@ -123,3 +123,29 @@ pre {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+.mauto {
+  margin-bottom: auto !important;
+}
+#user-menu-button ~ #profileMenu {
+  --transform-translate-x: 0;
+  --transform-translate-y: 0;
+  --transform-rotate: 0;
+  --transform-skew-x: 0;
+  --transform-skew-y: 0;
+  --transform-scale-x: 1;
+  --transform-scale-y: 1;
+  transform: translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y));
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  transition-duration: 75ms;
+  opacity: 0;
+  --transform-scale-x: 0;
+  --transform-scale-y: 0;
+}
+
+#user-menu-button ~ #profileMenu:focus-within, #user-menu-button:focus ~ #profileMenu {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 100ms;
+  opacity: 1;
+  --transform-scale-x: 1;
+  --transform-scale-y: 1;
+}

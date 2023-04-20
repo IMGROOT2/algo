@@ -15,66 +15,68 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
         meta(name="description" content=`${description || "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests."}`)
         meta(property="og:type" content="website")
         link(rel="icon" href="media/favicon.ico" sizes="any")
-        meta(name="theme-color" content="#1f1e1e")
+        meta(name="theme-color" content="#1e293b")
         script(src="https://kit.fontawesome.com/8664419f7c.js" crossorigin="anonymous")
         block extrahead
         block styles
             link(rel="stylesheet" href="style.scss")
     body(style="height: 100%;").is-flex.is-flex-direction-column
         block navbar
-            // TODO: fix navbar on mobile
-            nav.navbar.is-transparent(role="navigation" aria-label="main navigation")
-                .navbar-brand.is-justify-content-space-between
-                    a.navbar-item.ml-3(href="/" style="margin-right: 1rem;")
-                        img(src="media/algologo.svg" alt="Algo Logo" style="scale: 2;")
-                    a.navbar-burger.burger.has-text-white(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
-                        #xmark.icon.is-hidden.navbar-item.mt-4.mr-4
-                            i.fa-solid.fa-xmark.fa-2x
-                        #bars.icon.navbar-item.mt-4.mr-4
-                            i.fa-solid.fa-bars.fa-2x
-                #main-navbar.navbar-menu.mx-auto(style="background-color: #1f1e1e;")
-                    .navbar-start
-                        .buttons
-                            a.button.rounded-lg.is-info.navbar-button.mr-2(href="/beta")
-                                | Beta Release Info
-                            .is-hidden.nav-not-logged-in.mr-2.ml-2
-                                a.button.rounded-lg.is-primary.navbar-button(href="/")
-                                    | Home
-                            #solve-button.is-hidden.nav-logged-in.ml-2
-                                a.button.rounded-lg.is-primary.navbar-button(href="/solve")
-                                    | Solve!
-                    .navbar-end
-                        .navbar-item
-                            .buttons
-                                .navbar-item
-                                    a#btn-register-login.button.is-primary.rounded-lg.navbar-button.nav-not-logged-in.is-hidden(href="/login")
-                                        | Register - Log In
-                                .navbar-item.has-dropdown.is-hoverable
-                                    div#btn-profile.navbar-link.has-dropdown.is-arrowless.is-hidden
-                                        span#noPhoto.icon.is-large.is-hidden
-                                            i.fa-solid.fa-user-circle
+            nav.bg-slate-800
+                .mx-auto.max-w-7xl.px-2(class='sm:px-6 lg:px-8')
+                    .relative.flex.h-16.items-center.justify-between
+                        .absolute.inset-y-0.left-0.flex.items-center(class='sm:hidden')
+                            button#mobileMenuButton.inline-flex.items-center.justify-center.rounded-md.p-2.text-gray-400(type='button', class='hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white', aria-controls='mobile-menu', aria-expanded='false')
+                                span.sr-only Open main menu
+                                svg#closed.block.h-6.w-6.mauto(fill='none', viewbox='0 0 24 24', stroke-width='1.5', stroke='currentColor', aria-hidden='true')
+                                    path(stroke-linecap='round', stroke-linejoin='round', d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5')
+                                svg#open.h-6.w-6.block.mauto.is-hidden(fill='none', viewbox='0 0 24 24', stroke-width='1.5', stroke='currentColor', aria-hidden='true')
+                                    path(stroke-linecap='round', stroke-linejoin='round', d='M6 18L18 6M6 6l12 12')
+                        .flex.flex-1.items-center.justify-center(class='sm:items-stretch sm:justify-start')
+                            .flex.flex-shrink-0.items-center
+                                a(href='/')
+                                    img.block.h-8.w-auto.mauto(class='lg:hidden', src='media/algologofull.png', alt='Algo')
+                                    img.hidden.h-8.w-auto.mauto(class='lg:block', src='media/algologofull.png', alt='Algo')
+                            .hidden.mauto(class='sm:ml-6 sm:block')
+                                .flex.space-x-4
+                                    a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/', class='hover:bg-gray-700 hover:text-white') Home
+                                    a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/beta', class='hover:bg-gray-700 hover:text-white') Beta Release Info
+                                    a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/solve', class='hover:bg-gray-700 hover:text-white') Solve
+                        .absolute.inset-y-0.right-0.flex.items-center.pr-2(class='sm:static sm:inset-auto sm:ml-6 sm:pr-0')
+                            .relative.ml-3
+                                div
+                                    a.btn-register-login.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium.nav-not-logged-in.is-hidden.hidden(href='/login', class='hover:bg-gray-700 hover:text-white sm:block') Register - Log In
+                                    button#user-menu-button.flex.rounded-full.bg-gray-800.text-sm(type='button', class='focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800', aria-expanded='false', aria-haspopup='true')
+                                        span.sr-only Open user menu
+                                        span#noPhoto.icon.is-hidden
+                                            i.fa-solid.fa-user-circle.h-8.w-8.rounded-full
                                         span#hasPhoto.is-hidden
-                                            img#profile-image(referrerpolicy="no-referrer" style="border: 2px solid white; border-radius: 2rem;" alt="Profile Image")
-                                    div(style="max-width: 150px !important;")#btn-profile-dropdown.navbar-dropdown.is-right.is-boxed
-                                        div.navbar-item.no-pointer-events
-                                            span#profile-loader.bulma-loader-mixin
-                                            | #[p(style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-name]
-                                        div.navbar-item.no-pointer-events
-                                            | #[p(style="font-size: 0.5rem; overflow: hidden; display: block; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-email]
-                                        hr.navbar-divider
-                                        a.navbar-item(href="/profile")
-                                            span.icon.is-small
-                                                i.fa-solid.fa-user
-                                            | Profile
-                                        a.navbar-item(href="/statistics")
-                                            span.icon.is-small
-                                                i.fa-solid.fa-chart-line
-                                            | Statistics
-                                        hr.navbar-divider
-                                        a.navbar-item#btn-logout(href="/")
-                                            span.icon.is-small
-                                                i.fa-solid.fa-sign-out-alt
-                                            | Log Out
+                                            img#profile-image(referrerpolicy="no-referrer" alt="Profile Image").h-8.w-8.rounded-full
+                                #profileMenu.is-hidden.absolute.right-0.z-10.mt-2.w-48.origin-top-right.rounded-md.bg-slate-700.py-1.shadow-lg.ring-1.ring-black.ring-opacity-5.text-white(class='focus:outline-none', role='menu', aria-orientation='vertical', aria-labelledby='user-menu-button', tabindex='-1' style="max-width: 175px !important; width: 175px !important;")
+                                    div.no-pointer-events.px-4
+                                        span#profile-loader.bulma-loader-mixin
+                                        | #[p(style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-name]
+                                    div.no-pointer-events.px-4.mb-3
+                                        | #[p(style="font-size: 0.5rem; overflow: hidden; display: block; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-email]
+                                    a.block.px-4.py-2.text-sm.text-white.mauto(href="/profile" class="hover:bg-gray-600 hover:text-white")
+                                        span.icon.is-small.mr-1
+                                            i(style="position: relative; top: 2px;").fa-solid.fa-user
+                                        | Profile
+                                    a.block.px-4.py-2.text-sm.text-white.mauto(href="/statistics" class="hover:bg-gray-600 hover:text-white")
+                                        span.icon.is-small.mr-1
+                                            i(style="position: relative; top: 2px;").fa-solid.fa-chart-line
+                                        | Statistics
+                                    a#btn-logout(href="/" class="hover:bg-gray-600 hover:text-white").block.px-4.py-2.text-sm.text-white.mauto
+                                        span.icon.is-small.mr-1
+                                            i(style="position: relative; top: 2px;").fa-solid.fa-sign-out-alt
+                                        | Log Out
+                #mobile-menu(class='sm:hidden').space-y-1.px-2.pb-3.pt-2.is-hidden
+                        a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto(href='/', class='hover:bg-gray-700 hover:text-white') Home
+                        a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto(href='/beta', class='hover:bg-gray-700 hover:text-white') Beta Release Info
+                        a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto(href='/solve', class='hover:bg-gray-700 hover:text-white') Solve
+                        a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto.nav-not-logged-in.is-hidden.btn-register-login(href='/login', class='hover:bg-gray-700 hover:text-white') Register - Log In
+
+
 
         main.is-flex-grow-1
             block content

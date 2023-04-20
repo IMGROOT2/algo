@@ -2,9 +2,7 @@ import {auth} from "./app-config";
 import {onAuthStateChanged} from "firebase/auth";
 
 
-const loginButton = document.getElementById('btn-register-login');
-const btnProfile = document.getElementById('btn-profile');
-const dropProfile = document.getElementById('btn-profile-dropdown');
+const loginButton = document.getElementsByClassName('btn-register-login');
 const profileLoader = document.getElementById('profile-loader');
 const profileName = document.getElementById('profile-name');
 const profileEmail = document.getElementById('profile-email');
@@ -14,29 +12,21 @@ const noPhoto = document.getElementById('noPhoto');
 const hasPhoto = document.getElementById('hasPhoto');
 const navNotLoggedIn = document.getElementsByClassName('nav-not-logged-in');
 const navLoggedIn = document.getElementsByClassName('nav-logged-in');
-const bars = document.getElementById("bars");
-const xmark = document.getElementById("xmark");
+const userMenuButton = document.getElementById("user-menu-button");
+const profileMenu = document.getElementById("profileMenu");
+const mobileMenu = document.getElementById("mobile-menu");
+const mobileMenuButton = document.getElementById("mobileMenuButton");
+const closed = document.getElementById("closed");
+const open = document.getElementById("open");
 
-const navbar = {
-    burger: document.querySelector(".navbar-burger"),
-    menu: document.getElementById("main-navbar")
-};
-addEventListener("DOMContentLoaded", () => {
-    navbar.burger.addEventListener("click", () => {
-        bars.classList.toggle("is-hidden");
-        xmark.classList.toggle("is-hidden");
-        navbar.menu.classList.toggle("is-active");
-    });
-    navbar.menu.addEventListener("click", () => {
-        bars.classList.toggle("is-hidden");
-        xmark.classList.toggle("is-hidden");
-        navbar.menu.classList.remove("is-active");
-    });
+mobileMenuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("is-hidden");
+    open.classList.toggle("is-hidden");
+    closed.classList.toggle("is-hidden");
 });
 
-
-btnProfile.addEventListener('click', () => {
-    dropProfile.classList.toggle('makedropvisible');
+userMenuButton.addEventListener("click", () => {
+    profileMenu.classList.toggle("is-hidden");
 });
 logoutButton.addEventListener('click', () => {
     auth.signOut().then(() => {
@@ -72,8 +62,9 @@ onAuthStateChanged(auth, user => {
     if (user) {
         navLoggedInToggle("remove", "is-hidden");
         navNotLoggedInToggle("add", "is-hidden");
-        loginButton.classList.add('is-hidden');
-        btnProfile.classList.remove('is-hidden');
+        for(let i = 0; i < loginButton.length; i++) {
+            loginButton[i].classList.add('is-hidden');
+        }
         profileLoader.classList.add('is-hidden');
         profileName.innerHTML = auth.currentUser.displayName;
         profileEmail.innerHTML = auth.currentUser.email;
@@ -93,8 +84,9 @@ onAuthStateChanged(auth, user => {
     } else {
         navLoggedInToggle("add", "is-hidden");
         navNotLoggedInToggle("remove", "is-hidden");
-        loginButton.classList.remove('is-hidden');
-        btnProfile.classList.add('is-hidden');
+        for(let i = 0; i < loginButton.length; i++) {
+            loginButton[i].classList.remove('is-hidden');
+        }
         profileLoader.classList.remove('is-hidden');
         profileName.innerHTML = '';
         profileEmail.innerHTML = '';
