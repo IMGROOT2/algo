@@ -28,9 +28,10 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                     a.navbar-item.ml-3(href="/" style="margin-right: 1rem;")
                         img(src="media/algologo.svg" alt="Algo Logo" style="scale: 2;")
                     a.navbar-burger.burger.has-text-white(role="button" aria-label="menu" aria-expanded="false" data-target="navMenu")
-                        span(aria-hidden="true")
-                        span(aria-hidden="true")
-                        span(aria-hidden="true")
+                        #xmark.icon.is-hidden.navbar-item.mt-4.mr-4
+                            i.fa-solid.fa-xmark.fa-2x
+                        #bars.icon.navbar-item.mt-4.mr-4
+                            i.fa-solid.fa-bars.fa-2x
                 #main-navbar.navbar-menu.mx-auto(style="background-color: #1f1e1e;")
                     .navbar-start
                         .buttons

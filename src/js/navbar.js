@@ -14,6 +14,8 @@ const noPhoto = document.getElementById('noPhoto');
 const hasPhoto = document.getElementById('hasPhoto');
 const navNotLoggedIn = document.getElementsByClassName('nav-not-logged-in');
 const navLoggedIn = document.getElementsByClassName('nav-logged-in');
+const bars = document.getElementById("bars");
+const xmark = document.getElementById("xmark");
 
 const navbar = {
     burger: document.querySelector(".navbar-burger"),
@@ -21,11 +23,13 @@ const navbar = {
 };
 addEventListener("DOMContentLoaded", () => {
     navbar.burger.addEventListener("click", () => {
-        navbar.burger.classList.toggle("is-active");
+        bars.classList.toggle("is-hidden");
+        xmark.classList.toggle("is-hidden");
         navbar.menu.classList.toggle("is-active");
     });
     navbar.menu.addEventListener("click", () => {
-        navbar.burger.classList.remove("is-active");
+        bars.classList.toggle("is-hidden");
+        xmark.classList.toggle("is-hidden");
         navbar.menu.classList.remove("is-active");
     });
 });
