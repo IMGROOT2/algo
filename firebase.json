@@ -10,36 +10,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "/login",
-        "destination": "/login.html"
-      },
-      {
-        "source": "/about",
-        "destination": "/about.html"
-      },
-      {
-        "source": "/solve",
-        "destination": "/solve.html"
-      },
-      {
-        "source": "/",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/profile",
-        "destination": "/profile.html"
-      },
-      {
-        "source": "/beta",
-        "destination": "/beta.html"
-      },
-      {
-          "source": "/statistics",
-          "destination": "/statistics.html"
-      }
-    ]
+    "cleanUrls": true
   },
   "emulators": {
     "auth": {

@@ -5,12 +5,11 @@ block styles
     link(rel="stylesheet" href="css/home.scss")
 
 block content
-    // add a tailwind css radial gradient to the background of the page
     div.hero.is-fullheight-with-navbar.home-adjust
         .mx-auto.max-w-2xl(style="margin-top: 50px;")
             .hidden(class='sm:mb-8 sm:flex sm:justify-center')
                 .relative.rounded-full.px-3.py-1.text-sm.leading-6.ring-1.text-white.bg-slate-800.m-1(class='hover:ring-blue-500')
-                    | 0.2.0: Design changes and optimizations!
+                    | 0.2.0: Design changes, optimizations and #[b algousaco.com!]
                     a.font-semibold.text-blue-700(href="https://github.com/IMGROOT2/algo/releases/tag/v0.2.0" target="_blank" class="hover:text-blue-600")
                         span.ml-1(aria-hidden='true')
                         | View Release
@@ -33,8 +32,6 @@ block content
 
     div(style="background: #0b1120").hero.is-large.home-adjust
         .py-24(class='sm:py-32')
-            h1.title.is-2.has-text-white Statistics
-            br
             .mx-auto.max-w-7xl.px-6(class='lg:px-8')
                 dl.grid.grid-cols-1.gap-x-8.gap-y-16.text-center(class='lg:grid-cols-3')
                     .mx-auto.flex.max-w-xs.flex-col.gap-y-4

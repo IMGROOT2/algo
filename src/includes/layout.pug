@@ -93,5 +93,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
         block scripts-footer
             script(type="module" src="js/general.js")
             script(type="module" src="js/navbar.js")
+            script.
+                if (location.host === "algo-usaco.web.app") location.host = "algousaco.com";
 
 
