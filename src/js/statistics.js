@@ -1,6 +1,5 @@
-import { auth, db } from "./app-config";
-import * as bulmaToast from 'bulma-toast'
-import {doc, getDoc, updateDoc} from "firebase/firestore";
+import {auth, db} from "./app-config";
+import {doc, getDoc} from "firebase/firestore";
 import Chart from 'chart.js/auto';
 import {onAuthStateChanged} from "firebase/auth";
 
@@ -10,12 +9,6 @@ const numSeen = document.getElementById("num-seen");
 const numSkipped = document.getElementById("num-skipped");
 const numUnsolved = document.getElementById("num-unsolved");
 const chart = document.getElementById("chart");
-
-const { setDefaults, toast } = bulmaToast;
-
-setDefaults({
-    position: 'bottom-left'
-});
 
 
 onAuthStateChanged(auth, async user => {
@@ -43,13 +36,17 @@ onAuthStateChanged(auth, async user => {
         });
 
 
-    } else {location.href = "/login";}
+    } else {
+        location.href = "/login";
+    }
 });
+
 async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
 }
+
 async function genChart(solved, skipped, unsolved) {
-    if(solved + skipped + unsolved !== 0) {
+    if (solved + skipped + unsolved !== 0) {
         document.getElementById("showWhenZero").classList.add("is-hidden");
         new Chart(chart, {
             type: 'doughnut',
@@ -70,8 +67,7 @@ async function genChart(solved, skipped, unsolved) {
                 }],
             },
         });
-    }
-    else {
+    } else {
         document.getElementById("showWhenZero").classList.remove("is-hidden");
     }
 }

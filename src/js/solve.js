@@ -1,10 +1,10 @@
-import { auth, db } from "./app-config";
+import {auth, db} from "./app-config";
 import * as bulmaToast from 'bulma-toast'
 import * as problems from '../data/data.json'
 import {doc, getDoc, updateDoc} from "firebase/firestore";
 import {onAuthStateChanged} from "firebase/auth";
 
-const { setDefaults, toast } = bulmaToast;
+const {setDefaults, toast} = bulmaToast;
 
 setDefaults({
     position: 'bottom-left'
@@ -79,7 +79,6 @@ onAuthStateChanged(auth, async auser => {
             options.yellow.classList.toggle("is-loading");
             options.green.classList.toggle("is-loading");
         }
-        document.getElementById("solve-button").classList.add("is-hidden");
 
 
         options.green.addEventListener("click", async () => {
@@ -351,11 +350,34 @@ for (let i = 0; i < options.items.length; i++) {
     options.items[i].addEventListener("click", () => {
         options.dropdown.classList.toggle("is-active");
         options.label.innerText = options.items[i].innerText;
+        let previous = localStorage.getItem("options");
         localStorage.setItem("options", options.items[i].innerText);
         for (let j = 0; j < options.items.length; j++) {
             options.items[j].classList.remove("is-active");
         }
         options.items[i].classList.add("is-active");
+        if (previous !== localStorage.getItem("options")) {
+            options.generate.classList.toggle("is-loading");
+            problem.problem.classList.toggle("is-hidden");
+            problem.loader.classList.toggle("is-hidden");
+            generateProblem("random-id", localStorage.getItem("options").toLowerCase(), user).then((result) => {
+                if (result === "error") {
+                    toast({message: 'Error generating problem. Please try again later.', type: 'is-danger'});
+                    console.error("Issue with generateProblem().");
+                    options.generate.classList.toggle("is-loading");
+                    problem.problem.classList.toggle("is-hidden");
+                    problem.loader.classList.toggle("is-hidden");
+                } else if (result === "success") {
+                    options.generate.classList.toggle("is-loading");
+                    problem.problem.classList.toggle("is-hidden");
+                    problem.loader.classList.toggle("is-hidden");
+                    problem.link.classList.remove("is-hidden");
+                    options.generate.classList.add("is-hidden");
+                    options.record.classList.remove("is-hidden");
+                    bulmaToast.toast({message: 'New problem generated!', type: 'is-success'});
+                }
+            });
+        }
     });
 }
 options.generate.addEventListener("click", async () => {
@@ -403,12 +425,12 @@ async function generateProblem(idType, data, user) {
         try {
             let id = -1;
             if (idType === "random-id") {
-                console.log("Generating random problem...");
+                // console.log("Generating random problem...");
                 await retrieveUserDoc(db, user).then(adoc => {
-                    console.log("Retrieved user document.");
+                    // console.log("Retrieved user document.");
                     const fsdata = adoc.data();
                     const problemsSeen = fsdata["problemsSeen"];
-                    console.log("Retrieved user document.2");
+                    // console.log("Retrieved user document.2");
                     id = problems[data][Math.floor(Math.random() * problems[data].length)];
                     while (problemsSeen.includes(id)) {
                         console.log(id + " is already seen. Generating new problem...");
@@ -456,17 +478,21 @@ async function generateProblem(idType, data, user) {
         }
     });
 }
+
 options.trigger.addEventListener("click", () => {
     options.dropdown.classList.toggle("is-active");
 });
+
 async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
 }
-for(let i = 0; i < options.toggleModal.length; i++) {
+
+for (let i = 0; i < options.toggleModal.length; i++) {
     options.toggleModal[i].addEventListener("click", () => {
         options.recordModal.classList.toggle("is-active");
     });
 }
+
 async function checkIfFS(db, user) {
     await retrieveUserDoc(db, user).then(adoc => {
         const fsdata = adoc.data();

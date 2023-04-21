@@ -1,6 +1,6 @@
 import {auth, db} from "./app-config";
 import {doc, getDoc, setDoc} from "firebase/firestore";
-import {updateProfile, onAuthStateChanged} from "firebase/auth";
+import {onAuthStateChanged, updateProfile} from "firebase/auth";
 
 
 const name = document.getElementById('name');
@@ -9,6 +9,7 @@ const photoURL = document.getElementById('photoURL');
 const created = document.getElementById('created');
 const btnUpdateProfile = document.getElementById('save-changes');
 const load = document.getElementById('load');
+const settings = document.getElementById('settings');
 
 onAuthStateChanged(auth, user => {
     if (user) {
@@ -23,6 +24,8 @@ onAuthStateChanged(auth, user => {
                 photoURL.value = user.photoURL;
             }
             load.classList.toggle('is-hidden');
+            settings.classList.toggle('is-hidden');
+
         });
         btnUpdateProfile.addEventListener('click', () => {
             btnUpdateProfile.classList.toggle('is-loading');

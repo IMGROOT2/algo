@@ -1,26 +1,29 @@
+import * as bulmaToast from 'bulma-toast';
 import {auth, db} from "./app-config";
-import {doc, serverTimestamp, setDoc, getDoc} from "firebase/firestore";
+import {doc, getDoc, serverTimestamp, setDoc} from "firebase/firestore";
 import {
     createUserWithEmailAndPassword,
     getAdditionalUserInfo,
     GoogleAuthProvider,
+    onAuthStateChanged,
     sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithPopup,
-    updateProfile,
-    onAuthStateChanged
+    updateProfile
 } from "firebase/auth";
 
 const google = new GoogleAuthProvider();
 
-// if the user is logged in but was not just created, redirect to home page
+const {setDefaults, toast} = bulmaToast;
+
+setDefaults({
+    position: 'bottom-left'
+});
 onAuthStateChanged(auth, async user => {
     if (user && !user.metadata.creationTime) {
         location.href = "/";
     }
 });
-
-// get all buttons with class btn-forgot-password, and add listener to each
 const forgotPasswordButtons = document.getElementsByClassName("btn-forgot-password");
 for (let i = 0; i < forgotPasswordButtons.length; i++) {
     forgotPasswordButtons[i].addEventListener("click", () => {
@@ -65,9 +68,8 @@ async function login() {
             // ...
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage);
+            toast({message: errorMessage, type: 'is-danger'});
         });
 }
 
@@ -93,9 +95,8 @@ async function signup() {
             // ...
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage);
+            toast({message: errorMessage, type: 'is-danger'});
             // ..
         });
 }
@@ -107,12 +108,14 @@ async function forgotPassword() {
     await sendPasswordResetEmail(auth, email)
         .then(() => {
             // Email sent.
-            alert("Password reset email sent! Check your inbox as well as Spam or Junk folders. Press the Reset Password button to resend the email.");
+            toast({
+                message: "Password reset email sent! Check your inbox as well as Spam or Junk folders. Press the Reset Password button to resend the email.",
+                type: 'is-info'
+            });
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage);
+            toast({message: errorMessage, type: 'is-danger'});
         });
 }
 
@@ -135,9 +138,8 @@ function googleAuth() {
             // ...
         }).catch((error) => {
         // Handle Errors here.
-        const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        toast({message: errorMessage, type: 'is-danger'});
         // The email of the user's account used.
         const email = error.customData.email;
         // The AuthCredential type that was used.
@@ -154,11 +156,8 @@ async function setupFirestoreForNewUser(auth, db, user) {
         problemsSkipped: [],
         problemsUnsolved: []
     });
-    await retrieveUserDoc(db, user).then(adoc => {
-        console.log("General info");
-        console.log(adoc.data());
-    });
 }
+
 async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, "user_data", user.uid));
 }

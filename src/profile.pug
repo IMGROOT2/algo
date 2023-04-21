@@ -6,43 +6,44 @@ block styles
 
 block content
     prepend navbar
-    // bulma profile settings basic setup
     div.profile-settings
         div.container
             div.column.is-9
                 div.profile-settings-content
                     div.profile-settings-content-header
-                        h1.title.is-1.has-text-white.mb-3.mt-3 Profile #[span#load.loader.is-loading.is-medium]
-                    div.profile-settings-content-body
-                        div.profile-settings-content-body-item
-                            div.profile-settings-content-body-item-header
-                                h1.title.is-5.has-text-white Name
-                            div.profile-settings-content-body-item-body
-                                div.field
-                                    div.control
-                                        input#name.input(type="text" placeholder="Name" required)
+                        h1.title.is-1.has-text-white.mb-4.mt-4 Profile
+                        h1#load.title.is-1.has-text-white.mt-4.loader.is-loading.is-medium
+                    #settings.is-hidden
+                        div.profile-settings-content-body
                             div.profile-settings-content-body-item
                                 div.profile-settings-content-body-item-header
-                                    h1.title.is-5.has-text-white Email
-                                        a.tooltip.has-tooltip-right(data-tooltip="You can't change your email address linked to your account yet!")
+                                    h1.title.is-5.has-text-white Name
+                                div.profile-settings-content-body-item-body
+                                    div.field
+                                        div.control
+                                            input#name.input(type="text" placeholder="Name" required)
+                                div.profile-settings-content-body-item
+                                    div.profile-settings-content-body-item-header
+                                        h1.title.is-5.has-text-white Email
+                                            a.tooltip.has-tooltip-right(data-tooltip="You can't change your email address linked to your account yet!")
+                                                span(style="font-size: 0.7rem;").icon.is-small.ml-1
+                                                    i.fas.fa-question-circle
+                                    div.profile-settings-content-body-item-body
+                                        div.field
+                                            div.control
+                                                input#email.input(type="email" placeholder="Email" required disabled)
+                            div.profile-settings-content-body-item
+                                div.profile-settings-content-body-item-header
+                                    h1.title.is-5.has-text-white Profile Picture
+                                        a.tooltip.has-tooltip-right(data-tooltip="File upload for profile pictures are coming soon!")
                                             span(style="font-size: 0.7rem;").icon.is-small.ml-1
                                                 i.fas.fa-question-circle
                                 div.profile-settings-content-body-item-body
                                     div.field
                                         div.control
-                                            input#email.input(type="email" placeholder="Email" required disabled)
-                        div.profile-settings-content-body-item
-                            div.profile-settings-content-body-item-header
-                                h1.title.is-5.has-text-white Profile Picture
-                                    a.tooltip.has-tooltip-right(data-tooltip="File upload for profile pictures are coming soon!")
-                                        span(style="font-size: 0.7rem;").icon.is-small.ml-1
-                                            i.fas.fa-question-circle
-                            div.profile-settings-content-body-item-body
-                                div.field
-                                    div.control
-                                        input#photoURL.input(type="url" placeholder="Photo URL")
-                    h1.subtitle.has-text-white.is-5(style="margin-top: 1rem;") Account Created: #[span#created ]
-                    button#save-changes.button.is-primary.has-text-white.mt-3 Save Changes
+                                            input#photoURL.input(type="url" placeholder="Photo URL")
+                        h1.subtitle.has-text-white.is-5(style="margin-top: 1rem; margin-bottom: 0") Account Created: #[span#created]
+                        button#save-changes.button.is-primary.has-text-white.mt-3 Save Changes
 
 append scripts-footer
     script(type="module" src="./js/profile.js")

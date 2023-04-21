@@ -5,6 +5,7 @@
   background: #2e3033;
   margin: auto 10%;
 }
+
 .card {
   background: #3b3d41;
 }
@@ -12,12 +13,15 @@
 #num-solved {
   color: hsl(141, 71%, 48%);
 }
+
 #num-unsolved {
   color: hsl(348, 100%, 61%);
 }
+
 #num-skipped {
   color: hsl(48, 100%, 67%);
 }
+
 #num-seen {
   color: hsl(204, 86%, 53%);
 }
