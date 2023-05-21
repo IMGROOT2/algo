@@ -48,7 +48,7 @@
     "firebase": "^9.20.0",
     "firebase-tools": "^11.28.0",
     "tailwindcss": "^3.3.1",
-    "vm2": "^3.9.17"
+    "vm2": "^3.9.18"
   },
   "devDependencies": {
     "@parcel/transformer-pug": "^2.8.3",
