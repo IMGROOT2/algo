@@ -16,7 +16,6 @@
   <li><a href="https://tailwindcss.com">TailwindCSS</a></li>
   <li><a href="https://katex.org">KaTeX</a></li>
   <li><a href="https://firebase.google.com">Firebase</a></li>
-  <li><a href="https://cors.sh">CORS.SH</a> (From <a href="https://grida.co">Grida</a>)</li>
 </ul>
 <br>
 <h2>Contact, Feedback, Bugs, Get In Touch</h2>
