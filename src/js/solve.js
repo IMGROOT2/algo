@@ -52,7 +52,7 @@ onAuthStateChanged(auth, async auser => {
                 options.generate.classList.toggle("is-loading");
                 problem.problem.classList.toggle("is-hidden");
                 problem.loader.classList.toggle("is-hidden");
-                const result = await generateProblem("custom-id", localStorage.getItem("problem"), user);
+                const result = await generateProblem("custom-id", [localStorage.getItem("problem"), localStorage.getItem("options")], user);
                 if (result === "error") {
                     toast({message: "Oops! Couldn't load previous problem.", type: 'is-warning'});
                     console.error("Issue with generateProblem().");
@@ -424,42 +424,46 @@ async function generateProblem(idType, data, user) {
     return new Promise(async resolve => {
         try {
             let id = -1;
+            let div = "";
             if (idType === "random-id") {
+                div = data.toLowerCase();
                 // console.log("Generating random problem...");
                 await retrieveUserDoc(db, user).then(adoc => {
                     // console.log("Retrieved user document.");
                     const fsdata = adoc.data();
                     const problemsSeen = fsdata["problemsSeen"];
                     // console.log("Retrieved user document.2");
-                    id = problems[data][Math.floor(Math.random() * problems[data].length)];
+                    id = problems[data][Math.floor(Math.random() * problems[data].length)].id;
                     while (problemsSeen.includes(id)) {
                         console.log(id + " is already seen. Generating new problem...");
-                        id = problems[data][Math.floor(Math.random() * problems[data].length)];
+                        id = problems[data][Math.floor(Math.random() * problems[data].length)].id;
                     }
                 });
             } else if (idType === "custom-id") {
-                id = data;
+                // set id to data[0] in int form
+                id = parseInt(data[0]);
+                div = data[1].toLowerCase();
             }
-            fetch('https://proxy.cors.sh/http://usaco.org/index.php?page=viewproblem2&cpid=' + id, {
-                headers: {
-                    'x-cors-api-key': 'b1c8b699-db38-4c0b-92f6-632a6ebff01c'
+            let generated = {};
+            // console.log("id: " + id + ", div: " + div);
+            problems[div].forEach(p => {
+                if (p.id === id) {
+                    generated = p;
+                    return;
                 }
-            })
-                .then(response => response.text())
-                .then(data => {
-                    try {
-                        const parser = new DOMParser();
-                        const html = parser.parseFromString(data, 'text/html');
-                        problem.title.innerText = html.getElementsByClassName("panel")[0].getElementsByTagName("h2")[1].innerText;
-                        problem.subtitle.innerText = html.getElementsByClassName("panel")[0].getElementsByTagName("h2")[0].innerText;
-                        problem.text.innerHTML = html.getElementById("probtext-text").innerHTML;
-                        problem.link.href = 'http://usaco.org/index.php?page=viewproblem2&cpid=' + id;
-                    } catch (err) {
-                        bulmaToast.toast({message: err.message, type: 'is-danger'});
-                        console.log("oops");
-                        resolve("error");
-                    }
-                }).then(() => {
+            });
+            if (generated.hasOwnProperty("id")) {
+                console.log("Found problem with id " + id + ".");
+                try {
+                    problem.title.innerText = generated.title;
+                    problem.subtitle.innerText = generated.subtitle;
+                    problem.text.innerHTML = generated.problem;
+                    problem.link.href = generated.url;
+                } catch (err) {
+                    bulmaToast.toast({message: err.message, type: 'is-danger'});
+                    console.log("oops1");
+                    resolve("error");
+                }
                 window.renderMathInElement(document.getElementById("problem-text"), {
                     delimiters: [
                         {left: '$$', right: '$$', display: true},
@@ -470,10 +474,10 @@ async function generateProblem(idType, data, user) {
                 });
                 localStorage.setItem("problem", id);
                 resolve("success");
-            });
+            }
         } catch (err) {
             bulmaToast.toast({message: err.message, type: 'is-danger'});
-            console.log("oops");
+            console.log("oops2");
             resolve("error");
         }
     });
