@@ -1,5 +1,6 @@
 import {auth} from "./app-config";
 import {onAuthStateChanged} from "firebase/auth";
+import * as problems from "../data/data.json";
 
 
 const loginButton = document.getElementsByClassName('btn-register-login');
@@ -19,6 +20,55 @@ const mobileMenu = document.getElementById("mobile-menu");
 const mobileMenuButton = document.getElementById("mobileMenuButton");
 const closed = document.getElementById("closed");
 const open = document.getElementById("open");
+const searchModal = document.getElementById("search-modal");
+const searchInModal = document.getElementById("search-in-modal");
+const toggleModal = document.getElementsByClassName("toggle-modal");
+const searchInput = document.getElementById("search-input");
+
+for (let i = 0; i < toggleModal.length; i++) {
+    toggleModal[i].addEventListener("click", () => {
+        searchModal.classList.toggle("is-active");
+    });
+}
+
+function search() {
+    if (searchInput.value !== "") {
+        let found = false;
+        let divisions = ["bronze", "silver", "gold", "platinum"];
+        divisions.every(division => {
+            problems[division].every(p => {
+                if (p.id === parseInt(searchInput.value)) {
+                    found = true;
+                    return false;
+                }
+                return true;
+            });
+            return !found;
+
+        });
+        if (!found) {
+            searchInput.classList.add("is-danger");
+        }
+        else {
+            searchInput.classList.add("is-success");
+            location.href = "/problem/" + searchInput.value;
+        }
+    }
+}
+
+searchInModal.addEventListener("click", () => {
+    search();
+});
+searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        search();
+    }
+});
+
+searchInput.addEventListener("input", () => {
+    searchInput.classList.remove("is-danger");
+    searchInput.classList.remove("is-success");
+});
 
 mobileMenuButton.addEventListener("click", () => {
     mobileMenu.classList.toggle("is-hidden");

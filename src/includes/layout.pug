@@ -43,7 +43,12 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                     a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/beta', class='hover:bg-gray-700 hover:text-white') Beta Release Info
                                     a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/solve', class='hover:bg-gray-700 hover:text-white') Solve
                         .absolute.inset-y-0.right-0.flex.items-center.pr-2(class='sm:static sm:inset-auto sm:ml-6 sm:pr-0')
-                            .relative.ml-3
+                            .relative.mx-4
+                                span.tag.grad.is-small NEW!
+                                span#search.fa-stack.toggle-modal
+                                    i.fa-solid.fa-circle.fa-stack-2x
+                                    i.fa-solid.fa-search.fa-stack-1x.fa-inverse
+                            .relative.ml-2
                                 div
                                     span#profile-menu-loader(style="height: 1.5rem; width: 1.5rem;").bulma-loader-mixin
                                     a.btn-register-login.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium.nav-not-logged-in.is-hidden.hidden(href='/login', class='hover:bg-gray-700 hover:text-white sm:block') Register - Log In
@@ -77,9 +82,19 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                     a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto(href='/beta', class='hover:bg-gray-700 hover:text-white') Beta Release Info
                     a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto(href='/solve', class='hover:bg-gray-700 hover:text-white') Solve
                     a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto.nav-not-logged-in.is-hidden.btn-register-login(href='/login', class='hover:bg-gray-700 hover:text-white') Register - Log In
-
-
-
+            .modal#search-modal
+                .modal-background.toggle-modal
+                .modal-content
+                    .box.modal-body.mx-2
+                        h1.title.has-text-white.text-center.is-4.mb-2 Search
+                        .field.has-addons.has-addons-centered.is-large
+                            .control.has-icons-right
+                                input#search-input.input.is-rounded(placeholder='Enter USACO Problem ID', maxlength='4', style="border-width: 0.15rem;")
+                                span#search-in-modal.icon.is-medium.is-right.is-clickable
+                                    span.fa-stack
+                                        i.fa-solid.fa-circle.fa-stack-2x
+                                        i.fa-solid.fa-search.fa-stack-1x.fa-inverse
+                    button.modal-close.is-large.toggle-modal(type='button', aria-label='close')
         main.is-flex-grow-1
             block content
         footer.footer.is-fixed-bottom(style="margin-top: 0.75rem;")

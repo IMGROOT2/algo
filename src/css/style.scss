@@ -150,3 +150,16 @@ strong {
   background-color: #50a1cc !important;
 }
 
+#search, #search-in-modal {
+  &:hover {
+    color: #3072D6 !important;
+  }
+}
+
+.modal-card-body, .modal-body {
+  background: #2e3033 !important;
+}
+.grad {
+  background: linear-gradient(45deg, #3072D6, #27C877) !important;
+  color: white !important;
+}
