@@ -1,0 +1,16 @@
+@import "style.scss";
+
+.box.is-fullheight-with-navbar {
+  height: 100% !important;
+  background: #2e3033;
+  margin: auto 10%;
+}
+
+.problem, .modal-card-body {
+  //text-align: center;
+  background: #2e3033 !important;
+}
+
+.card, .modal-card-head, .modal-card-foot {
+  background: #3b3d41 !important;
+}

@@ -26,7 +26,8 @@ const options = {
 }
 
 const problem = {
-    link: document.getElementById("external-icon"),
+    link: document.getElementById("problem-link"),
+    id: document.getElementById("problem-id"),
     problem: document.getElementById("problem"),
     title: document.getElementById("problem-title"),
     subtitle: document.getElementById("problem-subtitle"),
@@ -446,11 +447,12 @@ async function generateProblem(idType, data, user) {
             }
             let generated = {};
             // console.log("id: " + id + ", div: " + div);
-            problems[div].forEach(p => {
+            problems[div].every(p => {
                 if (p.id === id) {
                     generated = p;
-                    return;
+                    return false;
                 }
+                return true;
             });
             if (generated.hasOwnProperty("id")) {
                 console.log("Found problem with id " + id + ".");
@@ -459,6 +461,30 @@ async function generateProblem(idType, data, user) {
                     problem.subtitle.innerText = generated.subtitle;
                     problem.text.innerHTML = generated.problem;
                     problem.link.href = generated.url;
+                    problem.link.classList.remove("is-hidden");
+                    problem.id.classList.remove("is-hidden");
+                    switch(generated.division) {
+                        case "platinum":
+                            problem.id.classList.remove("is-bronze", "is-silver", "is-gold", "is-primary");
+                            problem.id.classList.add("is-platinum");
+                            break;
+                        case "gold":
+                            problem.id.classList.remove("is-bronze", "is-silver", "is-platinum", "is-primary");
+                            problem.id.classList.add("is-gold");
+                            break;
+                        case "silver":
+                            problem.id.classList.remove("is-bronze", "is-gold", "is-platinum", "is-primary");
+                            problem.id.classList.add("is-silver");
+                            break;
+                        case "bronze":
+                            problem.id.classList.remove("is-silver", "is-gold", "is-platinum", "is-primary");
+                            problem.id.classList.add("is-bronze");
+                            break;
+                        default:
+                            problem.id.classList.remove("is-bronze", "is-silver", "is-gold", "is-platinum");
+                            problem.id.classList.add("is-primary");
+                    }
+                    problem.id.innerText = "ID: " + generated.id;
                 } catch (err) {
                     bulmaToast.toast({message: err.message, type: 'is-danger'});
                     console.log("oops1");

@@ -10,7 +10,13 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "cleanUrls": true
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "/problem/**",
+        "destination": "/problem.html"
+      }
+    ]
   },
   "emulators": {
     "auth": {

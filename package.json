@@ -11,7 +11,8 @@
         "src/profile.pug",
         "src/about.pug",
         "src/beta.pug",
-        "src/statistics.pug"
+        "src/statistics.pug",
+        "src/problem.pug"
       ],
       "context": "browser",
       "distDir": "./dist"

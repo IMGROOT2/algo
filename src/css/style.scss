@@ -109,9 +109,16 @@ pre {
   border: 1px solid transparent;
   border-radius: 0.25rem;
   background-color: #515459;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  color: white;
+  @media screen and (max-width: 768px) {
+      min-width: 50% !important;
+  }
+}
+strong {
   color: white;
 }
-
 .page-link {
   &:hover {
     color: #3072D6 !important;
@@ -129,3 +136,17 @@ pre {
 .mauto {
   margin-bottom: auto !important;
 }
+
+.is-bronze {
+  background-color: #864d16 !important;
+}
+.is-silver {
+  background-color: #4d4b4b !important;
+}
+.is-gold {
+  background-color: #f1cb09 !important;
+}
+.is-platinum {
+  background-color: #50a1cc !important;
+}
+
