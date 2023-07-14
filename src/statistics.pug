@@ -7,37 +7,61 @@ block styles
 
 block content
     prepend navbar
+    .modal#statsModal
+        .modal-background.toggleStatsModal
+        .modal-card
+            header.modal-card-head
+                p#statsTitle.has-text-white.modal-card-title
+                button.delete.toggleStatsModal(aria-label='close')
+            section(style="margin-bottom: 0;").modal-card-body
+                .field.has-addons.has-addons-centered
+                    .control
+                        input#search.input.is-medium.is-rounded.is-fullwidth(type="text", placeholder="Search for a problem...")
+                    .control
+                        a#searchButton.button.is-medium.is-rounded.is-info
+                            span.icon.is-small
+                                i.fas.fa-search
+                .menu.mt-4(style="overflow-y: scroll;max-height: 500px;")
+                    ul#searchMenu.menu-list
+                        li
+                            a.has-text-white [span.has-text-white.is-6.tag.is-info 718] Hello!
 
     .box.is-fullheight-with-navbar.column.m-4
         div.has-text-centered
             h1.title.has-text-white.is-2 Statistics for #[span#name(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") --]
-            .columns.is-centered.is-multiline
-                .column.is-one-quarter
-                    div.card
-                        div.card-content
-                            p#num-solved.title.has-text-centered --
-                            p.subtitle.has-text-centered.has-text-white Solved
-                .column.is-one-quarter
-                    div.card
-                        div.card-content
-                            p#num-skipped.title.has-text-centered --
-                            p.subtitle.has-text-centered.has-text-white Skipped
-                .column.is-one-quarter
-                    div.card
-                        div.card-content
-                            p#num-unsolved.title.has-text-centered --
-                            p.subtitle.has-text-centered.has-text-white Unsolved
-                .column.is-one-quarter
-                    div.card
-                        div.card-content
-                            p#num-seen.title.has-text-centered --
-                            p.subtitle.has-text-centered.has-text-white Seen
-            div(style="width: fit-content; margin-left: auto; margin-right: auto;")
-                canvas#chart
-                br
-            div#showWhenZero.is-hidden(style="margin-left: auto; margin-right: auto;")
-                h1.has-text-white.is-3.title No Problems Seen!
-                p.has-text-white.is-5.subtitle Go to #[a(href="/solve").page-link Solve] and solve a few problems!
-
+            p.subtitle.has-text-white.is-5 Click on a statistic card to view the problems.
+            div
+                .columns.is-centered.is-mobile
+                    .column.is-one-quarter
+                        button#solved-detail-button
+                            div#solved-card.card
+                                div.card-content
+                                    p#num-solved.title.has-text-centered --
+                                    p.subtitle.has-text-centered.has-text-white Solved
+                    .column.is-one-quarter
+                        button#skipped-detail-button
+                            div#skipped-card.card
+                                div.card-content
+                                    p#num-skipped.title.has-text-centered --
+                                    p.subtitle.has-text-centered.has-text-white Skipped
+                .columns.is-centered.is-mobile
+                    .column.is-one-quarter
+                        button#unsolved-detail-button
+                            div#unsolved-card.card
+                                div.card-content
+                                    p#num-unsolved.title.has-text-centered --
+                                    p.subtitle.has-text-centered.has-text-white Unsolved
+                    .column.is-one-quarter
+                        button#seen-detail-button
+                            div#seen-card.card
+                                div.card-content
+                                    p#num-seen.title.has-text-centered --
+                                    p.subtitle.has-text-centered.has-text-white Seen
+                div(style="width: fit-content; margin-left: auto; margin-right: auto;")
+                    canvas#chart
+                    br
+                div#showWhenZero.is-hidden(style="margin-left: auto; margin-right: auto;")
+                    h1.has-text-white.is-3.title No Problems Seen!
+                    p.has-text-white.is-5.subtitle Go to #[a(href="/solve").page-link Solve] and solve a few problems!
 append scripts-footer
     script(type="module" src="js/statistics.js")

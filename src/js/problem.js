@@ -17,17 +17,24 @@ const problem = {
     id: document.getElementById("problem-id")
 };
 
-let user;
-onAuthStateChanged(auth, async auser => {
-    user = auser;
-    if (user) {
-        const id = window.location.pathname.match(/problem\/(\d+)/)[1];
-        console.log(id);
-        generateProblem(id);
-    } else {
-        location.href = "/login";
-    }
-});
+window.onload= function() {
+    const id = window.location.pathname.match(/problem\/(\d+)/)[1];
+    console.log(id);
+    generateProblem(id);
+}
+
+
+// let user;
+// onAuthStateChanged(auth, async auser => {
+//     user = auser;
+//     if (user) {
+//         const id = window.location.pathname.match(/problem\/(\d+)/)[1];
+//         console.log(id);
+//         generateProblem(id);
+//     } else {
+//         location.href = "/login";
+//     }
+// });
 
 
 function generateProblem(id) {
