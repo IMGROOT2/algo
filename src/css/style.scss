@@ -160,18 +160,11 @@ strong {
     color: white !important;
   }
 }
-
-.modal-card-body, .modal-body {
-  background: #2e3033 !important;
-}
 .grad {
   background: linear-gradient(45deg, #3072D6, #27C877) !important;
   color: white !important;
 }
 .modal {
-  .modal-card-body, .modal-body, .modal-card-head {
-    background: #2e3033 !important;
-  }
   ul.menu-list > li > a {
     &:hover {
       background-color: #1f1e1e !important;
@@ -190,4 +183,7 @@ strong {
       color: #363636 !important;
     }
   }
+}
+.modal-card-body, .modal-body, .modal-card-head, .modal-card-foot {
+  background: #2e3033 !important;
 }
