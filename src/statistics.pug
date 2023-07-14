@@ -15,16 +15,14 @@ block content
                 button.delete.toggleStatsModal(aria-label='close')
             section(style="margin-bottom: 0;").modal-card-body
                 .field.has-addons.has-addons-centered
+                    .control(style="width: 100%;")
+                        input#problemSearch.input.is-medium.is-fullwidth(type="text", placeholder="Search for a problem...")
                     .control
-                        input#search.input.is-medium.is-rounded.is-fullwidth(type="text", placeholder="Search for a problem...")
-                    .control
-                        a#searchButton.button.is-medium.is-rounded.is-info
+                        a#searchButton.button.is-medium.is-primary
                             span.icon.is-small
                                 i.fas.fa-search
-                .menu.mt-4(style="overflow-y: scroll;max-height: 500px;")
+                .menu.mt-4(style="overflow-y: scroll;height: 500px;")
                     ul#searchMenu.menu-list
-                        li
-                            a.has-text-white [span.has-text-white.is-6.tag.is-info 718] Hello!
 
     .box.is-fullheight-with-navbar.column.m-4
         div.has-text-centered

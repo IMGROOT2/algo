@@ -14,7 +14,7 @@ const chart = document.getElementById("chart");
 const statsModal = document.getElementById("statsModal");
 const toggleStatsModal = document.getElementsByClassName("toggleStatsModal");
 const statsTitle = document.getElementById("statsTitle");
-const search = document.getElementById("search");
+const problemSearch = document.getElementById("problemSearch");
 const searchButton = document.getElementById("searchButton");
 const searchMenu = document.getElementById("searchMenu");
 
@@ -57,7 +57,7 @@ function showStatsModal(type) {
             if(info.division === "platinum") {
                 span.classList.add("is-platinum");
             }
-            let toPush = id + " " + info.title.substring(11);
+            let toPush = id + " " + info.title.substring(11).toLowerCase() + " " + info.division;
             pSolvedSearch.push(toPush);
             a.classList.add("has-text-white");
             a.href = "/problem/" + id;
@@ -66,6 +66,7 @@ function showStatsModal(type) {
             li.appendChild(a);
             searchMenu.appendChild(li);
         });
+        localStorage.setItem("ModalType", "solved");
     }
     if(type === "seen") {
         statsTitle.style.color = "#209cee";
@@ -89,7 +90,7 @@ function showStatsModal(type) {
             if(info.division === "platinum") {
                 span.classList.add("is-platinum");
             }
-            let toPush = id + " " + info.title.substring(11);
+            let toPush = id + " " + info.title.substring(11).toLowerCase() + " " + info.division;
             pSeenSearch.push(toPush);
             a.classList.add("has-text-white");
             a.href = "/problem/" + id;
@@ -98,6 +99,7 @@ function showStatsModal(type) {
             li.appendChild(a);
             searchMenu.appendChild(li);
         });
+        localStorage.setItem("ModalType", "seen");
     }
     if(type === "skipped") {
         statsTitle.style.color = "#ffdd57";
@@ -121,7 +123,7 @@ function showStatsModal(type) {
             if(info.division === "platinum") {
                 span.classList.add("is-platinum");
             }
-            let toPush = id + " " + info.title.substring(11);
+            let toPush = id + " " + info.title.substring(11).toLowerCase() + " " + info.division;
             pSkippedSearch.push(toPush);
             a.classList.add("has-text-white");
             a.href = "/problem/" + id;
@@ -130,6 +132,7 @@ function showStatsModal(type) {
             li.appendChild(a);
             searchMenu.appendChild(li);
         });
+        localStorage.setItem("ModalType", "skipped");
     }
     if(type === "unsolved") {
         statsTitle.style.color = "#ff3860";
@@ -153,7 +156,7 @@ function showStatsModal(type) {
             if(info.division === "platinum") {
                 span.classList.add("is-platinum");
             }
-            let toPush = id + " " + info.title.substring(11);
+            let toPush = id + " " + info.title.substring(11).toLowerCase() + " " + info.division;
             pUnsolvedSearch.push(toPush);
             a.classList.add("has-text-white");
             a.href = "/problem/" + id;
@@ -162,7 +165,9 @@ function showStatsModal(type) {
             li.appendChild(a);
             searchMenu.appendChild(li);
         });
+        localStorage.setItem("ModalType", "unsolved");
     }
+    problemSearch.value = "";
     statsModal.classList.toggle("is-active");
 }
 for (let i = 0; i < toggleStatsModal.length; i++) {
@@ -259,4 +264,66 @@ function getInfo(id) {
     return generated;
 }
 
+problemSearch.addEventListener("input", () => {
+    searchAndUpdate();
+});
+searchButton.addEventListener("click", () => {
+    searchAndUpdate();
+});
 
+function searchAndUpdate() {
+    let type = localStorage.getItem("ModalType");
+    let value = problemSearch.value.toLowerCase();
+    let array = [];
+    if(type === "seen") {
+        array = pSeenSearch;
+    }
+    if(type === "solved") {
+        array = pSolvedSearch;
+    }
+    if(type === "skipped") {
+        array = pSkippedSearch;
+    }
+    if(type === "unsolved") {
+        array = pUnsolvedSearch;
+    }
+    let filtered = array.filter(problem => {
+        if(problem.includes(value)) {
+            console.log("found that " + value + "is in " + problem);
+        }
+        else {
+            console.log("found that " + value + "is not in " + problem);
+        }
+        return problem.includes(value);
+    });
+    console.log(filtered);
+    // clear the menu, then add the filtered items
+    searchMenu.innerHTML = "";
+    filtered.forEach(problem => {
+        let id = problem.split(" ")[0];
+        let info = getInfo(id);
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        const span = document.createElement("span");
+        span.classList.add("tag", "has-text-white", "is-6", "ml-2");
+        span.innerText = id;
+        if(info.division === "bronze") {
+            span.classList.add("is-bronze");
+        }
+        if(info.division === "silver") {
+            span.classList.add("is-silver");
+        }
+        if(info.division === "gold") {
+            span.classList.add("is-gold");
+        }
+        if(info.division === "platinum") {
+            span.classList.add("is-platinum");
+        }
+        a.classList.add("has-text-white");
+        a.href = "/problem/" + id;
+        a.innerText += info.title.substring(11);
+        a.appendChild(span);
+        li.appendChild(a);
+        searchMenu.appendChild(li);
+    });
+}

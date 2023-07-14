@@ -45,7 +45,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                         .absolute.inset-y-0.right-0.flex.items-center.pr-2(class='sm:static sm:inset-auto sm:ml-6 sm:pr-0')
                             .relative.ml-4
                                 span.tag.grad.is-small NEW!
-                                span#search.fa-stack.toggle-modal
+                                span#search.fa-stack
                                     i.fa-solid.fa-circle.fa-stack-2x
                                     i.fa-solid.fa-search.fa-stack-1x.fa-inverse
                             .relative.ml-2
@@ -84,20 +84,23 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                     a.text-gray-300.block.rounded-md.px-3.py-2.text-base.font-medium.mauto.nav-not-logged-in.is-hidden.btn-register-login(href='/login', class='hover:bg-gray-700 hover:text-white') Register - Log In
             .modal#search-modal
                 .modal-background.toggle-modal
-                .modal-content
-                    .box.modal-body.mx-2
-                        h1.title.has-text-white.text-center.is-4.mb-2 Search
-                        .field.has-addons.has-addons-centered.is-large
-                            .control.has-icons-right
-                                input#search-input.input.is-rounded(placeholder='Enter USACO Problem ID', maxlength='4', style="border-width: 0.15rem;")
-                                span#search-in-modal.icon.is-medium.is-right.is-clickable
-                                    span.fa-stack
-                                        i.fa-solid.fa-circle.fa-stack-2x
-                                        i.fa-solid.fa-search.fa-stack-1x.fa-inverse
+                .modal-card
+                    header.modal-card-head
+                        p.has-text-white.modal-card-title Search Problems
+                        button.delete.toggle-modal(aria-label='close')
+                    section(style="margin-bottom: 0;").modal-card-body
+                        .field.has-addons.has-addons-centered
+                            .control(style="width: 100%;")
+                                input#search-input.input.is-medium.is-fullwidth(type="text", placeholder="Search by ID, name, or division...")
+                            .control
+                                a#search-in-modal.button.is-medium.is-primary
+                                    span.icon.is-small
+                                        i.fas.fa-search
+                        .menu.mt-4(style="overflow-y: scroll;height: 500px;")
+                            ul#algo-search-menu.menu-list
+
                         button#search-help(style="display: flex;").button.tag.is-small.is-info.is-outlined.subtitle.has-text-white.text-center.is-6.mx-auto.mt-1.mb-0 What's a USACO Problem ID?
-                        article#search-help-info.is-hidden.message.is-info.mt-2
-                            .message-body
-                                p.subtitle.has-text-white.is-6 The USACO Problem ID is the 3 or 4 digit number that appears at the end of the usaco.org problem URL. Enter the ID into Search to view the problem page on Algo, with a better UI interface.
+
                     button.modal-close.is-large.toggle-modal(type='button', aria-label='close')
         main.is-flex-grow-1
             block content

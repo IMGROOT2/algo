@@ -204,6 +204,7 @@ onAuthStateChanged(auth, async auser => {
                             problemsUnsolved.splice(index, 1);
                         }
                     }
+                    // TODO: double check this is correct with splicing...
                     // update the document with the new arrays
                     updateDoc(doc(db, "user_data", user.uid), {
                         "problemsSeen": problemsSeen,

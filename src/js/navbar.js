@@ -1,6 +1,13 @@
 import {auth} from "./app-config";
 import {onAuthStateChanged} from "firebase/auth";
 import * as problems from "../data/data.json";
+import * as bulmaToast from 'bulma-toast';
+
+const {setDefaults, toast} = bulmaToast;
+
+setDefaults({
+    position: 'bottom-left'
+});
 
 
 const loginButton = document.getElementsByClassName('btn-register-login');
@@ -20,22 +27,61 @@ const mobileMenu = document.getElementById("mobile-menu");
 const mobileMenuButton = document.getElementById("mobileMenuButton");
 const closed = document.getElementById("closed");
 const open = document.getElementById("open");
+const searchInNavbar = document.getElementById("search");
 const searchModal = document.getElementById("search-modal");
 const searchInModal = document.getElementById("search-in-modal");
 const toggleModal = document.getElementsByClassName("toggle-modal");
 const searchInput = document.getElementById("search-input");
 const searchHelp = document.getElementById("search-help");
-const searchHelpInfo = document.getElementById("search-help-info");
+const algoSearchMenu = document.getElementById("algo-search-menu");
+
+let searchProblemInfo = [];
+const divisions = ["bronze", "silver", "gold", "platinum"];
+
+searchInNavbar.addEventListener("click", () => {
+    searchModal.classList.toggle("is-active");
+});
+
+function prepareSearch() {
+    divisions.forEach(division => {
+        problems[division].forEach(problem => {
+            let toPush = problem.id + " " + problem.title.substring(11).toLowerCase() + " " + division;
+            searchProblemInfo.push(toPush);
+
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            const span = document.createElement("span");
+            span.classList.add("tag", "has-text-white", "is-6", "ml-2");
+            span.innerText = problem.id;
+            if(problem.division === "bronze") {
+                span.classList.add("is-bronze");
+            }
+            if(problem.division === "silver") {
+                span.classList.add("is-silver");
+            }
+            if(problem.division === "gold") {
+                span.classList.add("is-gold");
+            }
+            if(problem.division === "platinum") {
+                span.classList.add("is-platinum");
+            }
+            a.classList.add("has-text-white");
+            a.href = "/problem/" + problem.id;
+            a.innerText += problem.title.substring(11);
+            a.appendChild(span);
+            li.appendChild(a);
+            algoSearchMenu.appendChild(li);
+        });
+    });
+}
 
 searchHelp.addEventListener("click", () => {
-    searchHelpInfo.classList.toggle("is-hidden");
-
-    if(searchHelpInfo.classList.contains("is-hidden")){
-        searchHelp.innerHTML = "What's a USACO Problem ID?";
-    }
-    else {
-        searchHelp.innerHTML = "Hide";
-    }
+    toast({
+        message: "The USACO Problem ID is the 3 or 4 digit number that appears at the end of the usaco.org problem URL. \n Enter the ID into Search to view the problem page on Algo, with a better UI interface.",
+        type: "is-info",
+        dismissible: true,
+        duration: 10000,
+    });
 });
 
 for (let i = 0; i < toggleModal.length; i++) {
@@ -45,42 +91,53 @@ for (let i = 0; i < toggleModal.length; i++) {
 }
 
 function search() {
-    if (searchInput.value !== "") {
-        let found = false;
-        let divisions = ["bronze", "silver", "gold", "platinum"];
-        divisions.every(division => {
-            problems[division].every(p => {
-                if (p.id === parseInt(searchInput.value)) {
-                    found = true;
-                    return false;
-                }
-                return true;
-            });
-            return !found;
-
-        });
-        if (!found) {
-            searchInput.classList.add("is-danger");
+    let value = searchInput.value.toLowerCase();
+    let filtered = searchProblemInfo.filter(problem => {
+        if(problem.includes(value)) {
+            console.log("found that " + value + "is in " + problem);
         }
         else {
-            searchInput.classList.add("is-success");
-            location.href = "/problem/" + searchInput.value;
+            console.log("found that " + value + "is not in " + problem);
         }
-    }
+        return problem.includes(value);
+    });
+    console.log(filtered);
+    // clear the menu, then add the filtered items
+    algoSearchMenu.innerHTML = "";
+    filtered.forEach(problem => {
+        let id = problem.split(" ")[0];
+        let info = getInfo(id);
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        const span = document.createElement("span");
+        span.classList.add("tag", "has-text-white", "is-6", "ml-2");
+        span.innerText = id;
+        if(info.division === "bronze") {
+            span.classList.add("is-bronze");
+        }
+        if(info.division === "silver") {
+            span.classList.add("is-silver");
+        }
+        if(info.division === "gold") {
+            span.classList.add("is-gold");
+        }
+        if(info.division === "platinum") {
+            span.classList.add("is-platinum");
+        }
+        a.classList.add("has-text-white");
+        a.href = "/problem/" + id;
+        a.innerText += info.title.substring(11);
+        a.appendChild(span);
+        li.appendChild(a);
+        algoSearchMenu.appendChild(li);
+    });
 }
 
 searchInModal.addEventListener("click", () => {
     search();
 });
-searchInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-        search();
-    }
-});
-
-searchInput.addEventListener("input", () => {
-    searchInput.classList.remove("is-danger");
-    searchInput.classList.remove("is-success");
+searchInput.addEventListener("input", function () {
+    search();
 });
 
 mobileMenuButton.addEventListener("click", () => {
@@ -123,6 +180,7 @@ function navLoggedInToggle(addorremove, theclass) {
 }
 
 onAuthStateChanged(auth, user => {
+    prepareSearch();
     if (user) {
         navLoggedInToggle("remove", "is-hidden");
         navNotLoggedInToggle("add", "is-hidden");
@@ -165,3 +223,19 @@ document.querySelector('html').addEventListener('click', function (event) {
         profileMenu.classList.add("is-hidden");
     }
 });
+function getInfo(id) {
+    let generated = {};
+    let found = false;
+    divisions.every(division => {
+        problems[division].every(p => {
+            if (p.id === parseInt(id)) {
+                generated = p;
+                found = true;
+                return false;
+            }
+            return true;
+        });
+        return !found;
+    });
+    return generated;
+}

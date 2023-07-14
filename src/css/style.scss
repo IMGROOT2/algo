@@ -150,9 +150,14 @@ strong {
   background-color: #50a1cc !important;
 }
 
-#search, #search-in-modal {
+#search {
   &:hover {
     color: #3072D6 !important;
+  }
+}
+#search-in-modal {
+  &:hover {
+    color: white !important;
   }
 }
 
@@ -162,4 +167,27 @@ strong {
 .grad {
   background: linear-gradient(45deg, #3072D6, #27C877) !important;
   color: white !important;
+}
+.modal {
+  .modal-card-body, .modal-body, .modal-card-head {
+    background: #2e3033 !important;
+  }
+  ul.menu-list > li > a {
+    &:hover {
+      background-color: #1f1e1e !important;
+      color: white !important;
+    }
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #2e3033 !important;
+  }
+  input {
+    &:hover {
+      color: #363636 !important;
+    }
+  }
 }
