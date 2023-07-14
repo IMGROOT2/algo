@@ -24,6 +24,19 @@ const searchModal = document.getElementById("search-modal");
 const searchInModal = document.getElementById("search-in-modal");
 const toggleModal = document.getElementsByClassName("toggle-modal");
 const searchInput = document.getElementById("search-input");
+const searchHelp = document.getElementById("search-help");
+const searchHelpInfo = document.getElementById("search-help-info");
+
+searchHelp.addEventListener("click", () => {
+    searchHelpInfo.classList.toggle("is-hidden");
+
+    if(searchHelpInfo.classList.contains("is-hidden")){
+        searchHelp.innerHTML = "What's a USACO Problem ID?";
+    }
+    else {
+        searchHelp.innerHTML = "Hide";
+    }
+});
 
 for (let i = 0; i < toggleModal.length; i++) {
     toggleModal[i].addEventListener("click", () => {
