@@ -15,6 +15,11 @@ block content
                         | View Release
                         span.icon(style="position: relative; top: 2px;")
                             i.fa-solid.fa-arrow-right
+
+            .hidden(class='sm:mb-8 sm:flex sm:justify-center')
+                .relative.rounded-full.px-3.py-1.text-sm.leading-6.ring-1.text-white.bg-slate-800.ring-emerald-500
+                    | Thank you for 5,500 views from 40 countries! 🎉🎉
+
         div.is-hidden-touch(style="margin: auto; max-width: 70vw;")
             h1.title.landing-title #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") Go] from #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700 Bronze] #[br] to #[span.text-transparent.bg-clip-text.bg-gradient-to-r.from-slate-500.to-gray-700 Platinum] with #[img(src="media/algologofull.png" alt="Algo Logo" style="height: 5rem !important; display: inline;")]
             div.box.is-primary.subtitle-box.column.is-7.is-flex-direction-column.is-flex
@@ -36,12 +41,13 @@ block content
                 dl.grid.grid-cols-1.gap-x-8.gap-y-16.text-center(class='lg:grid-cols-3')
                     .mx-auto.flex.max-w-xs.flex-col.gap-y-4
                         dt.text-base.leading-7.text-white Users
-                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") 710]
+                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span#users(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;")]
                     .mx-auto.flex.max-w-xs.flex-col.gap-y-4
                         dt.text-base.leading-7.text-white Page Views
-                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") 5.4k]
+                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span#views(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;")]
                     .mx-auto.flex.max-w-xs.flex-col.gap-y-4
                         dt.text-base.leading-7.text-white Countries Reached
-                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;") 39]
+                        dd.order-first.text-6xl.font-semibold.tracking-tight #[span#countries(style="background: -webkit-linear-gradient(#3072D6, #27C877); -webkit-background-clip: text; -webkit-text-fill-color: transparent;")]
 
 append scripts-footer
+    script(src="js/home.js")
