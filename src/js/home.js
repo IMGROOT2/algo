@@ -1,6 +1,6 @@
 // Note to viewers: I'm currently updating these stats manually- I'll implement the API soon ;)
-const users = "730";
-const views = "5,500";
+const users = "800";
+const views = "5,900";
 const countries = "40";
 
 
