@@ -32,3 +32,8 @@ hr {
     color: gray !important;
   }
 }
+.problem-text-div {
+  @media screen and (min-width: 1024px) {
+    max-width: 80%;
+  }
+}

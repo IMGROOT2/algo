@@ -99,7 +99,10 @@ body, html {
 h4 {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
-  font-size: 2rem;
+  font-size: 1.6rem;
+  @media screen and (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 }
 
 pre {

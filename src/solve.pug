@@ -54,8 +54,8 @@ block content
 
         #problem.box.is-fullheight-with-navbar.problem.column.is-four-fifths.m-4
             div
-                h1(style="margin-bottom: 0.3rem;").title.has-text-white.is-1#problem-title
-                p(style="margin-top: 0; margin-bottom: 0;").subtitle.has-text-gray.is-5.mb-1#problem-subtitle
+                h1(style="margin-bottom: 0.3rem;").title.has-text-white.text-4xl#problem-title
+                p(style="margin-top: 0; margin-bottom: 0;").subtitle.has-text-white.is-5.mb-1#problem-subtitle
                 .level.mb-4(style="justify-content: normal;")
                     .level-left.mr-1
                         .level-item
@@ -64,9 +64,9 @@ block content
                         .level-item
                             a#problem-link(href="#" style="color: white;").page-link.is-hidden View on usaco.org
 
-            div.has-text-white
+            div.has-text-white.problem-text-div
                 span#problem-text
-                    div.mt-4.has-text-centered
+                    div.mt-4.has-text-centered.flex.items-center.justify-center.flex-col.h-full
                         h1.title.has-text-white.is-4.mt-4 Click on the "New Problem" button to generate a problem!
                         p.subtitle.has-text-white.is-5 The problem will show up here.
         #problem-loader.box.is-fullheight-with-navbar.problem.column.is-four-fifths.m-4.is-hidden

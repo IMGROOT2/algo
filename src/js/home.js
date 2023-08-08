@@ -1,7 +1,7 @@
 // Note to viewers: I'm currently updating these stats manually- I'll implement the API soon ;)
-const users = "800";
-const views = "5,900";
-const countries = "40";
+const users = "870";
+const views = "6,200";
+const countries = "41";
 
 
 const usersSpan = document.getElementById("users");

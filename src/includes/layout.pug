@@ -44,7 +44,6 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                     a.text-gray-300.rounded-md.px-3.py-2.text-sm.font-medium(href='/solve', class='hover:bg-gray-700 hover:text-white') Solve
                         .absolute.inset-y-0.right-0.flex.items-center.pr-2(class='sm:static sm:inset-auto sm:ml-6 sm:pr-0')
                             .relative.ml-4
-                                span.tag.grad.is-small NEW!
                                 span#search.fa-stack
                                     i.fa-solid.fa-circle.fa-stack-2x
                                     i.fa-solid.fa-search.fa-stack-1x.fa-inverse
@@ -59,7 +58,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                         span#hasPhoto.is-hidden
                                             img#profile-image(referrerpolicy="no-referrer" alt="Profile Image").h-8.w-8.rounded-full
 
-                                #profileMenu.is-hidden.absolute.right-0.z-10.mt-2.w-48.origin-top-right.rounded-md.bg-slate-700.py-1.shadow-lg.ring-1.ring-black.ring-opacity-5.text-white(class='focus:outline-none', role='menu', aria-orientation='vertical', aria-labelledby='user-menu-button', tabindex='-1' style="max-width: 175px !important; width: 175px !important;")
+                                #profileMenu.is-hidden.absolute.right-0.z-10.mt-2.w-48.origin-top-right.rounded-md.py-1.shadow-lg.ring-1.ring-black.ring-opacity-5.text-white(class='focus:outline-none', role='menu', aria-orientation='vertical', aria-labelledby='user-menu-button', tabindex='-1' style="max-width: 175px !important; width: 175px !important; background-color: #2e3033")
                                     div.no-pointer-events.px-4.mt-2
                                         span#profile-loader.bulma-loader-mixin
                                         | #[p(style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;")#profile-name]
@@ -72,7 +71,7 @@ html(lang="en" style="overflow-x: hidden; overflow-y: auto; height: 100%;")
                                     a.block.px-4.py-2.text-sm.text-white.mauto(href="/statistics" class="hover:bg-gray-600 hover:text-white")
                                         span.icon.is-small.mr-1
                                             i(style="position: relative; top: 2px;").fa-solid.fa-chart-line
-                                        | Statistics #[div.ml-1 #[span.tag.grad.is-small NEW!]]
+                                        | Statistics
                                     a#btn-logout(href="/" class="hover:bg-gray-600 hover:text-white").block.px-4.py-2.text-sm.text-white.mauto
                                         span.icon.is-small.mr-1
                                             i(style="position: relative; top: 2px;").fa-solid.fa-sign-out-alt
