@@ -1,34 +1,17 @@
 {
   "name": "algo",
-  "version": "0.4.0",
-  "targets": {
-    "pages": {
-      "source": [
-        "src/index.pug",
-        "src/login.pug",
-        "src/404.pug",
-        "src/solve.pug",
-        "src/profile.pug",
-        "src/about.pug",
-        "src/beta.pug",
-        "src/statistics.pug",
-        "src/problem.pug"
-      ],
-      "context": "browser",
-      "distDir": "./dist"
-    }
-  },
+  "version": "1.0.0",
   "description": "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests.",
   "browserslist": "> 0.1% and last 2 versions and not dead",
   "scripts": {
-    "start": "parcel",
-    "build": "rm -rf dist && parcel build --no-source-maps",
-    "cleanup": "rm -rf .parcel-cache/ dist/",
-    "watch": "npm run cleanup && parcel watch --no-hmr",
-    "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data --export-on-exit",
-    "clean": "rm -r dist && rm -r .parcel-cache",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/",
     "deploy": "firebase deploy --only hosting,storage,firestore,database",
-    "publish": "npm run build && npm run deploy"
+    "publish": "vite build && npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -41,22 +24,22 @@
   },
   "homepage": "https://github.com/IMGROOT2/algo#readme",
   "dependencies": {
-    "@creativebulma/bulma-divider": "^1.1.0",
-    "@creativebulma/bulma-tooltip": "^1.2.0",
-    "bulma": "^0.9.4",
-    "bulma-toast": "^2.4.2",
     "chart.js": "^4.3.0",
     "firebase": "^10.0.0",
     "firebase-tools": "^12.4.4",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.9.3",
-    "@parcel/transformer-sass": "^2.9.3",
+    "@rushstack/eslint-patch": "^1.3.2",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-vue": "^9.15.1",
     "jsdom": "^22.1.0",
-    "parcel": "^2.9.3",
     "postcss": "^8.4.26",
-    "process": "^0.11.10"
-  },
-  "type": "commonjs"
+    "prettier": "^3.0.0",
+    "vite": "^4.4.6"
+  }
 }

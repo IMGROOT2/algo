@@ -1,0 +1,21 @@
+@import "style.scss";
+@import "./node_modules/@creativebulma/bulma-tooltip/src/sass/index.sass";
+
+.column.is-8 {
+  margin-top: 3rem;
+}
+
+.profile-settings-content-body-item-header {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tooltip {
+  color: white !important;
+  text-decoration: none !important;
+
+  &:hover {
+    color: lightgray !important;
+    text-decoration: none !important;
+  }
+}
