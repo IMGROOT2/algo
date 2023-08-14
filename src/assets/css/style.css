@@ -1,9 +1,11 @@
-body, html {
+body,
+html {
   background-color: #1f1e1e;
   font-family: Poppins-M;
 }
 
-.navbar, .footer {
+.navbar,
+.footer {
   background-color: transparent !important;
   box-shadow: none;
 }
@@ -38,7 +40,7 @@ body, html {
 }
 
 #btn-profile-dropdown {
-  background-image: linear-gradient(#3072D6, #27C877) !important;
+  background-image: linear-gradient(#3072d6, #27c877) !important;
   color: white !important;
 }
 
@@ -89,7 +91,7 @@ body, html {
 }
 
 .footer-item:hover {
-  color: #3072D6 !important;
+  color: #3072d6 !important;
 }
 
 h4 {
@@ -128,11 +130,11 @@ strong {
 
 .page-link {
   text-decoration: underline !important;
-  text-decoration-color: #3072D6 !important;
+  text-decoration-color: #3072d6 !important;
 }
 
 .page-link:hover {
-  color: #3072D6 !important;
+  color: #3072d6 !important;
 }
 
 .navbar-button {
@@ -157,13 +159,12 @@ strong {
   background: #50a1cc !important;
 }
 
-
 #search-in-modal:hover {
   color: white !important;
 }
 
 .grad {
-  background: linear-gradient(45deg, #3072D6, #27C877) !important;
+  background: linear-gradient(45deg, #3072d6, #27c877) !important;
   color: white !important;
 }
 
@@ -187,6 +188,9 @@ strong {
   color: #363636 !important;
 }
 
-.modal-card-body, .modal-body, .modal-card-head, .modal-card-foot {
+.modal-card-body,
+.modal-body,
+.modal-card-head,
+.modal-card-foot {
   background: #2e3033 !important;
 }

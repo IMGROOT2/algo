@@ -1,4 +1,4 @@
-@import "style.scss";
+@import 'style.scss';
 
 .box.is-fullheight-with-navbar {
   height: 100% !important;
@@ -25,13 +25,16 @@
   color: hsl(204, 86%, 53%);
 }
 .columns.is-centered > .column {
-    @media screen and (max-width: 1024px) {
-      width: 50% !important;
-    }
+  @media screen and (max-width: 1024px) {
+    width: 50% !important;
+  }
 }
-#solved-card, #skipped-card, #unsolved-card, #seen-card {
+#solved-card,
+#skipped-card,
+#unsolved-card,
+#seen-card {
   &:hover {
-    background: #3072D6;
+    background: #3072d6;
   }
 }
 .column.is-one-quarter > button {

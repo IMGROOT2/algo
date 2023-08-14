@@ -1,5 +1,6 @@
 <template>
-  <div> <!-- theme div -->
+  <div>
+    <!-- theme div -->
     <Navbar />
     <RouterView v-slot="{ Component }">
       <component :is="Component" />

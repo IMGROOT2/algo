@@ -1,10 +1,9 @@
-@import "style.scss";
-@import "@creativebulma/bulma-divider/src/sass/index.sass";
+@import 'style.scss';
+@import '@creativebulma/bulma-divider/src/sass/index.sass';
 
 .main-card {
   padding: 2rem;
 }
-
 
 .login-title {
   margin-top: 5rem !important;
@@ -13,7 +12,8 @@
   text-align: center;
 }
 
-.hero.is-fullheight, .hero-body.has-text-centered {
+.hero.is-fullheight,
+.hero-body.has-text-centered {
   margin-left: auto !important;
   margin-right: auto !important;
   text-align: center !important;
@@ -30,7 +30,8 @@
   margin-right: 15px !important;
 }
 
-.divider, .divider-text {
+.divider,
+.divider-text {
   color: white !important;
   font-family: Poppins-M, serif !important;
 }

@@ -1,5 +1,5 @@
-@import "style.scss";
-@import "./node_modules/@creativebulma/bulma-tooltip/src/sass/index.sass";
+@import 'style.scss';
+@import './node_modules/@creativebulma/bulma-tooltip/src/sass/index.sass';
 
 .column.is-8 {
   margin-top: 3rem;

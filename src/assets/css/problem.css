@@ -1,4 +1,4 @@
-@import "style.scss";
+@import 'style.scss';
 
 .box.is-fullheight-with-navbar {
   height: 100% !important;
