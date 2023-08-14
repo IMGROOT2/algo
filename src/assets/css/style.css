@@ -145,16 +145,16 @@ strong {
 }
 
 .is-bronze {
-  background-color: #864d16 !important;
+  background: #864d16 !important;
 }
 .is-silver {
-  background-color: #4d4b4b !important;
+  background: #4d4b4b !important;
 }
 .is-gold {
-  background-color: #f1cb09 !important;
+  background: #f1cb09 !important;
 }
 .is-platinum {
-  background-color: #50a1cc !important;
+  background: #50a1cc !important;
 }
 
 

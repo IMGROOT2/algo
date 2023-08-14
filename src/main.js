@@ -1,12 +1,18 @@
-import { createApp } from 'vue'
-import '@/assets/css/style.css'
-import '@/assets/css/core.css'
 import {auth, db} from "./app-config";
 import {deleteField, doc, getDoc, updateDoc} from "firebase/firestore";
 import {onAuthStateChanged} from "firebase/auth";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './Router';
+import '@/assets/css/style.css'
+import '@/assets/css/core.css'
 
-import App from './App.vue'
-createApp(App).mount('#app')
+if (location.host === "algo-usaco.web.app") location.host = "algousaco.com";
+
+const app = createApp(App);
+app.use(router);
+app.mount('#app');
+
 
 onAuthStateChanged(auth, async user => {
     if (user) {

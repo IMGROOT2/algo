@@ -14,16 +14,16 @@
         </div>
         <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
-            <a href="/">
+            <router-link to="/">
             <img class="block h-8 w-auto m-auto lg:hidden" :src="AlgoFull" alt="Algo">
             <img class="hidden h-8 w-auto m-auto lg:block" :src="AlgoFull" alt="Algo">
-            </a>
+            </router-link>
         </div>
         <div class="hidden m-auto sm:ml-6 sm:block">
             <div class="flex space-x-4">
-            <a href="/" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Home</a>
-            <a href="/beta" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Beta Release Info</a>
-            <a href="/solve" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Solve</a>
+            <router-link to="/" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Home</router-link>
+            <!-- <a href="/beta" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Beta Release Info</a> -->
+            <router-link to="/solve" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Solve</router-link>
             </div>
         </div>
         </div>
@@ -36,8 +36,8 @@
         </div>
         <div class="relative ml-2">
             <div>
-            <Loader id="profile-menu-loader" size="8" />
-            <a href="/login" class="btn-register-login text-gray-300 rounded-md px-3 py-2 text-sm font-medium nav-not-logged-in hidden hover:bg-gray-700 hover:text-white sm:block">Register - Log In</a>
+            <Loader id="profile-menu-loader" size="6"/>
+            <router-link to="/login" id="nav-btn-register-login" class="btn-register-login text-gray-300 rounded-md px-3 py-2 text-sm font-medium nav-not-logged-in hidden hover:bg-gray-700 hover:text-white">Register - Log In</router-link>
             <button id="user-menu-button" type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-expanded="false" aria-haspopup="true">
                 <span class="sr-only">Open user menu</span>
                 <span id="noPhoto" class="icon hidden">
@@ -56,18 +56,18 @@
             <div class="no-pointer-events px-4 mb-3">
                 <p id="profile-email" style="font-size: 0.5rem; overflow: hidden; display: block; text-overflow: ellipsis; white-space: nowrap; pointer-events: none;"></p>
             </div>
-            <a href="/profile" class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white">
+            <router-link to="/profile" class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white">
                 <span class="icon is-small mr-1">
                 <i style="position: relative; top: 2px;" class="fa-solid fa-user"></i>
                 </span>
                 Profile
-            </a>
-            <a href="/statistics" class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white">
+            </router-link>
+            <router-link to="/statistics" class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white">
                 <span class="icon is-small mr-1">
                 <i style="position: relative; top: 2px;" class="fa-solid fa-chart-line"></i>
                 </span>
                 Statistics
-            </a>
+            </router-link>
             <a id="btn-logout" href="/" class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white">
                 <span class="icon is-small mr-1">
                 <i style="position: relative; top: 2px;" class="fa-solid fa-sign-out-alt"></i>
@@ -79,51 +79,70 @@
         </div>
     </div>
     <div id="mobile-menu" class="sm:hidden space-y-1 px-2 pb-3 pt-2 hidden">
-        <a href="/" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Home</a>
-        <a href="/beta" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Beta Release Info</a>
-        <a href="/solve" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Solve</a>
-        <a href="/login" class="text-gray-300 rounded-md px-3 py-2 text-base font-medium m-auto nav-not-logged-in hidden btn-register-login hover:bg-gray-700 hover:text-white">Register - Log In</a>
+        <router-link to="/" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Home</router-link>
+        <!-- <a href="/beta" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Beta Release Info</a> -->
+        <router-link to="/solve" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Solve</router-link>
+        <router-link to="/login" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto nav-not-logged-in hidden btn-register-login hover:bg-gray-700 hover:text-white">Register - Log In</router-link>
     </div>
     </nav>
+    
 
-    <div class="modal hidden" id="search-modal">
-    <div class="modal-background toggle-modal"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-        <p class="has-text-white modal-card-title">Search Problems</p>
-        <button class="delete toggle-modal" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body" style="margin-bottom: 0;">
-        <div class="field has-addons has-addons-centered">
-            <div class="control" style="width: 100%;">
-            <input id="search-input" class="input is-medium is-fullwidth" type="text" placeholder="Search by ID, name, or division...">
-            </div>
-            <div class="control">
-            <a id="search-in-modal" class="button is-medium is-primary">
-                <span class="icon is-small">
-                <i class="fas fa-search"></i>
-                </span>
-            </a>
+    <div id="search-modal" tabindex="-1" class="hidden fixed right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto inset-0 max-h-full h-screen place-items-center bg-zinc-900/70">
+        <div class="relative w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-zinc-800">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl text-gray-900 dark:text-white">
+                        Search Problems
+                    </h3>
+                    <button type="button" class="toggle-modal text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    
+                    <form>   
+                        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <i class="fas fa-search w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+                            </div>
+                            <input type="search" id="search-input" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white " placeholder="Search by ID, name, or division..." required>
+                        </div>
+                    </form>
+                        
+                    <div class="menu mt-4" style="overflow-y: scroll;height: 500px;">
+                        <ul id="algo-search-menu" class="menu-list"></ul>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button id="search-help" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">What is a USACO Problem ID?</button>
+                </div>
             </div>
         </div>
-        <div class="menu mt-4" style="overflow-y: scroll;height: 500px;">
-            <ul id="algo-search-menu" class="menu-list"></ul>
-        </div>
-        <button id="search-help" class="button tag is-small is-info is-outlined subtitle has-text-white text-center is-6 mx-auto mt-1 mb-0">What's a USACO Problem ID?</button>
-        </section>
     </div>
-    </div>
+
+
 </template>
 <script setup>
-import {onMounted} from 'vue'  
+import {onMounted} from 'vue'
 import AlgoFull from '../assets/images/algologofull.png'
 import Loader from './Loader.vue'
+import createToast from '../toast';
 import {auth} from "../app-config";
 import {onAuthStateChanged} from "firebase/auth";
 import * as problems from "../public/data/data.json";
 
+
 onMounted(() => {
-    const loginButton = document.getElementsByClassName('btn-register-login');
+const loginButton = document.getElementsByClassName('btn-register-login');
 const profileLoader = document.getElementById('profile-loader');
 const profileName = document.getElementById('profile-name');
 const profileEmail = document.getElementById('profile-email');
@@ -142,18 +161,22 @@ const closed = document.getElementById("closed");
 const open = document.getElementById("open");
 const searchInNavbar = document.getElementById("search");
 const searchModal = document.getElementById("search-modal");
-const searchInModal = document.getElementById("search-in-modal");
+// const searchInModal = document.getElementById("search-in-modal");
 const toggleModal = document.getElementsByClassName("toggle-modal");
 const searchInput = document.getElementById("search-input");
 const searchHelp = document.getElementById("search-help");
 const algoSearchMenu = document.getElementById("algo-search-menu");
+const navBtnRegisterLogin = document.getElementById("nav-btn-register-login");
 
 let searchProblemInfo = [];
 const divisions = ["bronze", "silver", "gold", "platinum"];
 
-searchInNavbar.addEventListener("click", () => {
-    searchModal.classList.toggle("is-active");
-});
+function toggleSearchModal() {
+    searchModal.classList.toggle("hidden");
+    searchModal.classList.toggle("grid");
+}
+
+searchInNavbar.addEventListener("click", toggleSearchModal);
 
 function prepareSearch() {
     divisions.forEach(division => {
@@ -164,7 +187,7 @@ function prepareSearch() {
             const li = document.createElement("li");
             const a = document.createElement("a");
             const span = document.createElement("span");
-            span.classList.add("tag", "has-text-white", "is-6", "ml-2");
+            span.classList.add("rounded-sm", "text-white", "text-sm", "ml-2", "px-1");
             span.innerText = problem.id;
             if(problem.division === "bronze") {
                 span.classList.add("is-bronze");
@@ -178,29 +201,25 @@ function prepareSearch() {
             if(problem.division === "platinum") {
                 span.classList.add("is-platinum");
             }
-            a.classList.add("has-text-white");
+            a.classList.add("text-white");
             a.href = "/problem/" + problem.id;
             a.innerText += problem.title.substring(11);
             a.appendChild(span);
             li.appendChild(a);
+            li.classList.add("mt-3");  
             algoSearchMenu.appendChild(li);
         });
     });
 }
 
-searchHelp.addEventListener("click", () => {
-    toast({
-        message: "The USACO Problem ID is the 3 or 4 digit number that appears at the end of the usaco.org problem URL. \n Enter the ID into Search to view the problem page on Algo, with a better UI interface.",
-        type: "is-info",
-        dismissible: true,
-        duration: 10000,
-    });
-});
+searchHelp.addEventListener('click', () => {
+      createToast('The USACO Problem ID is the 3 or 4 digit number that appears at the end of the usaco.org problem URL. Enter the ID into Search to view the problem page on Algo, with a better UI interface.', 'fa-info');
+    })
+
+
 
 for (let i = 0; i < toggleModal.length; i++) {
-    toggleModal[i].addEventListener("click", () => {
-        searchModal.classList.toggle("is-active");
-    });
+    toggleModal[i].addEventListener("click", toggleSearchModal);
 }
 
 function search() {
@@ -220,10 +239,10 @@ function search() {
     filtered.forEach(problem => {
         let id = problem.split(" ")[0];
         let info = getInfo(id);
-        const li = document.createElement("li");
+        const li = document.createElement("li"); 
         const a = document.createElement("a");
         const span = document.createElement("span");
-        span.classList.add("tag", "has-text-white", "is-6", "ml-2");
+        span.classList.add("rounded-sm", "text-white", "text-sm", "ml-2", "px-1");
         span.innerText = id;
         if(info.division === "bronze") {
             span.classList.add("is-bronze");
@@ -237,18 +256,19 @@ function search() {
         if(info.division === "platinum") {
             span.classList.add("is-platinum");
         }
-        a.classList.add("has-text-white");
+        a.classList.add("text-white");
         a.href = "/problem/" + id;
         a.innerText += info.title.substring(11);
         a.appendChild(span);
         li.appendChild(a);
+        li.classList.add("mt-3");  
         algoSearchMenu.appendChild(li);
     });
 }
 
-searchInModal.addEventListener("click", () => {
-    search();
-});
+// searchInModal.addEventListener("click", () => {
+//     search();
+// });
 searchInput.addEventListener("input", function () {
     search();
 });
@@ -293,14 +313,18 @@ function navLoggedInToggle(addorremove, theclass) {
 }
 
 onAuthStateChanged(auth, user => {
+    profileMenuLoader.classList.remove('hidden');
     prepareSearch();
     if (user) {
         navLoggedInToggle("remove", "hidden");
         navNotLoggedInToggle("add", "hidden");
+        navBtnRegisterLogin.classList.remove('lg:block');
+        navBtnRegisterLogin.classList.add('lg:hidden');
+        profileLoader.classList.add('hidden');
+
         for (let i = 0; i < loginButton.length; i++) {
             loginButton[i].classList.add('hidden');
         }
-        profileLoader.classList.add('hidden');
         profileName.innerHTML = auth.currentUser.displayName;
         profileEmail.innerHTML = auth.currentUser.email;
         if (auth.currentUser.photoURL) {
@@ -320,12 +344,12 @@ onAuthStateChanged(auth, user => {
             noPhoto.classList.remove('hidden');
         }
     } else {
+        navBtnRegisterLogin.classList.add('lg:block');
+        navBtnRegisterLogin.classList.remove('lg:hidden');
         navLoggedInToggle("add", "hidden");
         navNotLoggedInToggle("remove", "hidden");
         profileMenuLoader.classList.add('hidden');
-        for (let i = 0; i < loginButton.length; i++) {
-            loginButton[i].classList.remove('hidden');
-        }
+        document.getElementById('nav-btn-register-login').classList.add("hidden","sm:block");
         profileLoader.classList.remove('hidden');
         profileName.innerHTML = '';
         profileEmail.innerHTML = '';
