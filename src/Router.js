@@ -9,6 +9,13 @@ const routes = [
     component: Home
   },
   {
+    path: '/profile',
+    name: 'Profile',
+    description:
+      'View and edit your Algo profile.',
+      component: () => import('./views/ProfileView.vue')
+  },
+  {
     path: '/login',
     name: 'Log in',
     description: 'Log in or register for Algo to save your progress and access more features.',

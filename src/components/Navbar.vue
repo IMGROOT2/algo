@@ -221,14 +221,14 @@
               <input
                 type="search"
                 id="search-input"
-                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Search by ID, name, or division..."
                 required
               />
             </div>
           </form>
 
-          <div class="menu mt-4" style="overflow-y: scroll; height: 500px">
+          <div class="menu mt-4 overflow-y-scroll h-[calc(60vh-5rem)]">
             <ul id="algo-search-menu" class="menu-list"></ul>
           </div>
         </div>

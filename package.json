@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data",
+    "emulator-no-import": "firebase emulators:start --only auth,firestore,hosting:algo-usaco",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "deploy": "firebase deploy --only hosting,storage,firestore,database",

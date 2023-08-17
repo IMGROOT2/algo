@@ -134,8 +134,8 @@ import { onMounted } from 'vue'
 import AlgoFull from '../assets/images/algologofull.png'
 import Polygon from '../assets/images/polygon.svg'
 onMounted(() => {
-  const users = '890'
-  const views = '6,400'
+  const users = '900'
+  const views = '7,000'
   const countries = '41'
 
   const usersSpan = document.getElementById('users')
