@@ -22,7 +22,7 @@
       </div>
       <div class="mx-auto max-w-2xl mt-12">
         <div class="hidden lg:block mx-auto">
-          <h1 class="text-6xl landing-title text-center text-white font-bold">
+          <h1 class="text-6xl landing-title text-center dark:text-white text-gray-800 font-bold">
             <span class="bg-clip-text text-transparent bg-gradient-to-b from-[#3072D6] to-[#27C877]"
               >Go</span
             >
@@ -37,21 +37,21 @@
             >
             with <img :src="AlgoFull" alt="Algo Logo" class="inline h-20" />
           </h1>
-          <div class="p-2 bg-zinc-800/50 rounded-lg flex-col flex my-5">
+          <div class="p-2 bg-zinc-800/50 bg-zinc-700 rounded-lg flex-col flex my-5">
             <h1 class="text-white text-xl">
               Algo is a USACO problem randomizer that pushes your training to the next level.
             </h1>
           </div>
           <a href="/solve">
             <button
-              class="text-white rounded-full p-2 px-6 bg-transparent border-2 border-white shadow-cyan-500/50 shadow-xl hover:border-white hover:shadow-emerald-500/50"
+              class="dark:text-white rounded-full p-2 px-6 bg-transparent border-2 dark:border-white border-gray-800 shadow-cyan-500/50 shadow-xl dark:hover:border-white hover:border-gray-700 hover:shadow-emerald-500/50"
             >
               Start Solving
             </button>
           </a>
         </div>
         <div class="block lg:hidden mx-auto max-w-3xl">
-          <h1 class="text-6xl landing-title text-center text-white font-bold">
+          <h1 class="text-6xl landing-title text-center dark:text-white text-gray-800 font-bold">
             <span class="bg-clip-text text-transparent bg-gradient-to-b from-[#3072D6] to-[#27C877]"
               >Go</span
             >
@@ -66,14 +66,14 @@
             >
             with <img :src="AlgoFull" alt="Algo Logo" class="inline h-16" />
           </h1>
-          <div class="p-2 bg-zinc-800/50 rounded-lg flex-col flex my-5 mx-3">
+          <div class="p-2 dark:bg-zinc-800/50 bg-zinc-700 rounded-lg flex-col flex my-5 mx-3">
             <h1 class="text-white text-xl">
               Algo is a USACO problem randomizer that pushes your training to the next level.
             </h1>
           </div>
           <a href="/solve">
             <button
-              class="text-white rounded-full p-2 px-6 bg-transparent border-2 border-white shadow-cyan-500/50 shadow-xl hover:border-white hover:shadow-emerald-500/50"
+              class="dark:text-white rounded-full p-2 px-6 bg-transparent border-2 dark:border-white border-gray-800 shadow-cyan-500/50 shadow-xl dark:hover:border-white hover:border-gray-700 hover:shadow-emerald-500/50"
             >
               Start Solving
             </button>
@@ -82,7 +82,7 @@
       </div>
     </div>
 
-    <div class="home-adjust" style="background: #0b1120">
+    <div class="home-adjust dark:bg-[#0b1120] bg-zinc-800">
       <div class="py-12 sm:py-32 mx-auto max-w-7xl px-6 lg:px-8">
         <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center md:grid-cols-3">
           <div class="mx-auto flex max-w-xs flex-col gap-y-4">

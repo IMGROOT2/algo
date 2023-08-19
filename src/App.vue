@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <!-- theme div -->
-    <Navbar />
-    <RouterView v-slot="{ Component }">
-      <component :is="Component" />
-    </RouterView>
-    <Footer />
+  <div id="theme-div">
+    <div class="bg-white dark:bg-[#1e1e1e]">
+      <!-- theme div -->
+      <Navbar />
+      <RouterView v-slot="{ Component }">
+        <component :is="Component" />
+      </RouterView>
+      <Footer />
 
-    <div id="div-toast" class="bottom-5 left-5 fixed z-50"></div>
+      <div id="div-toast" class="bottom-5 left-5 fixed z-50"></div>
+    </div>
   </div>
 </template>
 

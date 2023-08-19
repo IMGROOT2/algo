@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-zinc-800">
+  <nav class="bg-zinc-200 dark:bg-zinc-800">
     <div
       class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 relative flex h-16 items-center justify-between"
     >
@@ -148,6 +148,26 @@
               </span>
               Log Out
             </a>
+            <div class="justify-evenly flex my-3 mx-3 p-2 rounded-lg bg-zinc-50 dark:bg-zinc-700">
+              <button
+                class="h-6 w-6 flex items-center justify-center hover:text-blue-600"
+                id="theme-light"
+              >
+                <i class="fa-solid fa-sun"></i>
+              </button>
+              <button
+                class="h-6 w-6 flex items-center justify-center hover:text-blue-600"
+                id="theme-dark"
+              >
+                <i class="fa-solid fa-moon"></i>
+              </button>
+              <button
+                class="h-6 w-6 flex items-center justify-center hover:text-blue-600"
+                id="theme-system"
+              >
+                <i class="fa-solid fa-desktop"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -283,6 +303,71 @@ onMounted(() => {
   const searchHelp = document.getElementById('search-help')
   const algoSearchMenu = document.getElementById('algo-search-menu')
   const navBtnRegisterLogin = document.getElementById('nav-btn-register-login')
+
+  const themeLight = document.getElementById('theme-light')
+  const themeDark = document.getElementById('theme-dark')
+  const themeSystem = document.getElementById('theme-system')
+
+  const themeDiv = document.getElementById('theme-div')
+
+  if (localStorage.getItem('theme') === null) {
+    localStorage.setItem('theme', 'system')
+    themeLight.classList.remove('text-blue-600')
+    themeDark.classList.remove('text-blue-600')
+    themeSystem.classList.add('text-blue-600')
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      themeDiv.classList.add('dark')
+    } else {
+      themeDiv.classList.remove('dark')
+    }
+  }
+  if (localStorage.getItem('theme') === 'light') {
+    themeLight.classList.add('text-blue-600')
+    themeDark.classList.remove('text-blue-600')
+    themeSystem.classList.remove('text-blue-600')
+    themeDiv.classList.remove('dark')
+  }
+  if (localStorage.getItem('theme') === 'dark') {
+    themeLight.classList.remove('text-blue-600')
+    themeDark.classList.add('text-blue-600')
+    themeSystem.classList.remove('text-blue-600')
+    themeDiv.classList.add('dark')
+  }
+  if (localStorage.getItem('theme') === 'system') {
+    themeLight.classList.remove('text-blue-600')
+    themeDark.classList.remove('text-blue-600')
+    themeSystem.classList.add('text-blue-600')
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      themeDiv.classList.add('dark')
+    } else {
+      themeDiv.classList.remove('dark')
+    }
+  }
+  themeLight.addEventListener('click', () => {
+    themeLight.classList.add('text-blue-600')
+    themeDark.classList.remove('text-blue-600')
+    themeSystem.classList.remove('text-blue-600')
+    themeDiv.classList.remove('dark')
+    localStorage.setItem('theme', 'light')
+  })
+  themeDark.addEventListener('click', () => {
+    themeLight.classList.remove('text-blue-600')
+    themeDark.classList.add('text-blue-600')
+    themeSystem.classList.remove('text-blue-600')
+    themeDiv.classList.add('dark')
+    localStorage.setItem('theme', 'dark')
+  })
+  themeSystem.addEventListener('click', () => {
+    themeLight.classList.remove('text-blue-600')
+    themeDark.classList.remove('text-blue-600')
+    themeSystem.classList.add('text-blue-600')
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      themeDiv.classList.add('dark')
+    } else {
+      themeDiv.classList.remove('dark')
+    }
+    localStorage.setItem('theme', 'system')
+  })
 
   let searchProblemInfo = []
   const divisions = ['bronze', 'silver', 'gold', 'platinum']

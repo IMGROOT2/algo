@@ -11,9 +11,21 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
+    description: 'View and edit your Algo profile.',
+    component: () => import('./views/ProfileView.vue')
+  },
+  {
+    path: '/about',
+    name: 'About',
     description:
-      'View and edit your Algo profile.',
-      component: () => import('./views/ProfileView.vue')
+      'About Algo, the web application that supercharges your training for the USACO by randomly generating problems from past contests.',
+    component: () => import('./views/AboutView.vue')
+  },
+  {
+    path: '/statistics',
+    name: 'Statistics',
+    description: 'View and track your progress on Algo through statistics and graphs.',
+    component: () => import('./views/StatisticsView.vue')
   },
   {
     path: '/login',

@@ -6,7 +6,9 @@
           <img :src="AlgoFull" alt="Algo Logo" class="h-16" />
         </a>
       </div>
-      <div class="flex items-center ml-auto text-white text-center justify-center">
+      <div
+        class="flex items-center ml-auto dark:text-white text-zinc-800 text-center justify-center"
+      >
         <a
           href="https://github.com/IMGROOT2/Algo"
           target="_blank"
