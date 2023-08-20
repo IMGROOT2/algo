@@ -19,10 +19,12 @@
 <h2>Contact, Feedback, Bugs, Get In Touch</h2>
 <p>If you need to:</p>
 <ul>
+  
   <li>Contact Me</li>
   <li>Submit Feedback</li>
   <li>Make a Bug Report</li>
   <li>Something Else</li>
+  
 </ul>
 <br>
 <h1><a href="https://forms.gle/2qo1exSSopAChjET6">Use this Google Form!</a></h1>
