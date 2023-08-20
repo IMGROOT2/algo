@@ -15,6 +15,12 @@ const routes = [
     component: () => import('./views/ProfileView.vue')
   },
   {
+    path: '/solve',
+    name: 'Solve',
+    description: 'Solve USACO problems and track your progress with Algo.',
+    component: () => import('./views/SolveView.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     description:
