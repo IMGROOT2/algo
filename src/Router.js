@@ -28,6 +28,13 @@ const routes = [
     component: () => import('./views/StatisticsView.vue')
   },
   {
+    path: '/problem/:id',
+    name: 'Problem - Algo',
+    description: 'View a USACO Problem in Algo.',
+    props: true,
+    component: () => import('./views/ProblemView.vue')
+  },
+  {
     path: '/login',
     name: 'Log in',
     description: 'Log in or register for Algo to save your progress and access more features.',
@@ -38,6 +45,10 @@ const routes = [
     name: '404 Not Found',
     description: "Uh oh! The page you're looking for doesn't exist.",
     component: () => import('./views/404View.vue')
+  },
+  {
+    path: '/beta',
+    redirect: '/'
   }
 ]
 const router = createRouter({
@@ -46,7 +57,12 @@ const router = createRouter({
 })
 
 router.afterEach((to) => {
-  document.title = to.name ? `${to.name} - Algo` : `Algo`
+  if (to.path.startsWith('/problem/')) {
+    const id = to.params.id
+    document.title = `Problem ${id} - Algo`
+  } else {
+    document.title = to.name ? `${to.name} - Algo` : `Algo`
+  }
   document.querySelector("meta[name='description']")?.setAttribute('content', to.description)
   document
     .querySelector("link[rel='canonical']")

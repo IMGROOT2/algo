@@ -19,7 +19,7 @@ onAuthStateChanged(auth, async (user) => {
       await retrieveUserDoc(db, user).then((adoc) => {
         console.log(adoc.data())
         const fsdata = adoc.data()
-        if (!fsdata.hasOwnProperty('problemsSeen')) {
+        if (!Object.prototype.hasOwnProperty.call(fsdata, 'problemsSeen')) {
           updateDoc(doc(db, 'user_data', user.uid), {
             problemsSeen: [],
             problemsSolved: [],
@@ -27,7 +27,7 @@ onAuthStateChanged(auth, async (user) => {
             problemsUnsolved: []
           })
         }
-        if (fsdata.hasOwnProperty('problems-seen')) {
+        if (Object.prototype.hasOwnProperty.call(fsdata, 'problems-seen')) {
           updateDoc(doc(db, 'user_data', user.uid), {
             'problems-seen': deleteField(),
             'problems-solved': deleteField(),

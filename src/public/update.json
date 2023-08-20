@@ -1,0 +1,11 @@
+{
+  "analytics": {
+    "users": "900",
+    "views": "7,000",
+    "countries": "41"
+  },
+  "release": {
+    "version": "1.0.0",
+    "text": "UI Refresh, Optimization, Light + Dark Mode, Mock Contests, and more! 🎉"
+  }
+}

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed z-50 inset-0 flex bg-zinc-900 items-center justify-center text-white flex-col p-3 text-center"
+    class="fixed z-50 inset-0 flex dark:bg-[#1e1e1e] bg-zinc-50 items-center justify-center text-white flex-col p-3 text-center"
   >
     <div class="text-6xl font-bold text-gray-500 mb-4">
       <span

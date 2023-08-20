@@ -1,12 +1,12 @@
 <template>
-  <nav class="bg-zinc-200 dark:bg-zinc-800">
+  <nav class="bg-zinc-200 dark:bg-zinc-800 transition-none">
     <div
       class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 relative flex h-16 items-center justify-between"
     >
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <button
           id="mobileMenuButton"
-          class="inline-flex items-center justify-center rounded-md p-2 text-gray-400"
+          class="inline-flex items-center justify-center rounded-md p-2 text-gray-600"
           type="button"
           aria-controls="mobile-menu"
           aria-expanded="false"
@@ -23,21 +23,19 @@
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
           <router-link to="/">
-            <img class="block h-8 w-auto m-auto lg:hidden" :src="AlgoFull" alt="Algo" />
-            <img class="hidden h-8 w-auto m-auto lg:block" :src="AlgoFull" alt="Algo" />
+            <img class="h-8 w-auto m-auto" :src="AlgoFull" alt="Algo" />
           </router-link>
         </div>
         <div class="hidden m-auto sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <router-link
               to="/"
-              class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white"
+              class="dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
               >Home</router-link
             >
-            <!-- <a href="/beta" class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Beta Release Info</a> -->
             <router-link
               to="/solve"
-              class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white"
+              class="dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
               >Solve</router-link
             >
           </div>
@@ -48,7 +46,9 @@
       >
         <div class="relative ml-4">
           <span id="search" class="fa-stack group">
-            <i class="fa-solid fa-circle fa-stack-2x text-gray-700 group-hover:text-blue-600"></i>
+            <i
+              class="fa-solid fa-circle fa-stack-2x dark:text-gray-700 text-gray-500 group-hover:text-blue-600"
+            ></i>
             <i class="fa-solid fa-search fa-stack-1x fa-inverse group-hover:text-white"></i>
           </span>
         </div>
@@ -58,21 +58,20 @@
             <router-link
               to="/login"
               id="nav-btn-register-login"
-              class="btn-register-login text-gray-300 rounded-md px-3 py-2 text-sm font-medium nav-not-logged-in hidden hover:bg-gray-700 hover:text-white"
+              class="btn-register-login nav-not-logged-in hidden dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
               >Register - Log In</router-link
             >
             <button
               id="user-menu-button"
               type="button"
-              class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              class="flex rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-gray-500 dark:focus:ring-white focus:ring-offset-2 dark:focus:ring-offset-zinc-700 focus:ring-offset-zinc-300"
               aria-expanded="false"
               aria-haspopup="true"
             >
               <span class="sr-only">Open user menu</span>
-              <span id="noPhoto" class="icon hidden">
+              <span id="noPhoto" class="hidden w-8 h-8">
                 <i
-                  style="background: transparent; color: white !important"
-                  class="fa-solid fa-user-circle h-8 w-8 rounded-full"
+                  class="fa-solid fa-user-circle h-8 w-8 rounded-full bg-transparent text-gray-600"
                 ></i>
               </span>
               <span id="hasPhoto" class="hidden">
@@ -87,12 +86,12 @@
           </div>
           <div
             id="profileMenu"
-            class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 text-white focus:outline-none"
+            class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 dark:text-white text-gray-800 focus:outline-none bg-zinc-300 dark:bg-[#2e3033]"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="user-menu-button"
             tabindex="-1"
-            style="max-width: 175px !important; width: 175px !important; background-color: #2e3033"
+            style="max-width: 175px !important; width: 175px !important"
           >
             <div class="no-pointer-events px-4 mt-2">
               <span id="profile-loader" class="bulma-loader-mixin"></span>
@@ -122,7 +121,7 @@
             </div>
             <router-link
               to="/profile"
-              class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white"
+              class="block px-4 py-2 text-sm dark:text-white text-gray-800 dark:hover:text-white hover:text-gray-800 m-auto hover:bg-gray-400 dark:hover:bg-gray-600"
             >
               <span class="icon is-small mr-1">
                 <i style="position: relative; top: 2px" class="fa-solid fa-user"></i>
@@ -131,7 +130,7 @@
             </router-link>
             <router-link
               to="/statistics"
-              class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white"
+              class="block px-4 py-2 text-sm dark:text-white text-gray-800 dark:hover:text-white hover:text-gray-800 m-auto hover:bg-gray-400 dark:hover:bg-gray-600"
             >
               <span class="icon is-small mr-1">
                 <i style="position: relative; top: 2px" class="fa-solid fa-chart-line"></i>
@@ -141,33 +140,13 @@
             <a
               id="btn-logout"
               href="/"
-              class="block px-4 py-2 text-sm text-white m-auto hover:bg-gray-600 hover:text-white"
+              class="block px-4 py-2 text-sm dark:text-white text-gray-800 dark:hover:text-white hover:text-gray-800 m-auto hover:bg-gray-400 dark:hover:bg-gray-600"
             >
               <span class="icon is-small mr-1">
                 <i style="position: relative; top: 2px" class="fa-solid fa-sign-out-alt"></i>
               </span>
               Log Out
             </a>
-            <div class="justify-evenly flex my-3 mx-3 p-2 rounded-lg bg-zinc-50 dark:bg-zinc-700">
-              <button
-                class="h-6 w-6 flex items-center justify-center hover:text-blue-600"
-                id="theme-light"
-              >
-                <i class="fa-solid fa-sun"></i>
-              </button>
-              <button
-                class="h-6 w-6 flex items-center justify-center hover:text-blue-600"
-                id="theme-dark"
-              >
-                <i class="fa-solid fa-moon"></i>
-              </button>
-              <button
-                class="h-6 w-6 flex items-center justify-center hover:text-blue-600"
-                id="theme-system"
-              >
-                <i class="fa-solid fa-desktop"></i>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -175,18 +154,17 @@
     <div id="mobile-menu" class="sm:hidden space-y-1 px-2 pb-3 pt-2 hidden">
       <router-link
         to="/"
-        class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white"
+        class="dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
         >Home</router-link
       >
-      <!-- <a href="/beta" class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white">Beta Release Info</a> -->
       <router-link
         to="/solve"
-        class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-700 hover:text-white"
+        class="dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
         >Solve</router-link
       >
       <router-link
         to="/login"
-        class="text-gray-300 block rounded-md px-3 py-2 text-base font-medium m-auto nav-not-logged-in hidden btn-register-login hover:bg-gray-700 hover:text-white"
+        class="nav-not-logged-in hidden btn-register-login dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
         >Register - Log In</router-link
       >
     </div>
@@ -297,77 +275,11 @@ onMounted(() => {
   const open = document.getElementById('open')
   const searchInNavbar = document.getElementById('search')
   const searchModal = document.getElementById('search-modal')
-  // const searchInModal = document.getElementById("search-in-modal");
   const toggleModal = document.getElementsByClassName('toggle-modal')
   const searchInput = document.getElementById('search-input')
   const searchHelp = document.getElementById('search-help')
   const algoSearchMenu = document.getElementById('algo-search-menu')
   const navBtnRegisterLogin = document.getElementById('nav-btn-register-login')
-
-  const themeLight = document.getElementById('theme-light')
-  const themeDark = document.getElementById('theme-dark')
-  const themeSystem = document.getElementById('theme-system')
-
-  const themeDiv = document.getElementById('theme-div')
-
-  if (localStorage.getItem('theme') === null) {
-    localStorage.setItem('theme', 'system')
-    themeLight.classList.remove('text-blue-600')
-    themeDark.classList.remove('text-blue-600')
-    themeSystem.classList.add('text-blue-600')
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      themeDiv.classList.add('dark')
-    } else {
-      themeDiv.classList.remove('dark')
-    }
-  }
-  if (localStorage.getItem('theme') === 'light') {
-    themeLight.classList.add('text-blue-600')
-    themeDark.classList.remove('text-blue-600')
-    themeSystem.classList.remove('text-blue-600')
-    themeDiv.classList.remove('dark')
-  }
-  if (localStorage.getItem('theme') === 'dark') {
-    themeLight.classList.remove('text-blue-600')
-    themeDark.classList.add('text-blue-600')
-    themeSystem.classList.remove('text-blue-600')
-    themeDiv.classList.add('dark')
-  }
-  if (localStorage.getItem('theme') === 'system') {
-    themeLight.classList.remove('text-blue-600')
-    themeDark.classList.remove('text-blue-600')
-    themeSystem.classList.add('text-blue-600')
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      themeDiv.classList.add('dark')
-    } else {
-      themeDiv.classList.remove('dark')
-    }
-  }
-  themeLight.addEventListener('click', () => {
-    themeLight.classList.add('text-blue-600')
-    themeDark.classList.remove('text-blue-600')
-    themeSystem.classList.remove('text-blue-600')
-    themeDiv.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
-  })
-  themeDark.addEventListener('click', () => {
-    themeLight.classList.remove('text-blue-600')
-    themeDark.classList.add('text-blue-600')
-    themeSystem.classList.remove('text-blue-600')
-    themeDiv.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  })
-  themeSystem.addEventListener('click', () => {
-    themeLight.classList.remove('text-blue-600')
-    themeDark.classList.remove('text-blue-600')
-    themeSystem.classList.add('text-blue-600')
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      themeDiv.classList.add('dark')
-    } else {
-      themeDiv.classList.remove('dark')
-    }
-    localStorage.setItem('theme', 'system')
-  })
 
   let searchProblemInfo = []
   const divisions = ['bronze', 'silver', 'gold', 'platinum']
@@ -388,7 +300,7 @@ onMounted(() => {
         const li = document.createElement('li')
         const a = document.createElement('a')
         const span = document.createElement('span')
-        span.classList.add('rounded-sm', 'text-white', 'text-sm', 'ml-2', 'px-1')
+        span.classList.add('rounded-md', 'text-white', 'text-sm', 'ml-2', 'px-1')
         span.innerText = problem.id
         if (problem.division === 'bronze') {
           span.classList.add('is-bronze')
@@ -402,7 +314,12 @@ onMounted(() => {
         if (problem.division === 'platinum') {
           span.classList.add('is-platinum')
         }
-        a.classList.add('text-white')
+        a.classList.add(
+          'text-gray-700',
+          'dark:text-white',
+          'hover:text-gray-900',
+          'dark:hover:text-gray-200'
+        )
         a.href = '/problem/' + problem.id
         a.innerText += problem.title.substring(11)
         a.appendChild(span)
@@ -443,7 +360,7 @@ onMounted(() => {
       const li = document.createElement('li')
       const a = document.createElement('a')
       const span = document.createElement('span')
-      span.classList.add('rounded-sm', 'text-white', 'text-sm', 'ml-2', 'px-1')
+      span.classList.add('rounded-md', 'text-white', 'text-sm', 'ml-2', 'px-1')
       span.innerText = id
       if (info.division === 'bronze') {
         span.classList.add('is-bronze')
@@ -457,7 +374,12 @@ onMounted(() => {
       if (info.division === 'platinum') {
         span.classList.add('is-platinum')
       }
-      a.classList.add('text-white')
+      a.classList.add(
+        'text-gray-700',
+        'dark:text-white',
+        'hover:text-gray-900',
+        'dark:hover:text-gray-200'
+      )
       a.href = '/problem/' + id
       a.innerText += info.title.substring(11)
       a.appendChild(span)
@@ -525,10 +447,10 @@ onMounted(() => {
       navBtnRegisterLogin.classList.remove('lg:block')
       navBtnRegisterLogin.classList.add('lg:hidden')
       profileLoader.classList.add('hidden')
-
       for (let i = 0; i < loginButton.length; i++) {
         loginButton[i].classList.add('hidden')
       }
+
       profileName.innerHTML = auth.currentUser.displayName
       profileEmail.innerHTML = auth.currentUser.email
       if (auth.currentUser.photoURL) {

@@ -3,7 +3,7 @@
     <h1 class="dark:text-white text-5xl text-center font-bold mx-auto py-20">
       About <img :src="AlgoFull" class="h-16 inline-block" />
     </h1>
-    <div class="dark:bg-zinc-800 p-5">
+    <div class="dark:bg-zinc-800 bg-zinc-300 p-5">
       <div class="pt-8 pb-4 px-4 mx-auto max-w-screen-xl lg:pt-16 lg:pb-8 lg:px-6">
         <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
           <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">

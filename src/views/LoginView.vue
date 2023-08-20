@@ -1,23 +1,26 @@
 <template>
   <section class="w-full text-center flex items-center justify-center flex-col h-screen">
-    <div class="has-text-centered -mt-20">
+    <div class="has-text-centered -mt-20 w-full">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
           class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img class="h-12 mr-2" :src="AlgoFull" alt="Algo" />
+          <img class="h-12" :src="AlgoFull" alt="Algo" />
         </a>
         <div
           id="login"
-          class="w-screen p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-zinc-800 dark:border-gray-700 sm:p-8"
+          class="w-[calc(100vw-2rem)] p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-zinc-800 dark:border-gray-700 sm:p-8"
         >
           <h2
             class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white"
           >
             Log in
           </h2>
-          <button id="button-auth-button-login" class="rounded-lg bg-white block w-full p-3 mt-5">
+          <button
+            id="button-auth-button-login"
+            class="rounded-lg bg-white border-gray-400 border shadow-md block w-full p-3 mt-5"
+          >
             <div class="flex">
               <div class="flex ml-3">
                 <img :src="Google" alt="Google Logo" style="w-16 h-16" />
@@ -63,11 +66,11 @@
               Log in
             </button>
           </form>
-          <p class="text-white mt-3">
+          <p class="dark:text-white text-gray-900 mt-3">
             Forgot your
             <a href="#" class="btn-forgot-password text-blue-500 hover:underline">password?</a>
           </p>
-          <p class="text-white">
+          <p class="dark:text-white text-gray-900">
             Don't have an account?
             <a href="#" id="switchtosignup" class="text-blue-500 hover:underline">Sign up</a>
           </p>
@@ -75,14 +78,17 @@
 
         <div
           id="signup"
-          class="hidden w-screen p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-zinc-800 dark:border-gray-700 sm:p-8"
+          class="hidden w-[calc(100vw-2rem)] p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-zinc-800 dark:border-gray-700 sm:p-8"
         >
           <h2
             class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white"
           >
             Sign Up
           </h2>
-          <button id="button-auth-button-signup" class="rounded-lg bg-white block w-full p-3 mt-5">
+          <button
+            id="button-auth-button-signup"
+            class="rounded-lg bg-white border-gray-400 border shadow-md block w-full p-3 mt-5"
+          >
             <div class="flex">
               <div class="flex ml-3">
                 <img :src="Google" alt="Google Logo" style="w-16 h-16" />
@@ -136,11 +142,11 @@
               Sign up
             </button>
           </form>
-          <p class="text-white mt-3">
+          <p class="dark:text-white text-gray-900 mt-3">
             Forgot your
             <a href="#" class="btn-forgot-password text-blue-500 hover:underline">password?</a>
           </p>
-          <p class="text-white">
+          <p class="dark:text-white text-gray-900">
             Already have an account?
             <a href="#" id="switchtologin" class="text-blue-500 hover:underline">Sign in</a>
           </p>
@@ -148,7 +154,7 @@
 
         <div
           id="forgot-password"
-          class="hidden w-screen p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-zinc-800 dark:border-gray-700 sm:p-8"
+          class="hidden w-[calc(100vw-2rem)] p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-zinc-800 dark:border-gray-700 sm:p-8"
         >
           <h2
             class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl dark:text-white"
@@ -206,8 +212,8 @@ const google = new GoogleAuthProvider()
 
 onMounted(() => {
   onAuthStateChanged(auth, async (user) => {
-    if (user && !user.metadata.creationTime) {
-      location.href = '/'
+    if (user && user.metadata.creationTime !== user.metadata.lastSignInTime) {
+      location.href = '/solve'
     }
   })
   const forgotPasswordButtons = document.getElementsByClassName('btn-forgot-password')
@@ -232,11 +238,21 @@ onMounted(() => {
   })
 
   // add event listener to login button
-  document.getElementById('button-login').addEventListener('click', login)
+  document.getElementById('button-login').addEventListener('click', function (event) {
+    event.preventDefault()
+    login()
+  })
+
   // add event listener to signup button
-  document.getElementById('button-signup').addEventListener('click', signup)
+  document.getElementById('button-signup').addEventListener('click', function (event) {
+    event.preventDefault()
+    signup()
+  })
   // add event listener to forgot password button
-  document.getElementById('button-f-sendEmail').addEventListener('click', forgotPassword)
+  document.getElementById('button-f-sendEmail').addEventListener('click', function (event) {
+    event.preventDefault()
+    forgotPassword(event)
+  })
 
   document.getElementById('button-auth-button-login').addEventListener('click', googleAuth)
   document.getElementById('button-auth-button-signup').addEventListener('click', googleAuth)
