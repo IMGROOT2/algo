@@ -84,7 +84,7 @@
           <button id="solved-detail-button" class="w-full">
             <div
               id="solved-card"
-              class="card dark:bg-zinc-800 bg-zinc-400 hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
+              class="card bg-[#23d160] hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
             >
               <div class="card-content py-4 px-6">
                 <p id="num-solved" class="title text-center text-white text-3xl font-bold"></p>
@@ -95,7 +95,7 @@
           <button id="skipped-detail-button" class="w-full">
             <div
               id="skipped-card"
-              class="card dark:bg-zinc-800 bg-zinc-400 hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
+              class="card bg-[#ffdd57] hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
             >
               <div class="card-content py-4 px-6">
                 <p id="num-skipped" class="title text-center text-white text-3xl font-bold"></p>
@@ -106,7 +106,7 @@
           <button id="unsolved-detail-button" class="w-full">
             <div
               id="unsolved-card"
-              class="card dark:bg-zinc-800 bg-zinc-400 hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
+              class="card bg-[#ff3860] hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
             >
               <div class="card-content py-4 px-6">
                 <p id="num-unsolved" class="title text-center text-white text-3xl font-bold"></p>
@@ -117,7 +117,7 @@
           <button id="seen-detail-button" class="w-full">
             <div
               id="seen-card"
-              class="card dark:bg-zinc-800 bg-zinc-400 hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
+              class="card bg-[#209cee] hover:scale-110 transition-all duration-300 rounded-lg shadow-lg"
             >
               <div class="card-content py-4 px-6">
                 <p id="num-seen" class="title text-center text-white text-3xl font-bold"></p>
@@ -408,18 +408,37 @@ onMounted(() => {
     if (solved + skipped + unsolved !== 0) {
       document.getElementById('showWhenZero').classList.add('hidden')
       new Chart(chart, {
-        type: 'doughnut',
-        data: {
-          labels: ["Unsolved, didn't attempt.", 'Solved!', 'Skipped, but attempted.'],
-          datasets: [
-            {
-              data: [unsolved, solved, skipped],
-              backgroundColor: ['hsl(348, 100%, 61%)', 'hsl(141, 71%, 48%)', 'hsl(48, 100%, 67%)'],
-              hoverOffset: 4
+  type: 'pie',
+  data: {
+    labels: ["Unsolved", 'Solved', 'Skipped'],
+    datasets: [
+      {
+        data: [unsolved, solved, skipped],
+        backgroundColor: ['hsl(348, 100%, 61%)', 'hsl(141, 71%, 48%)', 'hsl(48, 100%, 67%)'],
+        hoverOffset: 3
+      }
+    ],
+  },
+  options: {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            var label = context.label || '';
+            if (label) {
+              label += '   ';
             }
-          ]
+            var value = context.parsed || 0;
+            var percentage = value / context.dataset.data.reduce((a, b) => a + b) * 100;
+            percentage = percentage.toFixed(2);
+            label = percentage + '%';
+            return label;
+          }
         }
-      })
+      }
+    }
+  }
+});
     } else {
       document.getElementById('showWhenZero').classList.remove('hidden')
     }

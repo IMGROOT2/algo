@@ -7,7 +7,8 @@
       <a
         :href="'https://github.com/IMGROOT2/algo/releases/tag/v' + update.release.version"
         target="_blank"
-        class="font-semibold text-blue-500 hover:text-blue-600"
+        class="font-semibold text-blue-400 hover:text-blue-500"
+        aria-label="View the latest Algo release."
       >
         <span class="mx-1" aria-hidden="true">View Release</span>
         <span class="icon relative" style="top: 1px">
