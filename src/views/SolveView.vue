@@ -1,14 +1,42 @@
 <template>
-    <main class="flex items-center justify-evenly w-full mx-auto min-h-screen">
-        <div class="flex flex-col items-center justify-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5">
+    <main class="flex flex-grow flex-row items-center justify-evenly w-screen mx-auto min-h-screen">
+        <div class="flex flex-col items-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5 w-1/5 h-[calc(100vh-10rem)]">
             <h1 class="text-3xl text-gray-600 dark:text-white font-bold mb-8">Options</h1>
-            <div>
-                <!-- finish from here -->
+            <div id="diff-dropdown">
+                <button id="diff-trigger" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><span id="diff-label">Difficulty</span> <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg></button>
+                <!-- Dropdown menu -->
+                <div id="diff-menu" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Bronze</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Silver</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Gold</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Platinum</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="my-3">
+                <button id="generate-button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><span class="diff-label">New Problem</span></button>
+                <div id="recordstatus">
+                    <p class="text-gray-900 dark:text-white text-xl">Record Status</p>
+                    <button id="green" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="button"><span class="diff-label">Green</span></button>
+                    <button id="yellow" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800" type="button"><span class="diff-label">Yellow</span></button>
+                    <button id="red" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" type="button"><span class="diff-label">Red</span></button>
+                </div>
             </div>
         </div>
-      <div>
+      <div class="w-2/5 h-[calc(100vh-10rem)]">
         <Loader size="16" id="problem-loader" class="hidden" />
-        <div class=" w-screen lg:w-auto" id="problem">
+        <div class="lg:w-auto" id="problem">
             <div class="py-4">
             <div class="mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div>
@@ -60,18 +88,18 @@ import createToast from '../toast';
 onMounted(() => {
 
 const options = {
-    label: document.getElementById("diff-label"),
-    trigger: document.getElementById("diff-trigger"),
-    menu: document.getElementById("diff-menu"),
-    items: document.getElementsByClassName("dropdown-item"),
-    generate: document.getElementById("generate-button"),
-    dropdown: document.getElementById("diff-dropdown"),
-    green: document.getElementById("green"),
-    yellow: document.getElementById("yellow"),
-    red: document.getElementById("red"),
-    record: document.getElementById("recordstatus"),
-    toggleModal: document.getElementsByClassName("toggleModal"),
-    recordModal: document.getElementById("recordModal")
+    label: document.getElementById("diff-label"), // done
+    trigger: document.getElementById("diff-trigger"), // done
+    menu: document.getElementById("diff-menu"), // done
+    items: document.getElementsByClassName("dropdown-item"), // done
+    generate: document.getElementById("generate-button"), // done
+    dropdown: document.getElementById("diff-dropdown"),  // done
+    green: document.getElementById("green"), // done
+    yellow: document.getElementById("yellow"), // done
+    red: document.getElementById("red"), // done
+    record: document.getElementById("recordstatus"), // done
+    toggleModal: document.getElementsByClassName("toggleModal"), // done
+    recordModal: document.getElementById("recordModal") // done
 }
 
 const problem = {
@@ -93,7 +121,7 @@ onAuthStateChanged(auth, async auser => {
             options.label.innerText = localStorage.getItem("options");
             for (let i = 0; i < options.items.length; i++) {
                 if (options.items[i].innerText === localStorage.getItem("options")) {
-                    options.items[i].classList.add("is-active");
+                    options.items[i].classList.add("bg-gray-100", "dark:bg-gray-600", "dark:text-white");
                 }
             }
         }
@@ -386,14 +414,14 @@ onAuthStateChanged(auth, async auser => {
 });
 for (let i = 0; i < options.items.length; i++) {
     options.items[i].addEventListener("click", () => {
-        options.dropdown.classList.toggle("is-active");
+        options.menu.classList.toggle("hidden");
         options.label.innerText = options.items[i].innerText;
         let previous = localStorage.getItem("options");
         localStorage.setItem("options", options.items[i].innerText);
         for (let j = 0; j < options.items.length; j++) {
-            options.items[j].classList.remove("is-active");
+            options.items[j].classList.remove("bg-gray-100", "dark:bg-gray-600", "dark:text-white");
         }
-        options.items[i].classList.add("is-active");
+        options.items[i].classList.add("bg-gray-100", "dark:bg-gray-600", "dark:text-white");
         if (previous !== localStorage.getItem("options")) {
             options.generate.classList.toggle("is-loading");
             problem.problem.classList.toggle("hidden");
@@ -543,7 +571,7 @@ async function generateProblem(idType, data, user) {
 }
 
 options.trigger.addEventListener("click", () => {
-    options.dropdown.classList.toggle("is-active");
+    options.menu.classList.toggle("hidden");
 });
 
 async function retrieveUserDoc(db, user) {

@@ -1,7 +1,7 @@
 <template>
   <div class="hidden sm:mb-8 sm:flex sm:justify-center">
     <div
-      class="relative rounded-full px-3 py-1 text-sm leading-6 ring-1 text-white dark:bg-slate-800 bg-zinc-700 m-1 hover:ring-blue-500 transition-all hover:scale-110"
+      class="relative rounded-full px-3 py-1 text-sm leading-6 ring-1 text-white dark:bg-slate-800 bg-zinc-700 m-1 hover:ring-blue-500 transition-all hover:scale-110 duration-400"
     >
       <span class="font-bold">{{ update.release.version }}</span> - {{ update.release.text }}
       <a

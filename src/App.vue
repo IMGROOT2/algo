@@ -1,6 +1,6 @@
 <template>
   <div id="theme-div" class="transition-all">
-    <div class="bg-white dark:bg-[#1e1e1e] transition-all">
+    <div class="bg-white dark:bg-[#1e1e1e] transition-all duration-600">
       <!-- theme div -->
       <Navbar />
       <RouterView v-slot="{ Component }">
