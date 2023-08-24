@@ -1,5 +1,5 @@
 <template>
-    <main class="flex flex-grow flex-row items-center w-screen min-h-screen">
+    <main class="flex flex-grow flex-row items-center w-full min-h-screen">
         <div class="flex flex-col items-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5 w-2/5 h-full ml-8">
             <h1 class="text-3xl text-gray-600 dark:text-white font-bold mb-8">Options</h1>
             <div id="diff-dropdown">
@@ -60,7 +60,7 @@
             <div class="dark:bg-zinc-800 bg-zinc-300 p-5 rounded-lg mx-3">
             <div class="p-4 lg:p-8">
                 <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-                <p class="mb-4" id="problem-text"></p>
+                    <p class="mb-4" id="problem-text"></p>
                 </div>
             </div>
             </div>
