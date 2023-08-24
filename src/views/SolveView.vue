@@ -1,6 +1,6 @@
 <template>
-    <main class="flex flex-grow flex-row items-center justify-evenly w-screen mx-auto min-h-screen">
-        <div class="flex flex-col items-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5 w-1/5 h-[calc(100vh-10rem)]">
+    <main class="flex flex-grow flex-row items-center w-screen min-h-screen">
+        <div class="flex flex-col items-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5 w-2/5 h-full ml-8">
             <h1 class="text-3xl text-gray-600 dark:text-white font-bold mb-8">Options</h1>
             <div id="diff-dropdown">
                 <button id="diff-trigger" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><span id="diff-label">Difficulty</span> <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -34,11 +34,11 @@
                 </div>
             </div>
         </div>
-      <div class="w-2/5 h-[calc(100vh-10rem)]">
+      <div class="w-full mr-8 grow flex h-auto">
         <Loader size="16" id="problem-loader" class="hidden" />
-        <div class="lg:w-auto" id="problem">
+        <div id="problem">
             <div class="py-4">
-            <div class="mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div class=" flex items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div>
                 <h1
                     class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-700"
@@ -58,7 +58,7 @@
             </div>
             </div>
             <div class="dark:bg-zinc-800 bg-zinc-300 p-5 rounded-lg mx-3">
-            <div class="p-4 mx-auto lg:p-8">
+            <div class="p-4 lg:p-8">
                 <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
                 <p class="mb-4" id="problem-text"></p>
                 </div>
