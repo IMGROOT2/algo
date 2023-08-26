@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="show"
-    class="flex items-center max-w-md p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-zinc-800 z-50 relative transition-transform transform my-3"
+    class="flex items-center max-w-md p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-slate-800 z-50 relative transition-transform transform my-3"
     :class="{ 'translate-x-0': show }"
     role="alert"
   >

@@ -58,7 +58,8 @@
             <router-link
               to="/login"
               id="nav-btn-register-login"
-              class="btn-register-login nav-not-logged-in hidden dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
+              v-if = "loggedIn === false"
+              class="btn-register-login dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
               >Register - Log In</router-link
             >
             <button
@@ -164,7 +165,8 @@
       >
       <router-link
         to="/login"
-        class="nav-not-logged-in hidden btn-register-login dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
+        v-if = "loggedIn === false"
+        class="btn-register-login dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
         >Register - Log In</router-link
       >
     </div>
@@ -247,13 +249,15 @@
   </div>
 </template>
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import AlgoFull from '../assets/images/algologofull.png'
 import Loader from './Loader.vue'
 import createToast from '../toast'
 import { auth } from '../app-config'
 import { onAuthStateChanged } from 'firebase/auth'
 import * as problems from '../public/data/data.json'
+
+let loggedIn =  ref(false)
 
 onMounted(() => {
   const loginButton = document.getElementsByClassName('btn-register-login')
@@ -264,8 +268,6 @@ onMounted(() => {
   const profileImage = document.getElementById('profile-image')
   const noPhoto = document.getElementById('noPhoto')
   const hasPhoto = document.getElementById('hasPhoto')
-  const navNotLoggedIn = document.getElementsByClassName('nav-not-logged-in')
-  const navLoggedIn = document.getElementsByClassName('nav-logged-in')
   const profileMenuLoader = document.getElementById('profile-menu-loader')
   const userMenuButton = document.getElementById('user-menu-button')
   const profileMenu = document.getElementById('profileMenu')
@@ -416,34 +418,11 @@ onMounted(() => {
         // An error happened.
       })
   })
-
-  // for each element in navNotLoggedIn, add hidden class
-  function navNotLoggedInToggle(addorremove, theclass) {
-    for (let i = 0; i < navNotLoggedIn.length; i++) {
-      if (addorremove === 'add') {
-        navNotLoggedIn[i].classList.add(theclass)
-      } else if (addorremove === 'remove') {
-        navNotLoggedIn[i].classList.remove(theclass)
-      }
-    }
-  }
-
-  function navLoggedInToggle(addorremove, theclass) {
-    for (let i = 0; i < navLoggedIn.length; i++) {
-      if (addorremove === 'add') {
-        navLoggedIn[i].classList.add(theclass)
-      } else if (addorremove === 'remove') {
-        navLoggedIn[i].classList.remove(theclass)
-      }
-    }
-  }
-
   onAuthStateChanged(auth, (user) => {
     profileMenuLoader.classList.remove('hidden')
     prepareSearch()
     if (user) {
-      navLoggedInToggle('remove', 'hidden')
-      navNotLoggedInToggle('add', 'hidden')
+      loggedIn.value = true
       navBtnRegisterLogin.classList.remove('lg:block')
       navBtnRegisterLogin.classList.add('lg:hidden')
       profileLoader.classList.add('hidden')
@@ -470,10 +449,9 @@ onMounted(() => {
         noPhoto.classList.remove('hidden')
       }
     } else {
+      loggedIn.value = false
       navBtnRegisterLogin.classList.add('lg:block')
       navBtnRegisterLogin.classList.remove('lg:hidden')
-      navLoggedInToggle('add', 'hidden')
-      navNotLoggedInToggle('remove', 'hidden')
       profileMenuLoader.classList.add('hidden')
       document.getElementById('nav-btn-register-login').classList.add('hidden', 'sm:block')
       profileLoader.classList.remove('hidden')
@@ -504,3 +482,8 @@ onMounted(() => {
   }
 })
 </script>
+<style scoped>
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+</style>

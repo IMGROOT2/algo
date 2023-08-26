@@ -150,6 +150,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import * as problems from '../public/data/data.json'
 import { onMounted } from 'vue'
 import Loader from '../components/Loader.vue'
+import { createToast } from '../toast'
 let pSeen = []
 let pSolved = []
 let pSkipped = []
@@ -245,6 +246,7 @@ onMounted(() => {
         if (info.division === 'platinum') {
           span.classList.add('is-platinum')
         }
+        console.log(info)
         let toPush = id + ' ' + info.title.substring(11).toLowerCase() + ' ' + info.division
         pSeenSearch.push(toPush)
         a.classList.add(
@@ -343,6 +345,7 @@ onMounted(() => {
     problemSearch.value = ''
     statsModal.classList.toggle('hidden')
   }
+  try {
   for (let i = 0; i < toggleStatsModal.length; i++) {
     toggleStatsModal[i].addEventListener('click', () => {
       statsModal.classList.toggle('hidden')
@@ -370,15 +373,19 @@ onMounted(() => {
         numUnsolved.innerText = problemsUnsolved.length
 
         if (problemsSeen.length === 0) {
+          console.log("?d");
           detail['seen'].disabled = true
         }
         if (problemsSolved.length === 0) {
+          console.log("?d");
           detail['solved'].disabled = true
         }
         if (problemsSkipped.length === 0) {
+          console.log("?d");
           detail['skipped'].disabled = true
         }
         if (problemsUnsolved.length === 0) {
+          console.log("?d");
           detail['unsolved'].disabled = true
         }
 
@@ -391,7 +398,12 @@ onMounted(() => {
         await genChart(problemsSolved.length, problemsSkipped.length, problemsUnsolved.length)
         for (const [key, value] of Object.entries(detail)) {
           value.addEventListener('click', () => {
-            showStatsModal(key, user)
+            try {
+              showStatsModal(key, user)
+            }
+            catch (e) {
+              createToast('An error occurred while loading the statistics modal.', 'fa-triangle-exclamation')
+            }
           })
         }
       })
@@ -399,7 +411,10 @@ onMounted(() => {
       location.href = '/login'
     }
   })
-
+}
+catch (e) {
+  createToast('An error occurred while loading the statistics page.', 'fa-triangle-exclamation')
+}
   async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, 'user_data', user.uid))
   }
@@ -408,37 +423,37 @@ onMounted(() => {
     if (solved + skipped + unsolved !== 0) {
       document.getElementById('showWhenZero').classList.add('hidden')
       new Chart(chart, {
-  type: 'pie',
-  data: {
-    labels: ["Unsolved", 'Solved', 'Skipped'],
-    datasets: [
-      {
-        data: [unsolved, solved, skipped],
-        backgroundColor: ['hsl(348, 100%, 61%)', 'hsl(141, 71%, 48%)', 'hsl(48, 100%, 67%)'],
-        hoverOffset: 3
-      }
-    ],
-  },
-  options: {
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: function(context) {
-            var label = context.label || '';
-            if (label) {
-              label += '   ';
+        type: 'pie',
+        data: {
+          labels: ['Unsolved', 'Solved', 'Skipped'],
+          datasets: [
+            {
+              data: [unsolved, solved, skipped],
+              backgroundColor: ['hsl(348, 100%, 61%)', 'hsl(141, 71%, 48%)', 'hsl(48, 100%, 67%)'],
+              hoverOffset: 3
             }
-            var value = context.parsed || 0;
-            var percentage = value / context.dataset.data.reduce((a, b) => a + b) * 100;
-            percentage = percentage.toFixed(2);
-            label = percentage + '%';
-            return label;
+          ]
+        },
+        options: {
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  var label = context.label || ''
+                  if (label) {
+                    label += '   '
+                  }
+                  var value = context.parsed || 0
+                  var percentage = (value / context.dataset.data.reduce((a, b) => a + b)) * 100
+                  percentage = percentage.toFixed(2)
+                  label = percentage + '%'
+                  return label
+                }
+              }
+            }
           }
         }
-      }
-    }
-  }
-});
+      })
     } else {
       document.getElementById('showWhenZero').classList.remove('hidden')
     }
