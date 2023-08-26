@@ -1,28 +1,27 @@
 <template>
-    <main class="flex flex-row items-center w-full h-screen justify-evenly">
-            <div class="flex-col items-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5 w-1/4 ml-8">
-                <h1 class="text-3xl text-gray-600 dark:text-white font-bold mb-8">Options</h1>
-                <div id="diff-dropdown">
-                    <button id="diff-trigger" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><span id="diff-label">Difficulty</span> <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                    </svg></button>
-                    <!-- Dropdown menu -->
-                    <div id="diff-menu" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Bronze</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Silver</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Gold</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Platinum</a>
-                        </li>
-                        </ul>
-                    </div>
+    <main class="flex items-center w-full min-h-screen flex-1 overflow-y-hidden">
+        <div class="flex flex-col items-center bg-zinc-300 dark:bg-zinc-800 rounded-lg p-5 w-1/3 h-full ml-8">
+            <h1 class="text-3xl text-gray-600 dark:text-white font-bold mb-8">Options</h1>
+            <div id="diff-dropdown">
+                <button id="diff-trigger" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><span id="diff-label">Difficulty</span> <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg></button>
+                <!-- Dropdown menu -->
+                <div id="diff-menu" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Bronze</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Silver</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Gold</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Platinum</a>
+                    </li>
+                    </ul>
                 </div>
                 <div class="my-3">
                     <button id="generate-button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><span class="diff-label">New Problem</span></button>
@@ -34,10 +33,10 @@
                     </div>
                 </div>
             </div>
-        <div class="flex-1 flex h-screen mr-8">
-            <Loader size="16" id="problem-loader" class="hidden" />
-            <div class="flex-1 overflow-y-scroll">
-                <div id="problem" class="mx-auto">
+        </div>
+      <div class="w-full mr-8 flex">
+        <Loader size="16" id="problem-loader" class="hidden" />
+        <div id="problem">
             <div class="py-4">
             <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div>
@@ -59,9 +58,9 @@
             </div>
             </div>
             <div class="dark:bg-zinc-800 bg-zinc-300 p-5 rounded-lg mx-3">
-            <div class="p-4 lg:p-8">
-                <div class="max-w-screen-xl text-gray-500 sm:text-lg dark:text-gray-400">
-                <p class="mb-4" id="problem-text"></p>
+            <div class="p-4 lg:p-8 flex flex-1 h-screen">
+                <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400 flex-1 overflow-y-auto">
+                    <p class="mb-4" id="problem-text"></p>
                 </div>
             </div>
             </div>
@@ -602,3 +601,8 @@ async function checkIfFS(db, user) {
 })
 
 </script>
+<style scoped>
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+</style>
