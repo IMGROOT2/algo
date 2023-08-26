@@ -150,7 +150,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import * as problems from '../public/data/data.json'
 import { onMounted } from 'vue'
 import Loader from '../components/Loader.vue'
-import { createToast } from '../toast'
+import createToast from '../toast'
 let pSeen = []
 let pSolved = []
 let pSkipped = []
