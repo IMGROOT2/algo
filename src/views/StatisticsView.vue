@@ -346,75 +346,76 @@ onMounted(() => {
     statsModal.classList.toggle('hidden')
   }
   try {
-  for (let i = 0; i < toggleStatsModal.length; i++) {
-    toggleStatsModal[i].addEventListener('click', () => {
-      statsModal.classList.toggle('hidden')
-    })
-  }
-
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      name.innerText = user.displayName
-      await retrieveUserDoc(db, user).then((adoc) => {
-        console.log('General info')
-        console.log(adoc.data())
+    for (let i = 0; i < toggleStatsModal.length; i++) {
+      toggleStatsModal[i].addEventListener('click', () => {
+        statsModal.classList.toggle('hidden')
       })
-
-      await retrieveUserDoc(db, user).then(async (adoc) => {
-        const data = adoc.data()
-        const problemsSeen = data['problemsSeen']
-        const problemsSolved = data['problemsSolved']
-        const problemsSkipped = data['problemsSkipped']
-        const problemsUnsolved = data['problemsUnsolved']
-
-        numSeen.innerText = problemsSeen.length
-        numSolved.innerText = problemsSolved.length
-        numSkipped.innerText = problemsSkipped.length
-        numUnsolved.innerText = problemsUnsolved.length
-
-        if (problemsSeen.length === 0) {
-          console.log("?d");
-          detail['seen'].disabled = true
-        }
-        if (problemsSolved.length === 0) {
-          console.log("?d");
-          detail['solved'].disabled = true
-        }
-        if (problemsSkipped.length === 0) {
-          console.log("?d");
-          detail['skipped'].disabled = true
-        }
-        if (problemsUnsolved.length === 0) {
-          console.log("?d");
-          detail['unsolved'].disabled = true
-        }
-
-        pSeen = problemsSeen
-        pSolved = problemsSolved
-        pSkipped = problemsSkipped
-        pUnsolved = problemsUnsolved
-        load.classList.add('hidden')
-        stats.classList.remove('hidden')
-        await genChart(problemsSolved.length, problemsSkipped.length, problemsUnsolved.length)
-        for (const [key, value] of Object.entries(detail)) {
-          value.addEventListener('click', () => {
-            try {
-              showStatsModal(key, user)
-            }
-            catch (e) {
-              createToast('An error occurred while loading the statistics modal.', 'fa-triangle-exclamation')
-            }
-          })
-        }
-      })
-    } else {
-      location.href = '/login'
     }
-  })
-}
-catch (e) {
-  createToast('An error occurred while loading the statistics page.', 'fa-triangle-exclamation')
-}
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        name.innerText = user.displayName
+        await retrieveUserDoc(db, user).then((adoc) => {
+          console.log('General info')
+          console.log(adoc.data())
+        })
+
+        await retrieveUserDoc(db, user).then(async (adoc) => {
+          const data = adoc.data()
+          const problemsSeen = data['problemsSeen']
+          const problemsSolved = data['problemsSolved']
+          const problemsSkipped = data['problemsSkipped']
+          const problemsUnsolved = data['problemsUnsolved']
+
+          numSeen.innerText = problemsSeen.length
+          numSolved.innerText = problemsSolved.length
+          numSkipped.innerText = problemsSkipped.length
+          numUnsolved.innerText = problemsUnsolved.length
+
+          if (problemsSeen.length === 0) {
+            console.log('?d')
+            detail['seen'].disabled = true
+          }
+          if (problemsSolved.length === 0) {
+            console.log('?d')
+            detail['solved'].disabled = true
+          }
+          if (problemsSkipped.length === 0) {
+            console.log('?d')
+            detail['skipped'].disabled = true
+          }
+          if (problemsUnsolved.length === 0) {
+            console.log('?d')
+            detail['unsolved'].disabled = true
+          }
+
+          pSeen = problemsSeen
+          pSolved = problemsSolved
+          pSkipped = problemsSkipped
+          pUnsolved = problemsUnsolved
+          load.classList.add('hidden')
+          stats.classList.remove('hidden')
+          await genChart(problemsSolved.length, problemsSkipped.length, problemsUnsolved.length)
+          for (const [key, value] of Object.entries(detail)) {
+            value.addEventListener('click', () => {
+              try {
+                showStatsModal(key, user)
+              } catch (e) {
+                createToast(
+                  'An error occurred while loading the statistics modal.',
+                  'fa-triangle-exclamation'
+                )
+              }
+            })
+          }
+        })
+      } else {
+        location.href = '/login'
+      }
+    })
+  } catch (e) {
+    createToast('An error occurred while loading the statistics page.', 'fa-triangle-exclamation')
+  }
   async function retrieveUserDoc(db, user) {
     return await getDoc(doc(db, 'user_data', user.uid))
   }
