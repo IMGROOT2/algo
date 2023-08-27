@@ -5,7 +5,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './Router'
 import '@/assets/css/style.css'
-import '@/assets/css/core.css'
 
 if (location.host === 'algo-usaco.web.app') location.host = 'algousaco.com'
 

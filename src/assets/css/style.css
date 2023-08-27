@@ -1,3 +1,21 @@
+/* START core */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Poppins-M;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+  font-family: Poppins-R;
+  src: url(../fonts/Poppins-Regular.ttf);
+}
+
+/* END core */
+
 body,
 html {
   font-family: Poppins-M;
@@ -51,7 +69,7 @@ pre {
   margin-bottom: 0.2rem;
   color: white;
   background-color: #70747a;
-  overflow: auto;
+  overflow-x: scroll;
 }
 
 @media screen and (max-width: 768px) {

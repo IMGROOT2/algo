@@ -130,14 +130,14 @@
       <Loader size="16" />
     </div>
     <div
-      class="w-full mr-8 flex items-center justify-center h-full"
+      class="w-full mr-8 flex items-center justify-center text-center"
       id="problem-gen-dialog"
       v-show="!problemShown && !loading"
     >
-      <h1 class="text-gray-700 dark:text-white text-2xl">Generate a new problem to get started!</h1>
+      <h1 class="text-gray-700 dark:text-white text-2xl text-center justify-center">Generate a new problem to get started!</h1>
     </div>
     <div class="w-full mr-8 flex" id="problem" v-show="!loading && problemShown">
-      <div class="mx-auto">
+      <div class="mx-auto w-screen md:w-auto">
         <div class="py-4">
           <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
             <div>

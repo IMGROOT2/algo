@@ -6,7 +6,7 @@
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <button
           id="mobileMenuButton"
-          class="inline-flex items-center justify-center rounded-md p-2 text-gray-600"
+          class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 dark:text-white"
           type="button"
           aria-controls="mobile-menu"
           aria-expanded="false"
@@ -58,8 +58,8 @@
             <router-link
               to="/login"
               id="nav-btn-register-login"
-              v-if="!loggedIn"
-              class="btn-register-login dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
+              v-show="!loggedIn"
+              class="lg:block hidden btn-register-login dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
               >Register - Log In</router-link
             >
             <button
@@ -165,7 +165,7 @@
       >
       <router-link
         to="/login"
-        v-if="!loggedIn"
+        v-show="!loggedIn"
         class="btn-register-login dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
         >Register - Log In</router-link
       >
