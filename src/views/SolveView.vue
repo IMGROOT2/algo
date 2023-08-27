@@ -2,7 +2,7 @@
   <main class="lg:flex items-center w-full flex-1">
     <button
       id="sidebar-switcher"
-      class="hidden lg:block transition-all w-8 h-8 absolute top-[13vh] left-[5vh]"
+      class="hidden lg:block transition-all w-8 h-8 absolute top-[13vh] left-[5vh] duration-500"
     >
       <i
         class="fa-solid fa-circle-chevron-left text-2xl cursor-pointer text-emerald-300 hover:text-emerald-400 dark:text-emerald-400 dark:hover:text-emerald-500"
@@ -10,7 +10,7 @@
     </button>
     <button
       id="sidebar-switcher-mobile"
-      class="block lg:hidden transition-all w-8 h-8 relative mx-auto mt-2"
+      class="block lg:hidden transition-all w-8 h-8 relative mx-auto mt-2 duration-500"
     >
       <i
         class="fa-solid fa-circle-chevron-up text-2xl cursor-pointer text-emerald-300 hover:text-emerald-400 dark:text-emerald-400 dark:hover:text-emerald-500"
@@ -18,11 +18,11 @@
     </button>
     <div
       id="sidebar"
-      class="flex flex-col items-center bg-zinc-100 dark:bg-zinc-800 rounded-lg p-5 lg:w-[20vw] lg:h-screen lg:ml-8 text-center mt-5 lg:mt-20 mx-5 transition-all mb-5"
+      class="flex flex-col items-center bg-zinc-100 dark:bg-zinc-800 rounded-lg p-5 lg:w-[20vw] lg:h-screen lg:ml-8 text-center mt-5 lg:mt-20 mx-5 transition-all mb-5 duration-500"
     >
       <h1 class="text-3xl text-gray-600 dark:text-white font-bold mb-8">Options</h1>
       <div
-        class="shadow-xl rounded-lg p-3 my-3 border-2 dark:border-gray-700 border-gray-200 w-11/12"
+        class="shadow-xl rounded-lg p-3 my-3 border-2 dark:border-gray-700 border-gray-200 w-11/12 transition-all"
       >
         <p class="text-gray-900 dark:text-white text-xl mb-3">Configure Problem</p>
         <div id="diff-dropdown">
@@ -31,7 +31,7 @@
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button"
           >
-            <span id="diff-label">Difficulty</span>
+            <span id="diff-label">{{ optionsExists ? currentOption : 'Difficulty' }} </span>
             <svg
               class="w-2.5 h-2.5 ml-2.5"
               aria-hidden="true"
@@ -88,6 +88,7 @@
         <button
           id="generate-button"
           class="mt-2 text-xs font-medium px-5 py-2.5 text-white focus:outline-none focus:ring-2 rounded-lg transition-all duration-200 bg-gradient-to-t from-[#3072D6] to-[#27C877] bg-size-200 bg-pos-0 hover:bg-pos-100 focus:ring-white"
+          v-show="!problemShown && !loading"
         >
           <span>New Problem</span>
         </button>
@@ -95,6 +96,7 @@
       <div
         id="recordstatus"
         class="shadow-xl rounded-lg p-3 my-3 border-2 dark:border-gray-700 border-gray-200 w-11/12"
+        v-show="problemShown"
       >
         <p class="text-gray-900 dark:text-white text-xl mb-3">Record Status</p>
         <button
@@ -120,10 +122,21 @@
         </button>
       </div>
     </div>
-    <div class="w-full mr-8 flex items-center justify-center h-full" id="problem-loader">
+    <div
+      class="w-full mr-8 flex items-center justify-center h-full"
+      id="problem-loader"
+      v-show="loading"
+    >
       <Loader size="16" />
     </div>
-    <div class="hidden w-full mr-8 flex" id="problem">
+    <div
+      class="w-full mr-8 flex items-center justify-center h-full"
+      id="problem-gen-dialog"
+      v-show="!problemShown && !loading"
+    >
+      <h1 class="text-gray-700 dark:text-white text-2xl">Generate a new problem to get started!</h1>
+    </div>
+    <div class="w-full mr-8 flex" id="problem" v-show="!loading && problemShown">
       <div class="mx-auto">
         <div class="py-4">
           <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
@@ -135,7 +148,7 @@
               <p class="text-gray-400 text-sm lg:text-lg" id="problem-subtitle"></p>
             </div>
             <div class="text-right">
-              <span id="problem-id" class="text-white rounded-md px-2 py-1 text-sm">313</span>
+              <span id="problem-id" class="text-white rounded-md px-2 py-1 text-sm"></span>
               <p class="dark:text-white text-sm lg:text-lg mt-3">
                 View on <a href="#" id="problem-link" class="page-link">usaco.org</a>
               </p>
@@ -169,8 +182,14 @@ import 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.j
 import { auth, db } from '../app-config'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import createToast from '../toast'
+import router from '../Router'
+
+let loading = ref(true)
+let problemShown = ref(false)
+let optionsExists = ref(false)
+let currentOption = ref('')
 
 onMounted(() => {
   const options = {
@@ -195,7 +214,8 @@ onMounted(() => {
     title: document.getElementById('problem-title'),
     subtitle: document.getElementById('problem-subtitle'),
     text: document.getElementById('problem-text'),
-    loader: document.getElementById('problem-loader')
+    loader: document.getElementById('problem-loader'),
+    genDialog: document.getElementById('problem-gen-dialog')
   }
 
   const sidebar = {
@@ -209,99 +229,96 @@ onMounted(() => {
     user = auser
     if (user) {
       console.log(user.uid)
-      await checkIfFS(db, auser)
-      if (localStorage.getItem('options') != null) {
-        options.label.innerText = localStorage.getItem('options')
+      await checkIfFS(db, user)
+      if (localStorage.getItem('options') !== null) {
         for (let i = 0; i < options.items.length; i++) {
           if (options.items[i].innerText === localStorage.getItem('options')) {
             options.items[i].classList.add('bg-gray-100', 'dark:bg-gray-600', 'dark:text-white')
+            currentOption.value = options.items[i].innerText
+            optionsExists.value = true
           }
         }
       }
       try {
-        if (localStorage.getItem('problem') !== null || localStorage.getItem('options') !== null) {
-          //
-          // problem.problem.classList.toggle("hidden");
-          // problem.loader.classList.toggle("hidden");
+        if (localStorage.getItem('problem') !== null) {
           const result = await generateProblem(
             'custom-id',
             [localStorage.getItem('problem'), localStorage.getItem('options')],
-            user    
+            user
           )
-          if (result === 'error') {
+          if (result === 'success') {
+            loading.value = false
+            problemShown.value = true
+            createToast('Restored previous problem!', 'fa-circle-check')
+          } else if (result === 'error') {
             createToast("Oops! Couldn't load previous problem.", 'fa-triangle-exclamation')
             console.error('Issue with generateProblem().')
-            problem.problem.classList.toggle('hidden')
-            problem.loader.classList.toggle('hidden')
-          } else if (result === 'success') {
-            options.generate.classList.toggle('hidden')
-            problem.problem.classList.toggle('hidden')
-            problem.loader.classList.toggle('hidden')
-            problem.link.classList.remove('hidden')
-            options.record.classList.remove('hidden')
-            createToast('Restored previous problem!', 'fa-circle-check')
+            loading.value = false
+            problemShown.value = false
           }
+        } else {
+          loading.value = false
+          problemShown.value = false
         }
       } catch (err) {
         createToast("Oops! Couldn't load previous problem.", 'fa-triangle-exclamation')
-
-        problem.problem.classList.toggle('hidden')
-        problem.loader.classList.toggle('hidden')
+        loading.value = false
+        problemShown.value = false
       }
 
       options.green.addEventListener('click', async () => {
-        problem.problem.classList.toggle('hidden')
-        problem.loader.classList.toggle('hidden')
-        try {
-          // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problemsSeen" and "problemsSolved"
-          // use v9
-          await retrieveUserDoc(db, user).then((adoc) => {
-            const data = adoc.data()
-            const problemsSeen = data['problemsSeen']
-            const problemsSolved = data['problemsSolved']
-            const problemsSkipped = data['problemsSkipped']
-            const problemsUnsolved = data['problemsUnsolved']
-            // if the problem is not in the problems seen array, add it
-            if (!problemsSeen.includes(localStorage.getItem('problem'))) {
-              problemsSeen.push(localStorage.getItem('problem'))
-            }
-            // if the problem is not in the problems solved array, add it
-            if (!problemsSolved.includes(localStorage.getItem('problem'))) {
-              problemsSolved.push(localStorage.getItem('problem'))
-            }
-            // if the problem is in the problems unsolved array, remove it
-            if (problemsUnsolved.includes(localStorage.getItem('problem'))) {
-              const index = problemsUnsolved.indexOf(localStorage.getItem('problem'))
-              if (index > -1) {
-                problemsUnsolved.splice(index, 1)
+        if (optionsExists.value === false) {
+          createToast(
+            "Oops! You don't have a problem to record your status on yet. Generate a problem, and try again.",
+            'fa-triangle-exclamation'
+          )
+          return
+        } else {
+          loading.value = true
+          problemShown.value = false
+          try {
+            await retrieveUserDoc(db, user).then((adoc) => {
+              const data = adoc.data()
+              const problemsSeen = data['problemsSeen']
+              const problemsSolved = data['problemsSolved']
+              const problemsSkipped = data['problemsSkipped']
+              const problemsUnsolved = data['problemsUnsolved']
+              // if the problem is not in the problems seen array, add it
+              if (!problemsSeen.includes(localStorage.getItem('problem'))) {
+                problemsSeen.push(localStorage.getItem('problem'))
               }
-            }
-            // if the problem is in the problems skipped array, remove it
-            if (problemsSkipped.includes(localStorage.getItem('problem'))) {
-              const index = problemsSkipped.indexOf(localStorage.getItem('problem'))
-              if (index > -1) {
-                problemsSkipped.splice(index, 1)
+              // if the problem is not in the problems solved array, add it
+              if (!problemsSolved.includes(localStorage.getItem('problem'))) {
+                problemsSolved.push(localStorage.getItem('problem'))
               }
-            }
-            // update the document with the new arrays
-            updateDoc(doc(db, 'user_data', user.uid), {
-              problemsSeen: problemsSeen,
-              problemsSolved: problemsSolved,
-              problemsSkipped: problemsSkipped,
-              problemsUnsolved: problemsUnsolved
-            }).then(() => {
-              console.log('Updated user document.')
+              // if the problem is in the problems unsolved array, remove it
+              if (problemsUnsolved.includes(localStorage.getItem('problem'))) {
+                const index = problemsUnsolved.indexOf(localStorage.getItem('problem'))
+                if (index > -1) {
+                  problemsUnsolved.splice(index, 1)
+                }
+              }
+              // if the problem is in the problems skipped array, remove it
+              if (problemsSkipped.includes(localStorage.getItem('problem'))) {
+                const index = problemsSkipped.indexOf(localStorage.getItem('problem'))
+                if (index > -1) {
+                  problemsSkipped.splice(index, 1)
+                }
+              }
+              // update the document with the new arrays
+              updateDoc(doc(db, 'user_data', user.uid), {
+                problemsSeen: problemsSeen,
+                problemsSolved: problemsSolved,
+                problemsSkipped: problemsSkipped,
+                problemsUnsolved: problemsUnsolved
+              }).then(() => {
+                console.log(
+                  'Updated user document: Problem ID ' +
+                    localStorage.getItem('problem') +
+                    ' solved.'
+                )
+              })
             })
-          })
-          if (localStorage.getItem('options') === null) {
-            createToast(
-              "Oops! You haven't selected a difficulty. Select a difficulty and try again.",
-              'fa-triangle-exclamation'
-            )
-
-            problem.problem.classList.toggle('hidden')
-            problem.loader.classList.toggle('hidden')
-          } else {
             const result = await generateProblem(
               'random-id',
               localStorage.getItem('options').toLowerCase(),
@@ -314,76 +331,77 @@ onMounted(() => {
               )
               console.error('Issue with generateProblem().')
 
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
+              loading.value = false
+              problemShown.value = false
             } else if (result === 'success') {
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
-              problem.link.classList.remove('hidden')
-              options.generate.classList.add('hidden')
+              loading.value = false
+              problemShown.value = true
               createToast('New problem generated!', 'fa-circle-check')
             }
-          }
-        } catch (err) {
-          createToast(
-            'Error generating problem. Please try again later.',
-            'fa-triangle-exclamation'
-          )
+          } catch (err) {
+            createToast(
+              'Error generating problem. Please try again later.',
+              'fa-triangle-exclamation'
+            )
 
-          problem.problem.classList.toggle('hidden')
-          problem.loader.classList.toggle('hidden')
+            loading.value = false
+            problemShown.value = false
+          }
         }
       })
       options.yellow.addEventListener('click', async () => {
-        problem.problem.classList.toggle('hidden')
-        problem.loader.classList.toggle('hidden')
-        try {
-          // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problemsSeen" and "problemsSolved"
-          // use v9
-          await retrieveUserDoc(db, user).then((adoc) => {
-            const data = adoc.data()
-            const problemsSeen = data['problemsSeen']
-            const problemsSolved = data['problemsSolved']
-            const problemsSkipped = data['problemsSkipped']
-            const problemsUnsolved = data['problemsUnsolved']
-            if (!problemsSeen.includes(localStorage.getItem('problem'))) {
-              problemsSeen.push(localStorage.getItem('problem'))
-            }
-            if (!problemsSkipped.includes(localStorage.getItem('problem'))) {
-              problemsSkipped.push(localStorage.getItem('problem'))
-            }
-            if (problemsSolved.includes(localStorage.getItem('problem'))) {
-              const index = problemsSolved.indexOf(localStorage.getItem('problem'))
-              if (index > -1) {
-                problemsSolved.splice(index, 1)
+        if (optionsExists.value === false) {
+          createToast(
+            "Oops! You don't have a problem to record your status on yet. Generate a problem, and try again.",
+            'fa-triangle-exclamation'
+          )
+          return
+        } else {
+          loading.value = true
+          problemShown.value = false
+          try {
+            await retrieveUserDoc(db, user).then((adoc) => {
+              const data = adoc.data()
+              const problemsSeen = data['problemsSeen']
+              const problemsSolved = data['problemsSolved']
+              const problemsSkipped = data['problemsSkipped']
+              const problemsUnsolved = data['problemsUnsolved']
+              // if the problem is not in the problems seen array, add it
+              if (!problemsSeen.includes(localStorage.getItem('problem'))) {
+                problemsSeen.push(localStorage.getItem('problem'))
               }
-            }
-            if (problemsUnsolved.includes(localStorage.getItem('problem'))) {
-              const index = problemsUnsolved.indexOf(localStorage.getItem('problem'))
-              if (index > -1) {
-                problemsUnsolved.splice(index, 1)
+              // if the problem is not in the problems skipped array, add it
+              if (!problemsSkipped.includes(localStorage.getItem('problem'))) {
+                problemsSkipped.push(localStorage.getItem('problem'))
               }
-            }
-            // TODO: double check this is correct with splicing...
-            // update the document with the new arrays
-            updateDoc(doc(db, 'user_data', user.uid), {
-              problemsSeen: problemsSeen,
-              problemsSolved: problemsSolved,
-              problemsSkipped: problemsSkipped,
-              problemsUnsolved: problemsUnsolved
-            }).then(() => {
-              console.log('Updated user document.')
+              // if the problem is in the problems unsolved array, remove it
+              if (problemsUnsolved.includes(localStorage.getItem('problem'))) {
+                const index = problemsUnsolved.indexOf(localStorage.getItem('problem'))
+                if (index > -1) {
+                  problemsUnsolved.splice(index, 1)
+                }
+              }
+              // if the problem is in the problems solved array, remove it
+              if (problemsSolved.includes(localStorage.getItem('problem'))) {
+                const index = problemsSolved.indexOf(localStorage.getItem('problem'))
+                if (index > -1) {
+                  problemsSolved.splice(index, 1)
+                }
+              }
+              // update the document with the new arrays
+              updateDoc(doc(db, 'user_data', user.uid), {
+                problemsSeen: problemsSeen,
+                problemsSolved: problemsSolved,
+                problemsSkipped: problemsSkipped,
+                problemsUnsolved: problemsUnsolved
+              }).then(() => {
+                console.log(
+                  'Updated user document: Problem ID ' +
+                    localStorage.getItem('problem') +
+                    ' skipped.'
+                )
+              })
             })
-          })
-          if (localStorage.getItem('options') === null) {
-            createToast(
-              "Oops! You haven't selected a difficulty. Select a difficulty and try again.",
-              'fa-triangle-exclamation'
-            )
-
-            problem.problem.classList.toggle('hidden')
-            problem.loader.classList.toggle('hidden')
-          } else {
             const result = await generateProblem(
               'random-id',
               localStorage.getItem('options').toLowerCase(),
@@ -395,76 +413,75 @@ onMounted(() => {
                 'fa-triangle-exclamation'
               )
               console.error('Issue with generateProblem().')
-
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
             } else if (result === 'success') {
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
-              problem.link.classList.remove('hidden')
-              options.generate.classList.add('hidden')
+              loading.value = false
+              problemShown.value = true
               createToast('New problem generated!', 'fa-circle-check')
             }
-          }
-        } catch (err) {
-          createToast(
-            'Error generating problem. Please try again later.',
-            'fa-triangle-exclamation'
-          )
+          } catch (err) {
+            createToast(
+              'Error generating problem. Please try again later.',
+              'fa-triangle-exclamation'
+            )
 
-          problem.problem.classList.toggle('hidden')
-          problem.loader.classList.toggle('hidden')
+            loading.value = false
+            problemShown.value = false
+          }
         }
       })
       options.red.addEventListener('click', async () => {
-        problem.problem.classList.toggle('hidden')
-        problem.loader.classList.toggle('hidden')
-        try {
-          // in firestore, find the document with the id of the user. then add localstorage.getItem("problem") to the array called "problemsSeen" and "problemsSolved"
-          // use v9
-          await retrieveUserDoc(db, user).then((adoc) => {
-            const data = adoc.data()
-            const problemsSeen = data['problemsSeen']
-            const problemsSolved = data['problemsSolved']
-            const problemsSkipped = data['problemsSkipped']
-            const problemsUnsolved = data['problemsUnsolved']
-            if (!problemsSeen.includes(localStorage.getItem('problem'))) {
-              problemsSeen.push(localStorage.getItem('problem'))
-            }
-            if (!problemsUnsolved.includes(localStorage.getItem('problem'))) {
-              problemsUnsolved.push(localStorage.getItem('problem'))
-            }
-            if (problemsSolved.includes(localStorage.getItem('problem'))) {
-              const index = problemsSolved.indexOf(localStorage.getItem('problem'))
-              if (index > -1) {
-                problemsSolved.splice(index, 1)
+        if (optionsExists.value === false) {
+          createToast(
+            "Oops! You don't have a problem to record your status on yet. Generate a problem, and try again.",
+            'fa-triangle-exclamation'
+          )
+          return
+        } else {
+          loading.value = true
+          problemShown.value = false
+          try {
+            await retrieveUserDoc(db, user).then((adoc) => {
+              const data = adoc.data()
+              const problemsSeen = data['problemsSeen']
+              const problemsSolved = data['problemsSolved']
+              const problemsSkipped = data['problemsSkipped']
+              const problemsUnsolved = data['problemsUnsolved']
+              // if the problem is not in the problems seen array, add it
+              if (!problemsSeen.includes(localStorage.getItem('problem'))) {
+                problemsSeen.push(localStorage.getItem('problem'))
               }
-            }
-            if (problemsSkipped.includes(localStorage.getItem('problem'))) {
-              const index = problemsSkipped.indexOf(localStorage.getItem('problem'))
-              if (index > -1) {
-                problemsSkipped.splice(index, 1)
+              // if the problem is not in the problems unsolved array, add it
+              if (!problemsUnsolved.includes(localStorage.getItem('problem'))) {
+                problemsUnsolved.push(localStorage.getItem('problem'))
               }
-            }
-            // update the document with the new arrays
-            updateDoc(doc(db, 'user_data', user.uid), {
-              problemsSeen: problemsSeen,
-              problemsSolved: problemsSolved,
-              problemsSkipped: problemsSkipped,
-              problemsUnsolved: problemsUnsolved
-            }).then(() => {
-              console.log('Updated user document.')
+              // if the problem is in the problems solved array, remove it
+              if (problemsSolved.includes(localStorage.getItem('problem'))) {
+                const index = problemsSolved.indexOf(localStorage.getItem('problem'))
+                if (index > -1) {
+                  problemsSolved.splice(index, 1)
+                }
+              }
+              // if the problem is in the problems skipped array, remove it
+              if (problemsSkipped.includes(localStorage.getItem('problem'))) {
+                const index = problemsSkipped.indexOf(localStorage.getItem('problem'))
+                if (index > -1) {
+                  problemsSkipped.splice(index, 1)
+                }
+              }
+              // update the document with the new arrays
+              updateDoc(doc(db, 'user_data', user.uid), {
+                problemsSeen: problemsSeen,
+                problemsSolved: problemsSolved,
+                problemsSkipped: problemsSkipped,
+                problemsUnsolved: problemsUnsolved
+              }).then(() => {
+                console.log(
+                  'Updated user document: Problem ID ' +
+                    localStorage.getItem('problem') +
+                    ' unsolved.'
+                )
+              })
             })
-          })
-          if (localStorage.getItem('options') === null) {
-            createToast(
-              "Oops! You haven't selected a difficulty. Select a difficulty and try again.",
-              'fa-triangle-exclamation'
-            )
-
-            problem.problem.classList.toggle('hidden')
-            problem.loader.classList.toggle('hidden')
-          } else {
             const result = await generateProblem(
               'random-id',
               localStorage.getItem('options').toLowerCase(),
@@ -476,29 +493,25 @@ onMounted(() => {
                 'fa-triangle-exclamation'
               )
               console.error('Issue with generateProblem().')
-
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
             } else if (result === 'success') {
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
-              problem.link.classList.remove('hidden')
-              options.generate.classList.add('hidden')
+              loading.value = false
+              problemShown.value = true
               createToast('New problem generated!', 'fa-circle-check')
             }
-          }
-        } catch (err) {
-          createToast(
-            'Error generating problem. Please try again later.',
-            'fa-triangle-exclamation'
-          )
+          } catch (err) {
+            createToast(
+              'Error generating problem. Please try again later.',
+              'fa-triangle-exclamation'
+            )
 
-          problem.problem.classList.toggle('hidden')
-          problem.loader.classList.toggle('hidden')
+            loading.value = false
+            problemShown.value = false
+          }
         }
       })
     } else {
-      location.href = '/login'
+      // use router push to login
+      router.push('/login')
     }
   })
   for (let i = 0; i < options.items.length; i++) {
@@ -507,13 +520,15 @@ onMounted(() => {
       options.label.innerText = options.items[i].innerText
       let previous = localStorage.getItem('options')
       localStorage.setItem('options', options.items[i].innerText)
+      optionsExists.value = true
+      currentOption.value = options.items[i].innerText
       for (let j = 0; j < options.items.length; j++) {
         options.items[j].classList.remove('bg-gray-100', 'dark:bg-gray-600', 'dark:text-white')
       }
       options.items[i].classList.add('bg-gray-100', 'dark:bg-gray-600', 'dark:text-white')
       if (previous !== localStorage.getItem('options')) {
-        problem.problem.classList.toggle('hidden')
-        problem.loader.classList.toggle('hidden')
+        loading.value = true
+        problemShown.value = false
         generateProblem('random-id', localStorage.getItem('options').toLowerCase(), user).then(
           (result) => {
             if (result === 'error') {
@@ -523,14 +538,11 @@ onMounted(() => {
               )
               console.error('Issue with generateProblem().')
 
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
+              loading.value = false
+              problemShown.value = false
             } else if (result === 'success') {
-              problem.problem.classList.toggle('hidden')
-              problem.loader.classList.toggle('hidden')
-              problem.link.classList.remove('hidden')
-              options.generate.classList.add('hidden')
-              options.record.classList.remove('hidden')
+              loading.value = false
+              problemShown.value = true
               createToast('New problem generated!', 'fa-circle-check')
             }
           }
@@ -539,17 +551,16 @@ onMounted(() => {
     })
   }
   options.generate.addEventListener('click', async () => {
-    problem.problem.classList.toggle('hidden')
-    problem.loader.classList.toggle('hidden')
+    loading.value = true
+    problemShown.value = false
     try {
       if (localStorage.getItem('options') === null) {
         createToast(
           "Oops! You haven't selected a difficulty. Select a difficulty and try again.",
           'fa-triangle-exclamation'
         )
-
-        problem.problem.classList.toggle('hidden')
-        problem.loader.classList.toggle('hidden')
+        loading.value = false
+        problemShown.value = false
       } else {
         const result = await generateProblem(
           'random-id',
@@ -563,27 +574,23 @@ onMounted(() => {
           )
           console.error('Issue with generateProblem().')
 
-          problem.problem.classList.toggle('hidden')
-          problem.loader.classList.toggle('hidden')
+          loading.value = false
+          problemShown.value = false
         } else if (result === 'success') {
-          problem.problem.classList.toggle('hidden')
-          problem.loader.classList.toggle('hidden')
-          problem.link.classList.remove('hidden')
-          options.generate.classList.add('hidden')
-          options.record.classList.remove('hidden')
+          loading.value = false
+          problemShown.value = true
           createToast('New problem generated!', 'fa-circle-check')
         }
       }
     } catch (err) {
       createToast('Error generating problem. Please try again later.', 'fa-triangle-exclamation')
-
-      problem.problem.classList.toggle('hidden')
-      problem.loader.classList.toggle('hidden')
+      loading.value = false
+      problemShown.value = false
     }
   })
 
   async function generateProblem(idType, data, user) {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve) => { // eslint-disable-line no-async-promise-executor
       try {
         let id = -1
         let div = ''
@@ -622,8 +629,6 @@ onMounted(() => {
             problem.subtitle.innerText = generated.subtitle
             problem.text.innerHTML = generated.problem
             problem.link.href = generated.url
-            problem.link.classList.remove('hidden')
-            problem.id.classList.remove('hidden')
             switch (generated.division) {
               case 'platinum':
                 problem.id.classList.remove('is-bronze', 'is-silver', 'is-gold', 'is-primary')
@@ -689,8 +694,8 @@ onMounted(() => {
     sidebar.sidebar.classList.toggle('relative')
     sidebar.sidebar.classList.toggle('-z-10')
     sidebar.switcher.classList.toggle('rotate-180')
-    sidebar.sidebar.classList.toggle('lg:w-[20vw]')
     sidebar.sidebar.classList.toggle('w-10')
+    sidebar.sidebar.classList.toggle('lg:w-[20vw]')
     if (sidebar.sidebar.classList.contains('-translate-x-full')) {
       sidebar.sidebar.classList.remove('-translate-x-full')
       sidebar.sidebar.classList.add('translate-x-full')

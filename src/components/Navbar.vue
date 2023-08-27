@@ -58,7 +58,7 @@
             <router-link
               to="/login"
               id="nav-btn-register-login"
-              v-if = "loggedIn === false"
+              v-if="!loggedIn"
               class="btn-register-login dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
               >Register - Log In</router-link
             >
@@ -165,7 +165,7 @@
       >
       <router-link
         to="/login"
-        v-if = "loggedIn === false"
+        v-if="!loggedIn"
         class="btn-register-login dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
         >Register - Log In</router-link
       >
@@ -257,7 +257,7 @@ import { auth } from '../app-config'
 import { onAuthStateChanged } from 'firebase/auth'
 import * as problems from '../public/data/data.json'
 
-let loggedIn =  ref(false)
+let loggedIn = ref(false)
 
 onMounted(() => {
   const loginButton = document.getElementsByClassName('btn-register-login')
