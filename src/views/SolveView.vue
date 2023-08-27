@@ -184,7 +184,11 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
 import { ref, onMounted } from 'vue'
 import createToast from '../toast'
+<<<<<<< HEAD
 import router from '../Router'
+=======
+import router from '../router'
+>>>>>>> migration
 
 let loading = ref(true)
 let problemShown = ref(false)
