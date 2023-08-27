@@ -1,9 +1,15 @@
 <div align="center">
   <img src="https://drive.google.com/uc?export=download&id=1OmGvm2_bLyr5f0nxQbWukugMVFNo8aOx" alt="Algo" height="160" width="320">
   <b><h3>USACO problem randomizer and trainer built for competitive programming enthusiasts.</p></b>
-  <b><h3><a href="https://algousaco.com">https://algousaco.com</a></h3></b>
+  <b><h4><a href="https://algousaco.com">https://algousaco.com</a></h4></b>
 </div>
 <br>
+<h2>About Algo</h2>
+<p>As more people get into competitive programming and the USACO, more resources are available to help you prepare for the competition. However, there was one piece missing- practice. It's essential to learn the concepts and techniques, but it's equally, if not more important, to practice them. Until I created Algo, there were two options: randomly clicking on previous contests' problems or using train.usaco.org.
+
+However, clicking on problems randomly is inefficient, and train.usaco.org is incredibly outdated (most of the website hasn't had a refresh or update since the early 2010s). So, I created Algo to help people practice USACO problems and help them get ready for the USACO.
+
+Algo is a web application designed to supercharge your USACO training. It randomly generates problems from past contests so that you can practice them. Algo will process and show the problems in a simple, clean interface. After solving the problem, you can submit your solution to the USACO website to check if your program works.</p>
 <h2>Tech Stack</h2>
 <p>Algo is built with the following:</p>
 <ul>
