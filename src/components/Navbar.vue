@@ -290,8 +290,15 @@ onMounted(() => {
     searchModal.classList.toggle('hidden')
     searchModal.classList.toggle('grid')
   }
-
-  searchInNavbar.addEventListener('click', toggleSearchModal)
+  let hasPreparedSearch = false;
+  searchInNavbar.addEventListener('click', () => {
+    if(hasPreparedSearch == false) {
+      console.log("preparing search")
+      prepareSearch()
+      hasPreparedSearch = true;
+    }
+    toggleSearchModal()
+  })
 
   function prepareSearch() {
     divisions.forEach((division) => {
@@ -420,7 +427,6 @@ onMounted(() => {
   })
   onAuthStateChanged(auth, (user) => {
     profileMenuLoader.classList.remove('hidden')
-    prepareSearch()
     if (user) {
       loggedIn.value = true
       navBtnRegisterLogin.classList.remove('lg:block')
