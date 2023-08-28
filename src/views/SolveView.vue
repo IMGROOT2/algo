@@ -134,7 +134,9 @@
       id="problem-gen-dialog"
       v-show="!problemShown && !loading"
     >
-      <h1 class="text-gray-700 dark:text-white text-2xl text-center justify-center">Generate a new problem to get started!</h1>
+      <h1 class="text-gray-700 dark:text-white text-2xl text-center justify-center">
+        Generate a new problem to get started!
+      </h1>
     </div>
     <div class="w-full mr-8 flex" id="problem" v-show="!loading && problemShown">
       <div class="mx-auto w-screen md:w-auto">
@@ -589,7 +591,8 @@ onMounted(() => {
   })
 
   async function generateProblem(idType, data, user) {
-    return new Promise(async (resolve) => { // eslint-disable-line no-async-promise-executor
+    return new Promise(async (resolve) => {
+      // eslint-disable-line no-async-promise-executor
       try {
         let id = -1
         let div = ''
@@ -693,14 +696,13 @@ onMounted(() => {
     sidebar.sidebar.classList.toggle('relative')
     sidebar.sidebar.classList.toggle('-z-10')
     sidebar.switcher.classList.toggle('rotate-180')
-    if(sidebar.sidebar.classList.contains('-translate-x-[50vw]')) {
+    if (sidebar.sidebar.classList.contains('-translate-x-[50vw]')) {
       sidebar.sidebar.classList.toggle('w-10')
       sidebar.sidebar.classList.toggle('lg:w-[20vw]')
       setTimeout(() => {
         sidebar.sidebar.classList.toggle('-translate-x-[50vw]')
       }, 100)
-    }
-    else {
+    } else {
       sidebar.sidebar.classList.toggle('-translate-x-[50vw]')
       sidebar.sidebar.classList.toggle('w-10')
       sidebar.sidebar.classList.toggle('lg:w-[20vw]')

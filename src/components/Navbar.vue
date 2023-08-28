@@ -41,7 +41,10 @@
             <router-link
               to="/mock"
               class="dark:text-gray-300 text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium dark:hover:bg-gray-700 hover:bg-gray-300 dark:hover:text-white"
-              ><span class="bg-gradient-to-tr from-[#30a7d6] to-[#27c857] font-semibold bg-clip-text text-transparent">Mock Contest</span></router-link
+              ><span
+                class="bg-gradient-to-tr from-[#30a7d6] to-[#27c857] font-semibold bg-clip-text text-transparent"
+                >Mock Contest</span
+              ></router-link
             >
           </div>
         </div>
@@ -171,7 +174,10 @@
       <router-link
         to="/mock"
         class="dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
-        ><span class="bg-gradient-to-tr from-[#30a7d6] to-[#27c857] font-semibold bg-clip-text text-transparent">Mock Contest</span></router-link
+        ><span
+          class="bg-gradient-to-tr from-[#30a7d6] to-[#27c857] font-semibold bg-clip-text text-transparent"
+          >Mock Contest</span
+        ></router-link
       >
       <router-link
         to="/login"
@@ -300,12 +306,12 @@ onMounted(() => {
     searchModal.classList.toggle('hidden')
     searchModal.classList.toggle('grid')
   }
-  let hasPreparedSearch = false;
+  let hasPreparedSearch = false
   searchInNavbar.addEventListener('click', () => {
-    if(hasPreparedSearch == false) {
-      console.log("preparing search")
+    if (hasPreparedSearch == false) {
+      console.log('preparing search')
       prepareSearch()
-      hasPreparedSearch = true;
+      hasPreparedSearch = true
     }
     toggleSearchModal()
   })

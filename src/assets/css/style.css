@@ -9,11 +9,6 @@
   src: url(../fonts/Poppins-Medium.ttf);
 }
 
-@font-face {
-  font-family: Poppins-R;
-  src: url(../fonts/Poppins-Regular.ttf);
-}
-
 /* END core */
 
 body,
