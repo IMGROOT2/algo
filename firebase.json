@@ -13,8 +13,8 @@
     "cleanUrls": true,
     "rewrites": [
       {
-        "source": "/problem/**",
-        "destination": "/problem.html"
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   },

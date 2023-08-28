@@ -1,0 +1,99 @@
+/* START core */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Poppins-M;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
+
+/* END core */
+
+body,
+html {
+  font-family: Poppins-M;
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1e1d1d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #384253;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #62738a;
+}
+
+h4 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+}
+
+@media screen and (max-width: 768px) {
+  h4 {
+    font-size: 1rem;
+  }
+}
+
+#problem-text p {
+  padding-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+pre {
+  min-width: 25%;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  height: auto;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  color: white;
+  background-color: #70747a;
+  overflow-x: scroll;
+}
+
+@media screen and (max-width: 768px) {
+  pre {
+    min-width: 50% !important;
+  }
+}
+
+strong {
+  color: white;
+}
+
+.page-link {
+  text-decoration: underline !important;
+  text-decoration-color: #3072d6 !important;
+}
+.page-link:hover {
+  color: #3072d6 !important;
+}
+
+.is-bronze {
+  background: #864d16 !important;
+}
+.is-silver {
+  background: #4d4b4b !important;
+}
+.is-gold {
+  background: #f1cb09 !important;
+}
+.is-platinum {
+  background: #50a1cc !important;
+}
