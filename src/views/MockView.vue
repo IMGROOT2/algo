@@ -6,7 +6,7 @@
         </h1>
         <h1 class="text-2xl mt-3 mb-16 font-semibold opacity-0 text-gray-900 dark:text-white" id="msu-subtitle">Let's get set up.</h1>
         <div class="flex flex-col items-center justify-center w-screen-xl mx-5 lg:mx-auto gap-3 opacity-0" id="msu-settings">
-          <div class="p-4 shadow-lg text-gray-900 dark:text-white bg-gray-300 dark:bg-zinc-800 rounded-lg justify-center w-full lg:w-1/4">
+          <div class="p-4 shadow-lg text-gray-900 dark:text-white bg-zinc-300 dark:bg-zinc-800 rounded-lg justify-center w-full lg:w-1/4">
             <h1 class="text-2xl font-bold">Generate Problems</h1>
             <p class="text-md max-w-sm mx-auto">Three problems are already generated for you, but you can change them.</p>
             <div class="flex items-center justify-center w-screen-xl mx-auto gap-3">
@@ -80,22 +80,22 @@
                     </ul>
                   </div>
                 </div>
-                <div class="p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-gray-300 dark:bg-zinc-700 w-screen-xl my-3" id="msu-problem-one">{{ problemOne }}</div>
-                <div class="p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-gray-300 dark:bg-zinc-700 w-screen-xl my-3" id="msu-problem-two">{{ problemTwo }}</div>
-                <div class="p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-gray-300 dark:bg-zinc-700 w-screen-xl my-3" id="msu-problem-three">{{ problemThree }}</div>
+                <div class="p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-zinc-300 dark:bg-zinc-700 w-screen-xl my-3" id="msu-problem-one">{{ problemOne }}</div>
+                <div class="p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-zinc-300 dark:bg-zinc-700 w-screen-xl my-3" id="msu-problem-two">{{ problemTwo }}</div>
+                <div class="p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-zinc-300 dark:bg-zinc-700 w-screen-xl my-3" id="msu-problem-three">{{ problemThree }}</div>
               </div>
             </div>
           </div>
-          <div class=" p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-gray-300 dark:bg-zinc-800 w-screen-xl  w-full lg:w-1/4">
+          <div class=" p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-zinc-300 dark:bg-zinc-800 w-screen-xl  w-full lg:w-1/4">
             <h1 class="text-2xl font-bold">Select Duration</h1>
-            <p class="text-md max-w-sm mx-auto">We recommend the standard four hours for the duration of the mock contest.</p>
+            <p class="text-md max-w-sm mx-auto">Choose the duration for the mock contest. We recommend the standard four hours.</p>
             <button class="hover:bg-blue-500 dark:text-white text-gray-900 border-2 rounded-lg px-4 py-2 mt-3 mx-2" @click="toggleDuration(3)" id="msu-hours-three">3 Hours</button>
             <button class="hover:bg-emerald-500 dark:text-white text-gray-900 border-2 rounded-lg px-4 py-2 mt-3 mx-2" @click="toggleDuration(4)" id="msu-hours-four">4 Hours</button>
             <button class="hover:bg-violet-500 dark:text-white text-gray-900 border-2 rounded-lg px-4 py-2 mt-3 mx-2" @click="toggleDuration(5)" id="msu-hours-five">5 Hours</button>
           </div>
-          <div class=" p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-gray-300 dark:bg-zinc-800 w-screen-xl  w-full lg:w-1/4">
+          <div class=" p-4 shadow-lg text-gray-900 dark:text-white rounded-lg bg-zinc-300 dark:bg-zinc-800 w-screen-xl  w-full lg:w-1/4">
             <h1 class="text-2xl font-bold">Ready?</h1>
-            <p class="text-md max-w-sm mx-auto">You cannot stop the countdown timer once you start.</p>
+            <p class="text-md max-w-sm mx-auto">You cannot stop the countdown once you start.</p>
             <button class="transition-all duration-500 bg-gradient-to-tl from-[#3064d6] via-[#70eed9] to-[#1aa23e] bg-size-200 bg-pos-0 hover:bg-pos-100 dark:text-white text-gray-900 border-2 rounded-lg text-lg px-8 py-2 mt-3 mx-2" @click="setupMock">Start</button>
           </div>
         </div>
@@ -120,24 +120,33 @@
             <h1 class="text-gray-900 dark:text-white font-semibold text-xl">Submit your results, and calculate your score!</h1>
             <p class="text-gray-700 dark:text-gray-400">For each problem, enter the number of correct cases out of total cases as a decimal. For example, if you got 7 out of 10 cases correct, write <code>0.7</code>.</p>
             <span class="text-gray-700 dark:text-gray-400">If you did not solve a problem, <span class="font-bold">leave the input blank.</span></span>
+            <div>
             <input
               id="endModal-one"
               type="number"
-              class="block p-4 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              class="inline-block p-4 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               placeholder="Problem 1"
             />
+            <a :href=endModalSubmissionOne target="_blank"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline">Grade Problem 1</button></a>
+            </div>
+            <div>
             <input
               id="endModal-two"
               type="number"
-              class="block p-4 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              class="inline-block p-4 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               placeholder="Problem 2"
             />
+            <a :href=endModalSubmissionTwo target="_blank"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline">Grade Problem 2</button></a>
+            </div>
+            <div>
             <input
               id="endModal-three"
               type="number"
-              class="block p-4 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              class="inline-block p-4 text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-zinc-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
               placeholder="Problem 3"
             />
+            <a :href=endModalSubmissionThree target="_blank"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 ml-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline">Grade Problem 3</button></a>
+            </div>
           </div>
           <!-- Modal footer -->
           <div
@@ -155,7 +164,7 @@
       </div>
     </div>
 
-      <nav class="bg-white border-gray-200 dark:bg-zinc-900 w-full">
+      <nav class="bg-zinc-300 border-gray-200 dark:bg-zinc-900 w-full">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <div class="flex items-center">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white w-32" id="mock-countdown"></span>
@@ -166,15 +175,15 @@
               <i class="fa-solid fa-file-code w-6 h-6"></i>
           </button>
           <div class="w-full md:block md:w-auto" v-show="mobilenav || desktop">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-zinc-800 md:dark:bg-zinc-900 dark:border-gray-700">
+            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:border-gray-700">
               <li>
-                <a id="mock-nav-one" @click="toggleProblemViewer('one')" href="#" class="block py-2 pl-3 pr-4 text-gray-800 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Problem 1</a>
+                <a id="mock-nav-one" @click="toggleProblemViewer('one')" href="#" class="block py-2 pl-3 pr-4 text-gray-800 rounded md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500  dark:hover:text-white">Problem 1</a>
               </li>
               <li>
-                <a id="mock-nav-two" @click="toggleProblemViewer('two')" href="#" class="block py-2 pl-3 pr-4 text-gray-800 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Problem 2</a>
+                <a id="mock-nav-two" @click="toggleProblemViewer('two')" href="#" class="block py-2 pl-3 pr-4 text-gray-800 rounded md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500  dark:hover:text-white">Problem 2</a>
               </li>
               <li>
-                <a id="mock-nav-three" @click="toggleProblemViewer('three')" href="#" class="block py-2 pl-3 pr-4 text-gray-800 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Problem 3</a>
+                <a id="mock-nav-three" @click="toggleProblemViewer('three')" href="#" class="block py-2 pl-3 pr-4 text-gray-800 rounded md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500  dark:hover:text-white">Problem 3</a>
               </li>
             </ul>
           </div>
@@ -249,7 +258,11 @@ let problemOne = ref('')
 let problemTwo = ref('')
 let problemThree = ref('')
 let timerSet = false
-let desktop = new ref(false)
+let desktop = ref(false)
+
+let endModalSubmissionThree = ref('')
+let endModalSubmissionTwo = ref('')
+let endModalSubmissionOne = ref('')
 
 if(window.innerWidth >= 768) {
   desktop.value = true
@@ -305,8 +318,11 @@ function toggleProblemViewer(probToToggle) {
   problemToggleloading.value = true
   if(probToToggle === 'one') {
     mock.navOne.classList.add('text-blue-700', 'dark:text-blue-500')
+    mock.navOne.classList.remove('dark:text-white', 'text-gray-800')
     mock.navTwo.classList.remove('text-blue-700', 'dark:text-blue-500')
+    mock.navTwo.classList.add('dark:text-white', 'text-gray-800')
     mock.navThree.classList.remove('text-blue-700', 'dark:text-blue-500')
+    mock.navThree.classList.add('dark:text-white', 'text-gray-800')
     let problemData = getData(localStorage.getItem('mock-problems').split(',')[0])
     problem.title.innerText = problemData.title
     problem.subtitle.innerText = problemData.subtitle
@@ -333,8 +349,11 @@ function toggleProblemViewer(probToToggle) {
   }
   if(probToToggle === 'two') {
     mock.navOne.classList.remove('text-blue-700', 'dark:text-blue-500')
+    mock.navOne.classList.add('dark:text-white', 'text-gray-800')
     mock.navTwo.classList.add('text-blue-700', 'dark:text-blue-500')
+    mock.navTwo.classList.remove('dark:text-white', 'text-gray-800')
     mock.navThree.classList.remove('text-blue-700', 'dark:text-blue-500')
+    mock.navThree.classList.add('dark:text-white', 'text-gray-800')
     let problemData = getData(localStorage.getItem('mock-problems').split(',')[1])
     problem.title.innerText = problemData.title
     problem.subtitle.innerText = problemData.subtitle
@@ -360,8 +379,11 @@ function toggleProblemViewer(probToToggle) {
   }
   if(probToToggle === 'three') {
     mock.navOne.classList.remove('text-blue-700', 'dark:text-blue-500')
+    mock.navOne.classList.add('dark:text-white', 'text-gray-800')
     mock.navTwo.classList.remove('text-blue-700', 'dark:text-blue-500')
+    mock.navTwo.classList.add('dark:text-white', 'text-gray-800')
     mock.navThree.classList.add('text-blue-700', 'dark:text-blue-500')
+    mock.navThree.classList.remove('dark:text-white', 'text-gray-800')
     let problemData = getData(localStorage.getItem('mock-problems').split(',')[2])
     problem.title.innerText = problemData.title
     problem.subtitle.innerText = problemData.subtitle
@@ -423,6 +445,9 @@ timerSet = true
 }
 
 function triggerEnd() {
+  endModalSubmissionOne.value = getData(localStorage.getItem('mock-problems').split(',')[0]).url
+  endModalSubmissionTwo.value = getData(localStorage.getItem('mock-problems').split(',')[1]).url
+  endModalSubmissionThree.value = getData(localStorage.getItem('mock-problems').split(',')[2]).url
   endModal.value = true
 }
 
@@ -525,122 +550,133 @@ onMounted(() => {
         let one = submit.one.value.trim()
         let two = submit.two.value.trim()
         let three = submit.three.value.trim()
-        let score = one*333 + two*333 + three*333
-        // retrive user doc
-        await retrieveUserDoc(db, user).then((adoc) => {
-          const data = adoc.data()
-          const problemsSeen = data['problemsSeen']
-          const problemsSolved = data['problemsSolved']
-          const problemsSkipped = data['problemsSkipped']
-          const problemsUnsolved = data['problemsUnsolved']
+        
+        // if one, two, or three are less than 0 or greater than 1, create a toast
+        if(parseFloat(one) < 0 || parseFloat(one) > 1 || parseFloat(two) < 0 || parseFloat(two) > 1 || parseFloat(three) < 0 || parseFloat(three) > 1) {
+          createToast('One or more of your results are not correct. Make sure your decimals are between 0 and 1.', 'fa-exclamation-triangle')
+        }
+        else {
+          let score = one*333 + two*333 + three*333
+          score = Math.round(score * 10) / 10
+          // retrive user doc
+          await retrieveUserDoc(db, user).then((adoc) => {
+            const data = adoc.data()
+            const problemsSeen = data['problemsSeen']
+            const problemsSolved = data['problemsSolved']
+            const problemsSkipped = data['problemsSkipped']
+            const problemsUnsolved = data['problemsUnsolved']
 
-          for(let i = 0; i < 3; i++) {
-            let status;
-            if(i === 0) {
-              if(one === '1') {
-                status = 'solved'
-              }
-              else if(one === '') {
-                status = 'unsolved'
-              }
-              else {
-                status = 'skipped'
-              }
-            }
-            if(i === 1) {
-              if(two === '1') {
-                status = 'solved'
-              }
-              else if(two === '') {
-                status = 'unsolved'
-              }
-              else {
-                status = 'skipped'
-              }
-            }
-            if(i === 2) {
-              if(three === '1') {
-                status = 'solved'
-              }
-              else if(three === '') {
-                status = 'unsolved'
-              }
-              else {
-                status = 'skipped'
-              }
-            }
-            if (!problemsSeen.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-              problemsSeen.push(localStorage.getItem('mock-problems').split(',')[i])
-            }
-            if(status === 'solved') {
-              if (!problemsSolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                problemsSolved.push(localStorage.getItem('mock-problems').split(',')[i])
-              }
-              if (problemsSkipped.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                const index = problemsSkipped.indexOf(localStorage.getItem('mock-problems').split(',')[i])
-                if (index > -1) {
-                  problemsSkipped.splice(index, 1)
+            for(let i = 0; i < 3; i++) {
+              let status;
+              if(i === 0) {
+                if(one === '1') {
+                  status = 'solved'
+                }
+                else if(one === '') {
+                  status = 'unsolved'
+                }
+                else {
+                  status = 'skipped'
                 }
               }
-              if (problemsUnsolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                const index = problemsUnsolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
-                if (index > -1) {
-                  problemsUnsolved.splice(index, 1)
+              if(i === 1) {
+                if(two === '1') {
+                  status = 'solved'
+                }
+                else if(two === '') {
+                  status = 'unsolved'
+                }
+                else {
+                  status = 'skipped'
                 }
               }
+              if(i === 2) {
+                if(three === '1') {
+                  status = 'solved'
+                }
+                else if(three === '') {
+                  status = 'unsolved'
+                }
+                else {
+                  status = 'skipped'
+                }
+              }
+              if (!problemsSeen.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                problemsSeen.push(localStorage.getItem('mock-problems').split(',')[i])
+              }
+              if(status === 'solved') {
+                if (!problemsSolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  problemsSolved.push(localStorage.getItem('mock-problems').split(',')[i])
+                }
+                if (problemsSkipped.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  const index = problemsSkipped.indexOf(localStorage.getItem('mock-problems').split(',')[i])
+                  if (index > -1) {
+                    problemsSkipped.splice(index, 1)
+                  }
+                }
+                if (problemsUnsolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  const index = problemsUnsolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
+                  if (index > -1) {
+                    problemsUnsolved.splice(index, 1)
+                  }
+                }
+              }
+              if(status === 'skipped') {
+                if (!problemsSkipped.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  problemsSkipped.push(localStorage.getItem('mock-problems').split(',')[i])
+                }
+                if (problemsSolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  const index = problemsSolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
+                  if (index > -1) {
+                    problemsSolved.splice(index, 1)
+                  }
+                }
+                if (problemsUnsolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  const index = problemsUnsolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
+                  if (index > -1) {
+                    problemsUnsolved.splice(index, 1)
+                  }
+                }
+              }
+              if(status === 'unsolved') {
+                if (!problemsUnsolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  problemsUnsolved.push(localStorage.getItem('mock-problems').split(',')[i])
+                }
+                if (problemsSkipped.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  const index = problemsSkipped.indexOf(localStorage.getItem('mock-problems').split(',')[i])
+                  if (index > -1) {
+                    problemsSkipped.splice(index, 1)
+                  }
+                }
+                if (problemsSolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
+                  const index = problemsSolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
+                  if (index > -1) {
+                    problemsSolved.splice(index, 1)
+                  }
+                }
+              }
+              // update the document with the new arrays
+              updateDoc(doc(db, 'user_data', user.uid), {
+                problemsSeen: problemsSeen,
+                problemsSolved: problemsSolved,
+                problemsSkipped: problemsSkipped,
+                problemsUnsolved: problemsUnsolved
+              }).then(() => {
+                console.log("Updated user document.")
+              })
             }
-            if(status === 'skipped') {
-              if (!problemsSkipped.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                problemsSkipped.push(localStorage.getItem('mock-problems').split(',')[i])
-              }
-              if (problemsSolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                const index = problemsSolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
-                if (index > -1) {
-                  problemsSolved.splice(index, 1)
-                }
-              }
-              if (problemsUnsolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                const index = problemsUnsolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
-                if (index > -1) {
-                  problemsUnsolved.splice(index, 1)
-                }
-              }
-            }
-            if(status === 'unsolved') {
-              if (!problemsUnsolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                problemsUnsolved.push(localStorage.getItem('mock-problems').split(',')[i])
-              }
-              if (problemsSkipped.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                const index = problemsSkipped.indexOf(localStorage.getItem('mock-problems').split(',')[i])
-                if (index > -1) {
-                  problemsSkipped.splice(index, 1)
-                }
-              }
-              if (problemsSolved.includes(localStorage.getItem('mock-problems').split(',')[i])) {
-                const index = problemsSolved.indexOf(localStorage.getItem('mock-problems').split(',')[i])
-                if (index > -1) {
-                  problemsSolved.splice(index, 1)
-                }
-              }
-            }
-            // update the document with the new arrays
-            updateDoc(doc(db, 'user_data', user.uid), {
-              problemsSeen: problemsSeen,
-              problemsSolved: problemsSolved,
-              problemsSkipped: problemsSkipped,
-              problemsUnsolved: problemsUnsolved
-            }).then(() => {
-              console.log("Updated user document.")
-            })
-          }
-        }).then(() => {
-          mockSetUp.value = false
-          localStorage.setItem('mock-set-up', false)
-          localStorage.removeItem('mock-duration')
-          localStorage.removeItem('mock-problems')
-          createToast('Your statistics are updated! You scored ' + score + ' on the mock contest.', 'fa-check')
-          router.push('/statistics')
-        })
+          }).then(() => {
+            mockSetUp.value = false
+            localStorage.setItem('mock-set-up', false)
+            submit.one.value = ''
+            submit.two.value = ''
+            submit.three.value = ''
+            localStorage.removeItem('mock-duration')
+            localStorage.removeItem('mock-problems')
+            createToast('Your statistics are updated! You scored ' + score + ' on the mock contest.', 'fa-check')
+            router.push('/statistics')
+          })
+        }
       }
 
       setupMockPass = function() {

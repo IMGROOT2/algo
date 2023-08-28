@@ -160,7 +160,7 @@
             <div
               class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400 flex-1 overflow-y-auto"
             >
-              <p class="mb-4" id="problem-text"></p>
+              <p class="mb-4 overflow-y-hidden relative" id="problem-text"></p>
             </div>
           </div>
         </div>
@@ -693,18 +693,20 @@ onMounted(() => {
     sidebar.sidebar.classList.toggle('relative')
     sidebar.sidebar.classList.toggle('-z-10')
     sidebar.switcher.classList.toggle('rotate-180')
-    sidebar.sidebar.classList.toggle('w-10')
-    sidebar.sidebar.classList.toggle('lg:w-[20vw]')
-    if (sidebar.sidebar.classList.contains('-translate-x-full')) {
-      sidebar.sidebar.classList.remove('-translate-x-full')
-      sidebar.sidebar.classList.add('translate-x-full')
-    } else {
-      sidebar.sidebar.classList.add('-translate-x-full')
-      sidebar.sidebar.classList.remove('-translate-x-full')
+    if(sidebar.sidebar.classList.contains('-translate-x-[50vw]')) {
+      sidebar.sidebar.classList.toggle('w-10')
+      sidebar.sidebar.classList.toggle('lg:w-[20vw]')
+      setTimeout(() => {
+        sidebar.sidebar.classList.toggle('-translate-x-[50vw]')
+      }, 100)
+    }
+    else {
+      sidebar.sidebar.classList.toggle('-translate-x-[50vw]')
+      sidebar.sidebar.classList.toggle('w-10')
+      sidebar.sidebar.classList.toggle('lg:w-[20vw]')
     }
   })
   sidebar.switcherMobile.addEventListener('click', () => {
-    sidebar.sidebar.classList.add('transition-all')
     sidebar.sidebar.classList.toggle('relative')
     sidebar.sidebar.classList.toggle('-z-10')
     sidebar.switcherMobile.classList.toggle('rotate-180')

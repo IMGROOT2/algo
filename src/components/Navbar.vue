@@ -169,6 +169,11 @@
         >Solve</router-link
       >
       <router-link
+        to="/mock"
+        class="dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
+        ><span class="bg-gradient-to-tr from-[#30a7d6] to-[#27c857] font-semibold bg-clip-text text-transparent">Mock Contest</span></router-link
+      >
+      <router-link
         to="/login"
         v-show="!loggedIn"
         class="btn-register-login dark:text-gray-300 text-gray-800 block rounded-md px-3 py-2 text-base font-medium m-auto hover:bg-gray-400 dark:hover:bg-gray-600 dark:hover:text-white hover:text-gray-800"
