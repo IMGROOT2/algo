@@ -33,8 +33,7 @@
   </main>
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
     crossorigin="anonymous"
   />
 </template>
@@ -43,8 +42,8 @@ import * as problems from '../public/data/data.json'
 import { onMounted } from 'vue'
 import createToast from '../toast'
 import Loader from '../components/Loader.vue'
-import 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js'
-import 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js'
+import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js'
+import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'
 
 const props = defineProps({
   id: String

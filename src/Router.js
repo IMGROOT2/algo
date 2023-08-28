@@ -47,6 +47,12 @@ const routes = [
     component: () => import('./views/LoginView.vue')
   },
   {
+    path: '/mock',
+    name: 'Mock Contest',
+    description: 'Take a mock USACO contest with Algo.',
+    component: () => import('./views/MockView.vue')
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404 Not Found',
     description: "Uh oh! The page you're looking for doesn't exist.",

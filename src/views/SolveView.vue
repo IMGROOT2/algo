@@ -169,16 +169,15 @@
   </main>
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
     crossorigin="anonymous"
   />
 </template>
 <script setup>
 import * as problems from '../public/data/data.json'
 import Loader from '../components/Loader.vue'
-import 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js'
-import 'https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js'
+import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js'
+import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'
 import { auth, db } from '../app-config'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
