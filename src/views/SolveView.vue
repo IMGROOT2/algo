@@ -591,8 +591,7 @@ onMounted(() => {
   })
 
   async function generateProblem(idType, data, user) {
-    return new Promise(async (resolve) => {
-      // eslint-disable-line no-async-promise-executor
+    return new Promise(async (resolve) => { // eslint-disable-line no-async-promise-executor
       try {
         let id = -1
         let div = ''
