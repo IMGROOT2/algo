@@ -12,7 +12,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "deploy": "firebase deploy --only hosting,storage,firestore,database",
-    "publish": "vite build && npm run deploy"
+    "publish": "npm run clean && vite build && npm run deploy",
+    "clean": "npm run lint && npm run format"
   },
   "repository": {
     "type": "git",

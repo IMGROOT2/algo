@@ -19,5 +19,5 @@
   </div>
 </template>
 <script setup>
-import update from '../public/update.json'
+import update from '../assets/data/update.json'
 </script>

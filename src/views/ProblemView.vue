@@ -38,7 +38,7 @@
   />
 </template>
 <script setup>
-import * as problems from '../public/data/data.json'
+import * as problems from '../assets/data/data.json'
 import { onMounted } from 'vue'
 import createToast from '../toast'
 import Loader from '../components/Loader.vue'

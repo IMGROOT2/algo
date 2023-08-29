@@ -352,7 +352,7 @@
   />
 </template>
 <script setup>
-import * as problems from '../public/data/data.json'
+import * as problems from '../assets/data/data.json'
 import { onMounted, ref } from 'vue'
 import createToast from '../toast'
 import Loader from '../components/Loader.vue'
@@ -360,7 +360,7 @@ import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js'
 import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from '../app-config'
-import router from '../Router'
+import router from '@/Router'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 
 let loading = ref(true)

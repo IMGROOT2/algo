@@ -176,7 +176,7 @@
   />
 </template>
 <script setup>
-import * as problems from '../public/data/data.json'
+import * as problems from '../assets/data/data.json'
 import Loader from '../components/Loader.vue'
 import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js'
 import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'
@@ -185,7 +185,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
 import { ref, onMounted } from 'vue'
 import createToast from '../toast'
-import router from '../Router'
+import router from '@/Router'
 
 let loading = ref(true)
 let problemShown = ref(false)
@@ -591,7 +591,8 @@ onMounted(() => {
   })
 
   async function generateProblem(idType, data, user) {
-    return new Promise(async (resolve) => { // eslint-disable-line no-async-promise-executor
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise(async (resolve) => {
       try {
         let id = -1
         let div = ''

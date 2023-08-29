@@ -271,7 +271,7 @@ import Loader from './Loader.vue'
 import createToast from '../toast'
 import { auth } from '../app-config'
 import { onAuthStateChanged } from 'firebase/auth'
-import * as problems from '../public/data/data.json'
+import * as problems from '../assets/data/data.json'
 
 let loggedIn = ref(false)
 
