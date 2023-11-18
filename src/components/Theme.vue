@@ -3,21 +3,21 @@
     class="justify-evenly flex my-3 p-2 rounded-lg bg-zinc-200 dark:bg-zinc-700 w-[150px] mx-auto mb-5"
   >
     <button
-      class="h-10 w-10 flex items-center justify-center hover:text-blue-600 text-gray-400"
+      class="h-10 w-10 flex items-center justify-center hover:text-blue-600 text-gray-400 transition-all hover:scale-110"
       :id="props.num + 'theme-light'"
       aria-label="Light Mode"
     >
       <i class="fa-solid fa-sun"></i>
     </button>
     <button
-      class="h-10 w-10 flex items-center justify-center hover:text-blue-600 text-gray-400"
+      class="h-10 w-10 flex items-center justify-center hover:text-blue-600 text-gray-400 transition-all hover:scale-110"
       :id="props.num + 'theme-dark'"
       aria-label="Dark Mode"
     >
       <i class="fa-solid fa-moon"></i>
     </button>
     <button
-      class="h-10 w-10 flex items-center justify-center hover:text-blue-600 text-gray-400"
+      class="h-10 w-10 flex items-center justify-center hover:text-blue-600 text-gray-400 transition-all hover:scale-110"
       :id="props.num + 'theme-system'"
       aria-label="System Mode"
     >
