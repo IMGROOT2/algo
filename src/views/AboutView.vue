@@ -41,7 +41,9 @@
             <a href="https://github.com/IMGROOT2/Algo" class="page-link">GitHub Repository</a>.
             Thank you to my family and friends for supporting me and helping me with Algo, including
             my brother (Reyansh) for testing. <br /><br />
-            <span class="font-bold">Algo is © 2023 Ruhan Gupta. All rights reserved. </span>
+            <span class="font-bold"
+              >Algo is © 2023-<span id="year"></span> Ruhan Gupta. All rights reserved.
+            </span>
             USACO problems are retrieved from
             <a href="http://usaco.org" class="page-link">usaco.org</a>. All USACO problem credits go
             to their respective owners. I do not take credit for any of them.
@@ -52,5 +54,9 @@
   </main>
 </template>
 <script setup>
+import { onMounted } from 'vue'
 import AlgoFull from '../assets/images/algologofull.png'
+onMounted(() => {
+  document.getElementById('year').innerHTML = new Date().getFullYear()
+})
 </script>
