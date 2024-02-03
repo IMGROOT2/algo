@@ -27,7 +27,7 @@
         <a href="/about" class="page-link">About</a>
         <span class="mx-2">&centerdot;</span>
         <span>Made by</span>
-        <a href="https://github.com/IMGROOT2" target="_blank" class="ml-1 page-link">Ruhan Gupta</a>
+        <a href="https://ruhangupta.com/" target="_blank" class="ml-1 page-link">Ruhan Gupta</a>
       </div>
     </div>
   </footer>
