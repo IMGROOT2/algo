@@ -46,3 +46,18 @@ const data = JSON.parse(fs.readFileSync('data.json', 'utf8'))
   }
   console.log('Done!')
 })()
+
+// {
+//   "bronze": [
+
+//   ],
+//   "silver": [
+
+//   ],
+//   "gold": [
+
+//   ],
+//   "platinum": [
+
+//   ]
+// }
