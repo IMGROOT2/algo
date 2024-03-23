@@ -1,8 +1,8 @@
 {
   "analytics": {
-    "users": "1,900",
+    "users": "2,000",
     "views": "13,000",
-    "countries": "61"
+    "countries": "62"
   },
   "release": {
     "version": "1.0.1",
