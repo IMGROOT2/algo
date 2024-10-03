@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Algo is a web application that supercharges your training for the USACO by randomly generating problems from past contests.",
   "browserslist": "> 0.1% and last 2 versions and not dead",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "emulator": "firebase emulators:start --only auth,firestore,hosting:algo-usaco --import emulator-data",
     "emulator-no-import": "firebase emulators:start --only auth,firestore,hosting:algo-usaco",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint": "eslint \"**/*.{vue,js,jsx,cjs,mjs,ts,tsx}\" --fix",
     "format": "prettier --write src/",
     "deploy": "firebase deploy --only hosting,storage,firestore,database",
     "publish": "npm run clean && vite build && npm run deploy",
@@ -26,23 +27,24 @@
   },
   "homepage": "https://github.com/IMGROOT2/algo#readme",
   "dependencies": {
-    "chart.js": "^4.4.0",
-    "firebase": "^10.6.0",
-    "firebase-tools": "^12.9.1",
-    "tailwindcss": "^3.3.3",
-    "vue": "^3.3.6",
-    "vue-router": "^4.2.5"
+    "chart.js": "^4.4.4",
+    "firebase": "^10.13.2",
+    "firebase-tools": "^13.18.0",
+    "tailwindcss": "^3.4.12",
+    "vue": "^3.5.7",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.5.1",
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vue/eslint-config-prettier": "^8.0.0",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.52.0",
-    "eslint-plugin-vue": "^9.17.0",
-    "jsdom": "^22.1.0",
-    "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
-    "vite": "^4.5.0"
+    "@eslint/compat": "^1.1.1",
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.11.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "jsdom": "^25.0.0",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.7"
   }
 }

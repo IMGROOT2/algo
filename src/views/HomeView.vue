@@ -3,6 +3,49 @@
     <div
       class="home-adjust w-full text-center flex items-center justify-center flex-col h-screen bg-cover bg-no-repeat bg-bottom"
     >
+      <!-- Embed the SVG polygon directly -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1373"
+        height="695"
+        viewBox="0 0 1373 695"
+        fill="none"
+        class="absolute inset-0 w-full h-full top-10 right-8"
+      >
+        <g opacity="0.15" filter="url(#filter0_f_67_188)">
+          <path
+            d="M814.057 514.451L180.943 180.363L1447.17 180.363L814.057 514.451Z"
+            fill="#0025c8"
+          />
+        </g>
+        <defs fill="#000000">
+          <filter
+            id="filter0_f_67_188"
+            x="0.943115"
+            y="0.362732"
+            width="1626.23"
+            height="694.088"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+            fill="#000000"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" fill="#000000" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+              fill="#000000"
+            />
+            <feGaussianBlur
+              stdDeviation="90"
+              result="effect1_foregroundBlur_67_188"
+              fill="#000000"
+            />
+          </filter>
+        </defs>
+      </svg>
+
       <Banner />
       <div class="hidden sm:mb-8 sm:flex sm:justify-center">
         <div
@@ -59,15 +102,10 @@
     <HomeStatistics />
   </main>
 </template>
+
 <script setup>
 import { onMounted } from 'vue'
 import AlgoFull from '../assets/images/algologofull.png'
-import Polygon from '../assets/images/polygon.svg'
 import Banner from '../components/Banner.vue'
 import HomeStatistics from '../components/HomeStatistics.vue'
-
-onMounted(() => {
-  const homeAdjust = document.querySelector('.home-adjust')
-  homeAdjust.style.backgroundImage = `url(${Polygon})`
-})
 </script>

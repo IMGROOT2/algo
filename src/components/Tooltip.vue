@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 
 defineProps({
   message: {

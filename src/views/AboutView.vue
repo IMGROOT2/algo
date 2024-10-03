@@ -35,18 +35,20 @@
             Credits
           </h2>
           <p class="mb-4 font-light">
-            Algo was created by
-            <a href="https://github.com/IMGROOT2" class="page-link">Ruhan Gupta</a>. For the full
-            tech stack and libraries, check the
-            <a href="https://github.com/IMGROOT2/Algo" class="page-link">GitHub Repository</a>.
-            Thank you to my family and friends for supporting me and helping me with Algo, including
-            my brother (Reyansh) for testing. <br /><br />
+            Algo is solely created, developed, and maintained by
+            <a href="https://ruhangupta.com" class="page-link transition-all">Ruhan Gupta</a>. For
+            the full tech stack and libraries, check the
+            <a href="https://github.com/IMGROOT2/Algo" class="page-link transition-all"
+              >GitHub Repository</a
+            >. Give it a star if you have an account! Thank you to my family and friends for
+            supporting with Algo, including my brother (Reyansh) for testing. <br /><br />
             <span class="font-bold"
               >Algo is © 2023-<span id="year"></span> Ruhan Gupta. All rights reserved.
             </span>
             USACO problems are retrieved from
-            <a href="http://usaco.org" class="page-link">usaco.org</a>. All USACO problem credits go
-            to their respective owners. I do not take credit for any of them.
+            <a href="http://usaco.org" class="page-link transition-all">usaco.org</a>. All USACO
+            problem credits go to their respective authors, who are credited at the end of each
+            problem. I do not take credit or ownership of any USACO problems.
           </p>
         </div>
       </div>

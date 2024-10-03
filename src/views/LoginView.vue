@@ -23,7 +23,7 @@
           >
             <div class="flex">
               <div class="flex ml-3">
-                <img :src="Google" alt="Google Logo" style="w-16 h-16" />
+                <img :src="Google" alt="Google Logo" />
               </div>
               <div class="text-center mx-auto mt-0">
                 <p class="signup-with-google-text">Sign in with Google</p>
@@ -91,7 +91,7 @@
           >
             <div class="flex">
               <div class="flex ml-3">
-                <img :src="Google" alt="Google Logo" style="w-16 h-16" />
+                <img :src="Google" alt="Google Logo" />
               </div>
               <div class="text-center mx-auto mt-0">
                 <p class="signup-with-google-text">Sign up with Google</p>

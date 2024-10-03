@@ -134,7 +134,8 @@
           <div id="showWhenZero" class="hidden">
             <h1 class="title text-white text-3xl font-bold mb-2">No Problems Seen!</h1>
             <p class="subtitle text-white text-lg">
-              Go to <a href="/solve" class="page-link">Solve</a> and solve a few problems!
+              Go to <a href="/solve" class="page-link transition-all">Solve</a> and solve a few
+              problems!
             </p>
           </div>
         </div>

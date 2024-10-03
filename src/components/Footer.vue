@@ -19,15 +19,17 @@
           href="https://github.com/IMGROOT2/Algo"
           target="_blank"
           aria-label="Algo GitHub Repository"
-          class="page-link"
+          class="page-link transition-all"
         >
           <i class="fab fa-github"></i>
         </a>
         <span class="mx-2">&centerdot;</span>
-        <a href="/about" class="page-link">About</a>
+        <a href="/about" class="page-link transition-all">About</a>
         <span class="mx-2">&centerdot;</span>
         <span>Made by</span>
-        <a href="https://ruhangupta.com/" target="_blank" class="ml-1 page-link">Ruhan Gupta</a>
+        <a href="https://ruhangupta.com/" target="_blank" class="ml-1 page-link transition-all"
+          >Ruhan Gupta</a
+        >
       </div>
     </div>
   </footer>

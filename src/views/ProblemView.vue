@@ -17,7 +17,7 @@
               class="text-gray-900 dark:text-white rounded-md px-2 py-1 text-sm"
             ></span>
             <p class="dark:text-white text-sm lg:text-lg mt-3">
-              View on <a href="#" id="problem-link" class="page-link">usaco.org</a>
+              View on <a href="#" id="problem-link" class="page-link transition-all">usaco.org</a>
             </p>
           </div>
         </div>
@@ -33,7 +33,7 @@
   </main>
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
     crossorigin="anonymous"
   />
 </template>
@@ -42,8 +42,8 @@ import * as problems from '../assets/data/data.json'
 import { onMounted } from 'vue'
 import createToast from '../toast'
 import Loader from '../components/Loader.vue'
-import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js'
-import 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js'
+import 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js'
+import 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js'
 
 const props = defineProps({
   id: String
