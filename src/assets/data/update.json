@@ -1,11 +1,11 @@
 {
   "analytics": {
-    "users": "3,400",
-    "views": "15,700",
-    "countries": "87"
+    "users": "3,600",
+    "views": "16,000",
+    "countries": "88"
   },
   "release": {
-    "version": "1.0.1",
-    "text": "Animations, QOL!"
+    "version": "Banner is turned off.",
+    "text": "Uncomment it in Banner.vue to turn it on."
   }
 }
