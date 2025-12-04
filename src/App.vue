@@ -3,6 +3,7 @@
     <div class="bg-white dark:bg-[#1e1e1e] transition-all duration-600">
       <!-- theme div -->
       <Navbar />
+      <FeedbackModal />
       <RouterView v-slot="{ Component }">
         <component :is="Component" />
       </RouterView>
@@ -16,4 +17,5 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
+import FeedbackModal from '@/components/FeedbackModal.vue'
 </script>
