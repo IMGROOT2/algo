@@ -28,8 +28,8 @@
       </div>
       <div class="p-6 space-y-5">
         <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          Got <span class="font-semibold text-blue-600 dark:text-blue-400">two minutes</span> to share how
-          Algo can do even more for you? Tell us what would level up your training.<span
+          Got <span class="font-semibold text-blue-600 dark:text-blue-400">two minutes</span> to
+          share how Algo can do even more for you? Tell us what would level up your training.<span
             class="block font-medium text-emerald-600 dark:text-emerald-400"
             >Plus, we’ll spotlight you on the About page.</span
           >

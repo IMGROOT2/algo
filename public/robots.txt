@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /profile
+
+Sitemap: https://algousaco.com/sitemap.xml

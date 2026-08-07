@@ -9,7 +9,14 @@
               class="text-2xl lg:text-3xl font-bold dark:text-white text-gray-700"
               id="problem-title"
             ></h1>
-            <p class="text-gray-400 text-sm lg:text-lg" id="problem-subtitle"></p>
+            <div class="flex items-center gap-2">
+              <p class="text-gray-400 text-sm lg:text-lg" id="problem-subtitle"></p>
+              <span
+                id="problem-usopen"
+                class="hidden is-platinum text-white rounded-md px-2 py-0.5 text-xs font-semibold"
+                >US Open</span
+              >
+            </div>
           </div>
           <div class="text-right">
             <span
@@ -25,7 +32,9 @@
       <div class="dark:bg-zinc-800 bg-zinc-300 p-5 rounded-lg mx-3">
         <div class="p-4 mx-auto lg:p-8">
           <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-            <p class="mb-4" id="problem-text"></p>
+            <!-- A div, not a p: problem bodies contain block elements, which the
+                 HTML parser would hoist out of a p and leave this element empty. -->
+            <div class="mb-4" id="problem-text"></div>
           </div>
         </div>
       </div>
@@ -56,6 +65,7 @@ onMounted(() => {
   const problem = {
     title: document.getElementById('problem-title'),
     subtitle: document.getElementById('problem-subtitle'),
+    usopen: document.getElementById('problem-usopen'),
     text: document.getElementById('problem-text'),
     link: document.getElementById('problem-link'),
     id: document.getElementById('problem-id')
@@ -87,6 +97,9 @@ onMounted(() => {
       try {
         problem.title.innerText = generated.title
         problem.subtitle.innerText = generated.subtitle
+        // Since 2026 the US Open has no divisions; those problems are filed under
+        // platinum, so label them rather than leaving a bare platinum badge.
+        problem.usopen.classList.toggle('hidden', !generated.usopen)
         problem.text.innerHTML = generated.problem
         problem.link.href = generated.url
         problem.link.classList.remove('is-hidden')

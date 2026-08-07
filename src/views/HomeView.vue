@@ -87,9 +87,9 @@
               with <img :src="AlgoFull" alt="Algo Logo" class="inline h-16 lg:h-20" />
             </h1>
             <div class="p-2 bg-zinc-800/50 bg-zinc-700 rounded-lg flex-col flex my-5 mx-3">
-              <h1 class="text-white text-xl">
+              <p class="text-white text-xl">
                 Algo is a USACO problem randomizer that pushes your training to the next level.
-              </h1>
+              </p>
             </div>
             <a href="/solve">
               <button

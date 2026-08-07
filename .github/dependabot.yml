@@ -8,4 +8,23 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-        interval: "weekly"
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # Routine minor/patch bumps arrive as one PR instead of a dozen. Majors are
+      # left ungrouped so each one gets reviewed on its own.
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns:
+          - "*"
